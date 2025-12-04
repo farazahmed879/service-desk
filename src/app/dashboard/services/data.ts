@@ -38,7 +38,7 @@ export const SERVICES: Service[] = [
     /*     title: "Passport Renewal",*/
 
     title: "CNIC",
-  image: "/images/services/passport/new.png",
+    image: "/images/services/passport/cnic.png",
     fields: [
       { name: "Full Name", type: "text" },
       { name: "CNIC Number", type: "text" },
@@ -54,6 +54,7 @@ export const SERVICES: Service[] = [
   {
     /* title: "Lost Passport Replacement", */
     title: "B-form",
+    image: "/images/services/passport/b-form.png",
 
     fields: [
       { name: "Full Name", type: "text" },
@@ -68,8 +69,9 @@ export const SERVICES: Service[] = [
   },
   {
     /*     title: "Damaged Passport Reprint",
-     */ title: "Damaged Passport Reprint",
-
+     */
+    title: "Challan and  payments",
+  image: "/images/services/passport/Challan.png",
     fields: [
       { name: "Full Name", type: "text" },
       { name: "CNIC Number", type: "text" },
@@ -82,7 +84,9 @@ export const SERVICES: Service[] = [
     ],
   },
   {
-    title: "Modify / Update Passport Information",
+    title: "Vehicle Registration",
+      image: "/images/services/passport/vehicle.png",
+
     fields: [
       { name: "Full Name", type: "text" },
       { name: "CNIC Number", type: "text" },
@@ -93,7 +97,8 @@ export const SERVICES: Service[] = [
     ],
   },
   {
-    title: "Track Passport Application Status",
+    title: " Driving License",
+    image: "/images/services/passport/driving.png",
     fields: [
       { name: "Full Name", type: "text" },
       { name: "CNIC Number", type: "text" },
@@ -101,7 +106,8 @@ export const SERVICES: Service[] = [
     ],
   },
   {
-    title: "Appointment Booking Service",
+    title: "Track Passport Application Status",
+    image: "/images/services/passport/track-Passport.png",
     fields: [
       { name: "Full Name", type: "text" },
       { name: "CNIC Number", type: "text" },
@@ -112,6 +118,7 @@ export const SERVICES: Service[] = [
   },
   {
     title: "Online Fee Payment",
+    image: "/images/services/passport/online-payment.png",
     fields: [
       { name: "Full Name", type: "text" },
       { name: "CNIC Number", type: "text" },
@@ -125,6 +132,8 @@ export const SERVICES: Service[] = [
   },
   {
     title: "Document Upload Service",
+        image: "/images/services/passport/documnet-upload.png",
+
     fields: [
       { name: "Full Name", type: "text" },
       { name: "CNIC Number", type: "text" },
@@ -138,6 +147,7 @@ export const SERVICES: Service[] = [
   },
   {
     title: "User Registration & Login",
+     image: "/images/services/passport/registration.png",
     fields: [
       { name: "Full Name", type: "text" },
       { name: "Email", type: "email" },
@@ -146,6 +156,7 @@ export const SERVICES: Service[] = [
   },
   {
     title: "Customer Support / Helpdesk",
+    image: "/images/services/passport/helpdesk.png",
     fields: [
       { name: "Full Name", type: "text" },
       { name: "Email", type: "email" },
@@ -156,6 +167,8 @@ export const SERVICES: Service[] = [
   },
   {
     title: "Admin Panel Services",
+        image: "/images/services/passport/admin.png",
+
     fields: [
       { name: "Admin Name", type: "text" },
       { name: "Admin Email", type: "email" },

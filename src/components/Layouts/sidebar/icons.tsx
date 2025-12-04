@@ -38,6 +38,33 @@ export function HomeIcon(props: PropsType) {
     </svg>
   );
 }
+export function UsersIcon(props: PropsType) {
+  return (
+    <svg
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      {...props}
+    >
+      <path d="M15 12c1.93 0 3.5-1.79 3.5-4S16.93 4 15 4s-3.5 1.79-3.5 4 1.57 4 3.5 4zM9 12c1.93 0 3.5-1.79 3.5-4S10.93 4 9 4 5.5 5.79 5.5 8 7.07 12 9 12z" />
+      <path d="M9 14c-2.67 0-5.5 1.34-6 4v1c0 .55.45 1 1 1h10c.55 0 1-.45 1-1v-1c-.5-2.66-3.33-4-6-4zM15 14c-.46 0-.91.05-1.33.14 1.48.86 2.33 2.14 2.33 3.86v1c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1c-.5-2.66-3.33-4-6-4z" />
+    </svg>
+  );
+}
+export function ServicesIcon(props: PropsType) {
+  return (
+    <svg
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      {...props}
+    >
+      <path d="M12 2a2 2 0 012 2v1.1a7.002 7.002 0 014.9 4.9H21a2 2 0 012 2v2a2 2 0 01-2 2h-1.1a7.002 7.002 0 01-4.9 4.9V22a2 2 0 01-2 2h-2a2 2 0 01-2-2v-1.1a7.002 7.002 0 01-4.9-4.9H3a2 2 0 01-2-2v-2a2 2 0 012-2h1.1a7.002 7.002 0 014.9-4.9V4a2 2 0 012-2h2z" />
+    </svg>
+  );
+}
 
 export function Calendar(props: PropsType) {
   return (

@@ -1,4 +1,4 @@
-const CalendarBox = () => {
+/* const CalendarBox = () => {
   return (
     <>
       <div className="w-full max-w-full rounded-[10px] bg-white shadow-1 dark:bg-gray-dark dark:shadow-card">
@@ -36,7 +36,6 @@ const CalendarBox = () => {
             </tr>
           </thead>
           <tbody>
-            {/* <!-- Line 1 --> */}
             <tr className="grid grid-cols-7">
               <td className="ease relative h-20 cursor-pointer border border-stroke p-2 transition duration-500 hover:bg-gray-2 dark:border-dark-3 dark:hover:bg-dark-2 md:h-25 md:p-6 xl:h-31">
                 <span className="font-medium text-dark dark:text-white">1</span>
@@ -71,8 +70,7 @@ const CalendarBox = () => {
                 <span className="font-medium text-dark dark:text-white">7</span>
               </td>
             </tr>
-            {/* <!-- Line 1 --> */}
-            {/* <!-- Line 2 --> */}
+            
             <tr className="grid grid-cols-7">
               <td className="ease relative h-20 cursor-pointer border border-stroke p-2 transition duration-500 hover:bg-gray-2 dark:border-dark-3 dark:hover:bg-dark-2 md:h-25 md:p-6 xl:h-31">
                 <span className="font-medium text-dark dark:text-white">8</span>
@@ -106,8 +104,7 @@ const CalendarBox = () => {
                 </span>
               </td>
             </tr>
-            {/* <!-- Line 2 --> */}
-            {/* <!-- Line 3 --> */}
+           
             <tr className="grid grid-cols-7">
               <td className="ease relative h-20 cursor-pointer border border-stroke p-2 transition duration-500 hover:bg-gray-2 dark:border-dark-3 dark:hover:bg-dark-2 md:h-25 md:p-6 xl:h-31">
                 <span className="font-medium text-dark dark:text-white">
@@ -145,8 +142,7 @@ const CalendarBox = () => {
                 </span>
               </td>
             </tr>
-            {/* <!-- Line 3 --> */}
-            {/* <!-- Line 4 --> */}
+           
             <tr className="grid grid-cols-7">
               <td className="ease relative h-20 cursor-pointer border border-stroke p-2 transition duration-500 hover:bg-gray-2 dark:border-dark-3 dark:hover:bg-dark-2 md:h-25 md:p-6 xl:h-31">
                 <span className="font-medium text-dark dark:text-white">
@@ -195,8 +191,7 @@ const CalendarBox = () => {
                 </span>
               </td>
             </tr>
-            {/* <!-- Line 4 --> */}
-            {/* <!-- Line 5 --> */}
+         
             <tr className="grid grid-cols-7">
               <td className="ease relative h-20 cursor-pointer rounded-bl-[10px] border border-stroke p-2 transition duration-500 hover:bg-gray-2 dark:border-dark-3 dark:hover:bg-dark-2 md:h-25 md:p-6 xl:h-31">
                 <span className="font-medium text-dark dark:text-white">
@@ -226,7 +221,6 @@ const CalendarBox = () => {
                 <span className="font-medium text-dark dark:text-white">4</span>
               </td>
             </tr>
-            {/* <!-- Line 5 --> */}
           </tbody>
         </table>
       </div>
@@ -235,3 +229,4 @@ const CalendarBox = () => {
 };
 
 export default CalendarBox;
+ */

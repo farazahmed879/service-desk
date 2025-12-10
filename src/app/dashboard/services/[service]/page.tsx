@@ -11,17 +11,21 @@ export default function ServicePage() {
   if (Array.isArray(service)) service = service[0];
   if (!service) return <p className="text-red-500">Service not specified</p>;
 
-  const serviceComponents: Record<string, string> = {
-    "new-passport-application": "../passport/passportform",
-    "cnic-application": "../cnic/cnicform",
-    "b-form": "../b-form/bform",
-    "challan-and-payments": "../challan_and_payments/challans",
-    "vehicle-registration": "../vehicle-Registration/registration",
-    "driving-license": "../driving-license/DrivingLicense",
-    "track-passport-application-status": "../track-passport/track",
-  "online-fee-payment": "../onlinefee/onlinefee",
-   
-  };
+ const serviceComponents: Record<string, string> = {
+  "new-passport-application": "../passport/passportform",
+  "cnic-application": "../cnic/cnicform",
+  "b-form": "../b-form/bform",
+  "challan-and-payments": "../challan_and_payments/challans",
+  "vehicle-registration": "../vehicle-Registration/registration",
+  "driving-license": "../driving-license/DrivingLicense",
+  "track-passport-application-status": "../track-passport/track",
+  "number-plate-services": "../number_plate_services/number_plate_service",
+    "vehicle-transfer": "../vehicle_transfer/VehicleTransfer",
+"birth-certificate": "../birth _certificate/birthcertificate",
+  "domicile-prc": "../domicile_prc/domicile_prc",
+
+};
+
 
   const key = service.toLowerCase().trim();
   const selectedService = serviceComponents[key];

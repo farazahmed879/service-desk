@@ -1,10 +1,13 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import InputField from "@/components/InputFields/InputField";
 
 export default function PassportForm() {
   const { register, handleSubmit } = useForm();
+  const router = useRouter();
+
 
   const onSubmit = (data: any) => {
     console.log("Passport Form Submitted:", data);
@@ -13,13 +16,21 @@ export default function PassportForm() {
 
   return (
     <div className="w-full bg-white shadow-md rounded-xl p-6 border border-gray-200">
-      
+      <div className="flex items-center gap-2 mb-4">
+        <span className="font-medium text-gray-700">User:</span>
+        <input
+          type="text"
+          placeholder="User"
+          {...register("userName")}
+          className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
+        />
+      </div>
       <h1 className="text-2xl font-bold text-gray-700 mb-6">
         Passport Application Form
       </h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <InputField label="First Name" name="FirstName" register={register} placeholder="First Name" />
           <InputField label="Middle Name" name="MiddleName" register={register} placeholder="Middle Name" />
@@ -44,15 +55,22 @@ export default function PassportForm() {
           <InputField label="Permanent Address" name="PermanentAddress" register={register} textarea rows={4} placeholder="Enter your permanent address" />
         </div>
 
-        <div className="w-full flex justify-end">
+        <div className="w-full flex justify-end gap-4">
+          <button
+            type="button"
+            onClick={() => router.push("/dashboard/services")}
+            className="w-40 bg-blue-600 text-white font-semibold py-2.5 rounded-lg shadow hover:bg-blue-700 transition-all"
+          >
+            Cancel
+          </button>
+
           <button
             type="submit"
-            className="w-36 bg-blue-600 text-white font-semibold py-2.5 rounded-lg shadow hover:bg-blue-700 transition-all"
+            className="w-40 bg-blue-600 text-white font-semibold py-2.5 rounded-lg shadow hover:bg-blue-700 transition-all"
           >
             Submit
           </button>
         </div>
-
       </form>
     </div>
   );

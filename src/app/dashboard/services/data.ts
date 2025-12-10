@@ -4,8 +4,6 @@ export interface Service {
   image?: string;
 }
 
-
-
 export const SERVICES: Service[] = [
   {
     title: "New Passport Application",
@@ -13,7 +11,7 @@ export const SERVICES: Service[] = [
     image: "/images/services/passport/new.png",
   },
   {
-    title: "CNIC Application",
+    title: "CNIC ",
     slug: "cnic-application",
     image: "/images/services/passport/cnic.png",
   },
@@ -23,7 +21,7 @@ export const SERVICES: Service[] = [
   image: "/images/services/passport/b-form.png",
 },
   {
-  title: "Challan & Payments",
+  title: "Bill & Payments",
   slug: "challan-and-payments",
   image: "/images/services/passport/challan.png",
 },
@@ -37,31 +35,56 @@ export const SERVICES: Service[] = [
     slug: "driving-license",
     image: "/images/services/passport/driving.png",
   },
-  {
+  /* {
     title: "Track Passport Application Status",
     slug: "track-passport-application-status",
     image: "/images/services/passport/track-passport.png",
-  },
-  {
+  }, */
+   {
+  title: "Number Plate Service",
+  slug: "number-plate-services",
+  image: "/images/services/passport/number-plate.png", 
+},
+ {
+  title: "Vehicle Transfer",
+  slug: "vehicle-transfer",
+  image: "/images/services/passport/vehicle-transfer.png", 
+},
+ {
+  title: "Birth Certificate",
+  slug: "birth-certificate",
+  image: "/images/services/passport/b-certificate.png", 
+},
+{
+  title: "Domicle and Prc",
+  slug: "domicile-prc",
+  image: "/images/services/passport/domicile.png", 
+},
+
+  
+
+   
+
+ /*  {
     title: "Online Fee Payment",
     slug: "online-fee-payment",
     image: "/images/services/passport/online-payment.png",
-  },
+  }, */
  /*  {
     title: "Document Upload Service",
     slug: "document-upload-service",
     image: "/images/services/passport/document-upload.png",
   }, */
-  {
+ /*  {
     title: "Customer Support / Helpdesk",
     slug: "customer-support-helpdesk",
     image: "/images/services/passport/helpdesk.png",
-  },
-  {
+  }, */
+ /*  {
     title: "Admin Panel Services",
     slug: "admin-panel-services",
     image: "/images/services/passport/admin.png",
-  },
+  }, */
 ];
 
 

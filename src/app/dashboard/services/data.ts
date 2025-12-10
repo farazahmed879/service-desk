@@ -1,20 +1,97 @@
-export interface ServiceField {
+export interface Service {
+  title: string;
+  slug: string;
+  image?: string;
+}
+
+
+
+export const SERVICES: Service[] = [
+  {
+    title: "New Passport Application",
+    slug: "new-passport-application",
+    image: "/images/services/passport/new.png",
+  },
+  {
+    title: "CNIC Application",
+    slug: "cnic-application",
+    image: "/images/services/passport/cnic.png",
+  },
+  {
+  title: "B-Form",
+  slug: "b-form",
+  image: "/images/services/passport/b-form.png",
+},
+  {
+  title: "Challan & Payments",
+  slug: "challan-and-payments",
+  image: "/images/services/passport/challan.png",
+},
+   {
+    title: "Vehicle Registration",
+    slug: "vehicle-registration",
+    image: "/images/services/passport/vehicle.png",
+  },
+  {
+    title: "Driving License",
+    slug: "driving-license",
+    image: "/images/services/passport/driving.png",
+  },
+  {
+    title: "Track Passport Application Status",
+    slug: "track-passport-application-status",
+    image: "/images/services/passport/track-passport.png",
+  },
+  {
+    title: "Online Fee Payment",
+    slug: "online-fee-payment",
+    image: "/images/services/passport/online-payment.png",
+  },
+ /*  {
+    title: "Document Upload Service",
+    slug: "document-upload-service",
+    image: "/images/services/passport/document-upload.png",
+  }, */
+  {
+    title: "Customer Support / Helpdesk",
+    slug: "customer-support-helpdesk",
+    image: "/images/services/passport/helpdesk.png",
+  },
+  {
+    title: "Admin Panel Services",
+    slug: "admin-panel-services",
+    image: "/images/services/passport/admin.png",
+  },
+];
+
+
+/* export interface ServiceField {
   name: string;
-  type: "text" | "number" | "email" | "date" | "file" | "select" | "image";
+  type:
+    | "text"
+    | "number"
+    | "email"
+    | "date"
+    | "file"
+    | "select"
+    | "image"
+    | "slug";
   options?: string[];
   placeholder?: string;
 }
 
 export interface Service {
   title: string;
+  slug: string;
   image?: string;
-  fields: ServiceField[];
+  fields: any[];
 }
 
 export const SERVICES: Service[] = [
   {
     title: "New Passport Application",
     image: "/images/services/passport/new.png",
+    slug: "new-passport-application",
     fields: [
       { name: "Full Name", type: "text" },
       { name: "Father's Name", type: "text" },
@@ -34,26 +111,44 @@ export const SERVICES: Service[] = [
     ],
   },
 
+ 
   {
-    /*     title: "Passport Renewal",*/
+  title: "CNIC",
+  slug: "cnic",
+  image: "/images/services/passport/cnic.png",
 
-    title: "CNIC",
-    image: "/images/services/passport/cnic.png",
-    fields: [
-      { name: "Full Name", type: "text" },
-      { name: "CNIC Number", type: "text" },
-      { name: "Old Passport Number", type: "text" },
-      { name: "Old Passport Issue Date", type: "date" },
-      { name: "Old Passport Expiry Date", type: "date" },
-      { name: "Reason for Renewal", type: "text" },
-      { name: "Upload Old Passport Scan", type: "file" },
-      { name: "Upload CNIC", type: "file" },
-      { name: "New Photo", type: "file" },
-    ],
-  },
+  fields: [
+    { name: "Full Name", type: "text", placeholder: "Enter your full name" },
+    { name: "Father/Husband Name", type: "text", placeholder: "Enter father/husband name" },
+    { name: "Date of Birth", type: "date" },
+    { name: "Gender", type: "select", options: ["Male", "Female", "Other"] },
+    { name: "Mobile Number", type: "text", placeholder: "03xx-xxxxxxx" },
+    { name: "Email Address", type: "email", placeholder: "Enter your email" },
+    { name: "Permanent Address", type: "text", placeholder: "Enter full address" },
+    { name: "Current Address", type: "text", placeholder: "Enter current address" },
+
+    {
+      name: "CNIC Application Type",
+      type: "select",
+      options: ["New CNIC", "Duplicate CNIC", "Modify Information"],
+    },
+
+    {
+      name: "Update Type",
+      type: "select",
+      options: ["Name", "Address", "Marital Status", "Photo Update", "Other"],
+    },
+
+    { name: "Upload Birth Certificate", type: "file" },
+    { name: "Upload Father/Husband CNIC", type: "file" },
+    { name: "Upload Photo", type: "file" },
+  ],
+},
+
+
   {
-    /* title: "Lost Passport Replacement", */
     title: "B-form",
+    slug: "bform",
     image: "/images/services/passport/b-form.png",
 
     fields: [
@@ -68,10 +163,9 @@ export const SERVICES: Service[] = [
     ],
   },
   {
-    /*     title: "Damaged Passport Reprint",
-     */
     title: "Challan and  payments",
-  image: "/images/services/passport/Challan.png",
+    slug: "Challan-and-payments",
+    image: "/images/services/passport/Challan.png",
     fields: [
       { name: "Full Name", type: "text" },
       { name: "CNIC Number", type: "text" },
@@ -85,7 +179,8 @@ export const SERVICES: Service[] = [
   },
   {
     title: "Vehicle Registration",
-      image: "/images/services/passport/vehicle.png",
+    slug: "Vehicle-Registration",
+    image: "/images/services/passport/vehicle.png",
 
     fields: [
       { name: "Full Name", type: "text" },
@@ -96,17 +191,19 @@ export const SERVICES: Service[] = [
       { name: "New Photo", type: "file" },
     ],
   },
-  {
-    title: " Driving License",
-    image: "/images/services/passport/driving.png",
-    fields: [
-      { name: "Full Name", type: "text" },
-      { name: "CNIC Number", type: "text" },
-      { name: "Passport Number", type: "text" },
-    ],
-  },
+ {
+  title: "Driving License",
+  slug: "driving-license",
+  image: "/images/services/passport/driving.png",
+  fields: [
+    { name: "Full Name", type: "text" },
+    { name: "CNIC Number", type: "text" },
+    { name: "Passport Number", type: "text" },
+  ],
+},
   {
     title: "Track Passport Application Status",
+    slug: "Track-Passport-Application-Status",
     image: "/images/services/passport/track-Passport.png",
     fields: [
       { name: "Full Name", type: "text" },
@@ -118,6 +215,7 @@ export const SERVICES: Service[] = [
   },
   {
     title: "Online Fee Payment",
+    slug: "Online-Fee-Payment",
     image: "/images/services/passport/online-payment.png",
     fields: [
       { name: "Full Name", type: "text" },
@@ -132,7 +230,8 @@ export const SERVICES: Service[] = [
   },
   {
     title: "Document Upload Service",
-        image: "/images/services/passport/documnet-upload.png",
+    slug: "Document-Upload-Service",
+    image: "/images/services/passport/documnet-upload.png",
 
     fields: [
       { name: "Full Name", type: "text" },
@@ -145,17 +244,19 @@ export const SERVICES: Service[] = [
       { name: "Upload Document", type: "file" },
     ],
   },
-  {
+   {
     title: "User Registration & Login",
-     image: "/images/services/passport/registration.png",
+    slug: "UserRegistration&Login",
+    image: "/images/services/passport/registration.png",
     fields: [
       { name: "Full Name", type: "text" },
       { name: "Email", type: "email" },
       { name: "Password", type: "text" },
     ],
-  },
+  }, 
   {
     title: "Customer Support / Helpdesk",
+    slug: "Customer-Support-Helpdesk",
     image: "/images/services/passport/helpdesk.png",
     fields: [
       { name: "Full Name", type: "text" },
@@ -167,13 +268,14 @@ export const SERVICES: Service[] = [
   },
   {
     title: "Admin Panel Services",
-        image: "/images/services/passport/admin.png",
+    slug: "AdminPanelServices",
+    image: "/images/services/passport/admin.png",
 
     fields: [
       { name: "Admin Name", type: "text" },
       { name: "Admin Email", type: "email" },
       {
-        name: "Service Type",
+        name: "ServiceType",
         type: "select",
         options: ["Add User", "Remove User", "Update Service"],
       },
@@ -181,7 +283,7 @@ export const SERVICES: Service[] = [
     ],
   },
 ];
-
+ */
 /* // src/app/dashboard/services/data.ts
 export interface ServiceField {
   name: string;

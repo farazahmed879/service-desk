@@ -1,4 +1,92 @@
+"use client";
 
+import { useParams } from "next/navigation";
+import dynamic from "next/dynamic";
+
+export default function ServiceFormPage() {
+  const { service } = useParams();
+
+  if (!service || Array.isArray(service)) {
+    return <p className="text-red-500">Service not found</p>;
+  }
+
+  const DynamicForm = dynamic(() => import(`./${service}`), { ssr: false });
+
+  return (
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">
+        {service.replace(/-/g, " ")} Form
+      </h1>
+      <DynamicForm />
+    </div>
+  );
+}
+
+
+
+/* "use client";
+
+import { useForm } from "react-hook-form";
+import { Service } from "./data";
+
+export default function ServiceForm({ service }: { service: any }) {
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const onSubmit = (data: any) => {
+    console.log("Form Submitted:", data);
+    alert("Form submitted successfully!");
+  };
+
+  return (
+    <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+      {service.fields?.map((field: any, idx: number) => (
+        <div key={idx}>
+          <label className="block mb-1 font-medium">{field.name}</label>
+
+          {field.type === "select" ? (
+            <select
+              className="w-full border border-gray-300 rounded-lg p-2"
+              {...register(field.name, { required: `${field.name} is required` })}
+            >
+              <option value="">Select {field.name}</option>
+              {field.options?.map((opt: string, i: number) => (
+                <option key={i} value={opt}>
+                  {opt}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <input
+              type={field.type}
+              className="w-full border border-gray-300 rounded-lg p-2"
+              placeholder={field.placeholder || ""}
+              {...register(field.name, { required: `${field.name} is required` })}
+            />
+          )}
+
+          {errors[field.name]?.message && (
+            <p className="text-red-500 text-sm mt-1">
+              {String(errors[field.name]?.message)}
+            </p>
+          )}
+        </div>
+      ))}
+
+      <button
+        type="submit"
+        className="mt-4 w-full bg-green-600 text-white font-medium py-2.5 rounded-lg hover:bg-blue-700 transition"
+        onClick={() => console.log("Submit button clicked")}
+      >
+        Submit
+      </button>
+    </form>
+   );
+}
+ */
+
+
+
+/* 
 "use client";
 
 import { Service } from "./data";
@@ -82,7 +170,7 @@ export default function ServiceForm({ service, onClose }: ServiceFormProps) {
       </form>
     </div>
   );
-}
+} */
 
 /* "use client";
 

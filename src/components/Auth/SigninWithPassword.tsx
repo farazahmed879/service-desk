@@ -4,11 +4,15 @@ import Link from "next/link";
 import React, { useState } from "react";
 import InputGroup from "../FormElements/InputGroup";
 import { Checkbox } from "../FormElements/checkbox";
+import { useRouter } from "next/navigation";
+
 
 export default function SigninWithPassword() {
+  const router = useRouter();
+
   const [data, setData] = useState({
-    email: process.env.NEXT_PUBLIC_DEMO_USER_MAIL || "",
-    password: process.env.NEXT_PUBLIC_DEMO_USER_PASS || "",
+    email: "",
+    password: "",
     remember: false,
   });
 
@@ -23,15 +27,26 @@ export default function SigninWithPassword() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // You can remove this code block
     setLoading(true);
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  };
+    
+    const validEmail = "admin@test.com";
+    const validPassword = "123456";
+    
 
+    if (data.email === validEmail && data.password === validPassword) {
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userEmail", data.email);
+
+      setTimeout(() => {
+        setLoading(false);
+        router.push("/"); 
+      }, 800);
+    } else {
+      setLoading(false);
+      alert(" Invalid email or password!");
+    }
+  };
   return (
     <form onSubmit={handleSubmit}>
       <InputGroup
@@ -93,3 +108,60 @@ export default function SigninWithPassword() {
     </form>
   );
 }
+
+
+/* "use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+export default function SigninWithPassword() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Hardcoded credentials
+    const validEmail = "test@admin.com";
+    const validPassword = "123456";
+
+    if (email === validEmail && password === validPassword) {
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userEmail", email);
+
+      router.push("/"); // Redirect to dashboard/home
+    } else {
+      alert("Invalid email or password!");
+    }
+  };
+
+  return (
+    <form onSubmit={handleLogin} className="flex flex-col gap-4">
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+        className="rounded border p-2"
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+        className="rounded border p-2"
+      />
+      <button
+        type="submit"
+        className="rounded bg-blue-600 p-2 text-white hover:bg-blue-700"
+      >
+        Sign in
+      </button>
+    </form>
+  );
+}
+ */

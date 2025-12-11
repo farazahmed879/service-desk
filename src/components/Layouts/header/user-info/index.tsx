@@ -11,10 +11,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { LogOutIcon, SettingsIcon, UserIcon } from "./icons";
+import { useRouter } from "next/navigation";
 
 export function UserInfo() {
   const [isOpen, setIsOpen] = useState(false);
-
+  const router = useRouter();
   const USER = {
     name: "John Smith",
     email: "johnson@nextadmin.com",
@@ -106,7 +107,12 @@ export function UserInfo() {
         <div className="p-2 text-base text-[#4B5563] dark:text-dark-6">
           <button
             className="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-[9px] hover:bg-gray-2 hover:text-dark dark:hover:bg-dark-3 dark:hover:text-white"
-            onClick={() => setIsOpen(false)}
+            onClick={() => {
+              setIsOpen(false);
+              localStorage.removeItem("isLoggedIn");
+              localStorage.removeItem("userEmail");
+              router.push("/auth/sign-in");
+            }}
           >
             <LogOutIcon />
 
@@ -117,3 +123,68 @@ export function UserInfo() {
     </Dropdown>
   );
 }
+
+/* "use client";
+
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+import { Dropdown, DropdownTrigger, DropdownContent } from "@/components/ui/dropdown";
+import { cn } from "@/lib/utils";
+import { ChevronUpIcon } from "@/assets/icons";
+import { UserIcon, SettingsIcon, LogOutIcon } from "./icons";
+
+export function UserInfo() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => setMounted(true), []);
+
+  const USER = {
+    name: "Iqrar Ahmed",
+    email: "johnson@nextadmin.com",
+    img: "/images/user/user-03.png",
+  };
+
+  if (!mounted) return null;
+
+  return (
+    <Dropdown isOpen={isOpen} setIsOpen={setIsOpen}>
+      <DropdownTrigger className="rounded align-middle outline-none ring-primary ring-offset-2 focus-visible:ring-1 dark:ring-offset-gray-dark">
+        <figure className="flex items-center gap-3">
+          <Image src={USER.img} className="size-12" alt={USER.name} width={40} height={40} />
+          <figcaption className="flex items-center gap-1 font-medium text-dark dark:text-dark-6 max-[1024px]:sr-only">
+            <span>{USER.name}</span>
+            <ChevronUpIcon
+              aria-hidden
+              className={cn("rotate-180 transition-transform", isOpen && "rotate-0")}
+              strokeWidth={1.5}
+            />
+          </figcaption>
+        </figure>
+      </DropdownTrigger>
+
+      <DropdownContent
+        className="border border-stroke bg-white shadow-md dark:border-dark-3 dark:bg-gray-dark min-w-[17.5rem]"
+        align="end"
+      >
+        <div className="p-2 text-base text-[#4B5563] dark:text-dark-6">
+          <button
+            onClick={() => {
+              setIsOpen(false);
+              router.push("/auth/sign-in"); // Redirect to login page
+            }}
+            className="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-[9px] hover:bg-gray-2 hover:text-dark dark:hover:bg-dark-3 dark:hover:text-white"
+          >
+            <LogOutIcon />
+            <span className="text-base font-medium">Log out</span>
+          </button>
+        </div>
+      </DropdownContent>
+    </Dropdown>
+  );
+}
+ */

@@ -22,7 +22,7 @@ export default function FormElementsPage() {
     <>
       <Breadcrumb pageName="Form Elements" />
 
-      <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
+      {/* <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
         <div className="flex flex-col gap-9">
           <ShowcaseSection title="Input Fields" className="space-y-5.5 !p-6.5">
             <InputGroup
@@ -123,7 +123,7 @@ export default function FormElementsPage() {
             <RadioInput label="Checkbox Text" variant="circle" />
           </ShowcaseSection>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

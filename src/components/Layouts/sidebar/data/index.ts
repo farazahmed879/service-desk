@@ -12,21 +12,41 @@ export const NAV_DATA = [
             title: "eCommerce",
             url: "/",
           },
+           /* {
+            title: "Users",
+            url: "/dashboard/users",
+          },
+          */
         ],
+        
       },
       {
+      title: "Users",
+      icon: Icons.UsersIcon,
+      url: "/dashboard/users",
+            items: [], 
+
+    },
+    {
+        title: "Services",
+        url: "/dashboard/services",
+        icon: Icons.ServicesIcon,
+        items: [], 
+      },
+
+      /* {
         title: "Calendar",
         url: "/calendar",
         icon: Icons.Calendar,
         items: [],
-      },
-      {
+      }, */
+     /*  {
         title: "Profile",
         url: "/profile",
         icon: Icons.User,
         items: [],
-      },
-      {
+      }, */
+    /*   {
         title: "Forms",
         icon: Icons.Alphabet,
         items: [
@@ -39,8 +59,8 @@ export const NAV_DATA = [
             url: "/forms/form-layout",
           },
         ],
-      },
-      {
+      }, */
+     /*  {
         title: "Tables",
         url: "/tables",
         icon: Icons.Table,
@@ -50,8 +70,8 @@ export const NAV_DATA = [
             url: "/tables",
           },
         ],
-      },
-      {
+      }, */
+     /*  {
         title: "Pages",
         icon: Icons.Alphabet,
         items: [
@@ -60,10 +80,10 @@ export const NAV_DATA = [
             url: "/pages/settings",
           },
         ],
-      },
+      }, */
     ],
   },
-  {
+  /* {
     label: "OTHERS",
     items: [
       {
@@ -101,5 +121,5 @@ export const NAV_DATA = [
         ],
       },
     ],
-  },
+  }, */
 ];

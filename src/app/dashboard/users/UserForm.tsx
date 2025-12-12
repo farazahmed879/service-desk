@@ -133,20 +133,20 @@ export default function UserForm({ existingUser, onSave }: UserFormProps) {
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        <input
+        {/* <input
           name="passportCountry"
           placeholder="Passport Country"
           value={form.passportCountry}
           onChange={handleChange}
           className="border p-3 rounded-xl w-full"
-        />
-        <input
+        /> */}
+        {/* <input
           name="passportType"
           placeholder="Passport Type"
           value={form.passportType}
           onChange={handleChange}
           className="border p-3 rounded-xl w-full"
-        />
+        /> */}
       </div>
 
       <div>

@@ -6,7 +6,7 @@ export interface Service {
 
 export const SERVICES: Service[] = [
   {
-    title: "New Passport Application",
+    title: " Passport Application",
     slug: "new-passport-application",
     image: "/images/services/passport/new.png",
   },
@@ -41,7 +41,7 @@ export const SERVICES: Service[] = [
     image: "/images/services/passport/track-passport.png",
   }, */
    {
-  title: "Number Plate Service",
+  title: "Number Plate ",
   slug: "number-plate-services",
   image: "/images/services/passport/number-plate.png", 
 },

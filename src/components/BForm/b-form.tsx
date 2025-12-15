@@ -18,15 +18,16 @@ export default function BForm() {
 
   return (
     <div className="w-full bg-white shadow-md rounded-xl p-6 border border-gray-200">
-      <div className="flex items-center gap-2 mb-4">
-        <span className="font-medium text-gray-700">User:</span>
-        <input
-          type="text"
-          placeholder="User"
-          {...register("userName")}
-          className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
-        />
-      </div>
+      <div className="flex flex-col mb-4">
+  <label className="font-medium text-gray-700 mb-1">User:</label>
+
+  <input
+    type="text"
+    placeholder="User"
+    {...register("userName")}
+    className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
+  />
+</div>
       <h2 className="text-2xl font-bold text-gray-700 mb-6">
         B-Form Application
       </h2>

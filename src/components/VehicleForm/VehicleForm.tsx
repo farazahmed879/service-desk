@@ -22,8 +22,9 @@ const router =useRouter()
       onSubmit={handleSubmit(onSubmit)}
       className="space-y-4 bg-white p-6 rounded-xl shadow-md"
     >
-       <div className="flex items-center gap-2 mb-4">
-  <span className="font-medium text-gray-700">User:</span>
+        <div className="flex flex-col mb-4">
+  <label className="font-medium text-gray-700 mb-1">User:</label>
+
   <input
     type="text"
     placeholder="User"

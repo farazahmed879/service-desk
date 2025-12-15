@@ -20,8 +20,9 @@ const router = useRouter();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white p-6 rounded-xl shadow-md">
-       <div className="flex items-center gap-2 mb-4">
-  <span className="font-medium text-gray-700">User:</span>
+       <div className="flex flex-col mb-4">
+  <label className="font-medium text-gray-700 mb-1">User:</label>
+
   <input
     type="text"
     placeholder="User"
@@ -48,7 +49,8 @@ const router = useRouter();
         <InputField label="Father Name" name="FatherName" register={register} />
         <InputField label="CNIC Number" name="CNIC" register={register} />
         <InputField label="Date of Birth" name="DOB" type="date" register={register} />
-        <InputField label="District / Place of Birth" name="DistrictOrPlace" register={register} />
+        <InputField label="District" name="DistrictOrPlace" register={register} />
+        <InputField label="Place of Birth" name="DistrictOrPlace" register={register} />
         <InputField label="Purpose" name="Purpose" register={register} />
         <InputField label="Address" name="Address" register={register} />
       </div>

@@ -1,4 +1,102 @@
 "use client";
+import { useState, } from "react";
+
+interface User {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  cnic: string;
+  age: string;
+  gender: string;
+  passportNumber: string;
+  passportIssue: string;
+  passportExpiry: string;
+  passportCountry: string;
+  passportType: string;
+  image: File | null;
+}
+
+
+
+interface UserListProps {
+  users: User[];
+  onEdit: (user: User) => void;
+  onDelete: (id: number) => void;
+}
+export default function UserList({ users, onEdit, onDelete }: UserListProps) {
+  const [editingUser, setEditingUser] = useState<User | undefined>(undefined);
+
+  return (
+    <div className="grid rounded-[10px] bg-white px-7.5 pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card overflow-x-auto">
+      <h2 className="mb-4 text-body-2xlg font-bold text-dark dark:text-white">
+        User List
+      </h2>
+
+      <table className="min-w-full">
+        <thead>
+          <tr className="border-none uppercase [&>th]:text-center text-dark dark:text-white">
+
+            <th className="min-w-[120px] !text-left py-3"></th>
+            <th className="min-w-[120px] !text-left py-3">First Name</th>
+            <th className="py-3">Last Name</th>
+            <th className="py-3">Email</th>
+            <th className="py-3">CNIC</th>
+            <th className="py-3">Age</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user) => (
+            <tr
+              key={user.id}
+              className="text-center text-base font-medium text-dark dark:text-white border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
+            >
+
+
+              <td className="!text-left py-3">{user.firstName}</td>
+              <td className="py-3">{user.lastName}</td>
+              <td className="py-3">{user.email}</td>
+              <td className="py-3">{user.cnic}</td>
+              <td className="py-3">{user.age}</td>
+
+              <td className="py-3 flex justify-center gap-2">
+
+                <button
+                  onClick={() => onEdit(user)}
+                  className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-hover-700"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => onDelete(user.id)}
+                  className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-hover-700"
+                >
+                  Delete
+                </button>
+              </td>
+
+            </tr>
+          ))}
+
+          {users.length === 0 && (
+            <tr>
+              <td
+                colSpan={6}
+                className="text-center py-4 text-gray-500 dark:text-gray-400"
+              >
+                No users found
+              </td>
+            </tr>
+          )}
+        </tbody>
+
+      </table>
+    </div>
+  );
+}
+/* "use client";
+
+import { useState } from "react";
 
 interface User {
   id: number;
@@ -9,7 +107,24 @@ interface User {
   age: string;
 }
 
-export default function UserList({ users }: { users: User[] }) {
+interface UserListProps {
+  users: User[];
+  onEdit: (user: User) => void;
+  onDelete: (id: number) => void;
+}
+interface UserListProps {
+  users: User[];
+  onEdit: (user: User) => void;
+}
+export default function UserList({ users, onEdit }: UserListProps) 
+
+export default function UserList({
+  users,
+  onEdit,
+  onDelete,
+}: UserListProps) {
+  const [editingUser, setEditingUser] = useState<User | undefined>(undefined);
+
   return (
     <div className="grid rounded-[10px] bg-white px-7.5 pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card overflow-x-auto">
       <h2 className="mb-4 text-body-2xlg font-bold text-dark dark:text-white">
@@ -18,7 +133,8 @@ export default function UserList({ users }: { users: User[] }) {
 
       <table className="min-w-full">
         <thead>
-          <tr className="border-none uppercase [&>th]:text-center text-dark dark:text-white">
+          <tr className="border-none uppercase text-dark dark:text-white text-center">
+            <th className="py-3">Actions</th>
             <th className="min-w-[120px] !text-left py-3">First Name</th>
             <th className="py-3">Last Name</th>
             <th className="py-3">Email</th>
@@ -29,10 +145,23 @@ export default function UserList({ users }: { users: User[] }) {
 
         <tbody>
           {users.map((user) => (
-            <tr
-              key={user.id}
-              className="text-center text-base font-medium text-dark dark:text-white border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
-            >
+            <tr key={user.id} className="text-center border-t">
+              <td className="py-3 flex justify-center gap-2">
+                <button
+                  onClick={() => onEdit(user)}
+                  className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
+                >
+                  Edit
+                </button>
+
+                <button
+                  onClick={() => onDelete(user.id)}
+                  className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+                >
+                  Delete
+                </button>
+              </td>
+
               <td className="!text-left py-3">{user.firstName}</td>
               <td className="py-3">{user.lastName}</td>
               <td className="py-3">{user.email}</td>
@@ -44,7 +173,7 @@ export default function UserList({ users }: { users: User[] }) {
           {users.length === 0 && (
             <tr>
               <td
-                colSpan={5}
+                colSpan={6}
                 className="text-center py-4 text-gray-500 dark:text-gray-400"
               >
                 No users found
@@ -55,9 +184,7 @@ export default function UserList({ users }: { users: User[] }) {
       </table>
     </div>
   );
-}
-
-
+} */
 
 
 /* "use client";

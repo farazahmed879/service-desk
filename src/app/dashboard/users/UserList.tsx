@@ -1,6 +1,7 @@
 "use client";
 import { useState, } from "react";
-import { FaEdit, FaTrash, FaTimes, FaEllipsisV } from "react-icons/fa";
+import { FaEdit, FaTrash,  FaEllipsisV, } from "react-icons/fa";
+import Link from "next/link";
 
 
 interface User {
@@ -27,7 +28,22 @@ interface UserListProps {
 export default function UserList({ users, onEdit, onDelete }: UserListProps) {
   const [editingUser, setEditingUser] = useState<User | undefined>(undefined);
   const [showServiceFor, setShowServiceFor] = useState<number | null>(null);
+  
+  /* const handleDeleteClick = (id: number) => {
+    setSelectedUserId(id);
+    setShowConfirm(true);
+  };
 
+  const handleConfirm = () => {
+    if (selectedUserId !== null) onDelete(selectedUserId);
+    setShowConfirm(false);
+    setSelectedUserId(null);
+  };
+
+  const handleCancel = () => {
+    setShowConfirm(false);
+    setSelectedUserId(null);
+  }; */
   return (
     <div className="grid rounded-[10px] bg-white px-7.5 pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card overflow-x-auto">
       <h2 className="mb-4 text-body-2xlg font-bold text-dark dark:text-white">
@@ -46,6 +62,7 @@ export default function UserList({ users, onEdit, onDelete }: UserListProps) {
           </tr>
         </thead>
         <tbody>
+          
           {users.map((user) => (
             <tr
               key={user.id}
@@ -59,8 +76,9 @@ export default function UserList({ users, onEdit, onDelete }: UserListProps) {
 
               <td className="py-3 flex justify-center gap-2 relative overflow-visible">
 
-                <button onClick={() => onEdit(user)}
-                  className="text-blue-600 p-2 rounded hover:bg-blue-100 transition flex items-center justify-center"
+                <button 
+                onClick={() => onEdit(user)}
+                  className="text-blue-600  p-2 rounded hover:bg-blue-100 transition flex items-center justify-center"
                   title="Edit"                >
                   <FaEdit />
                 </button>
@@ -73,28 +91,50 @@ export default function UserList({ users, onEdit, onDelete }: UserListProps) {
                   <FaTrash size={14} />
                 </button>
 
-                <button
-                  onClick={() =>
-                    setShowServiceFor(showServiceFor === user.id ? null : user.id)
-                  }
-                  className="text-gray-600 p-2 rounded hover:bg-gray-100 transition"
-                >
-                  <FaEllipsisV />
-                </button>
-                {showServiceFor === user.id && (
-                  <div
-                    className="
-                      absolute right-0 top-full mt-2
-                      bg-white border border-gray-200
-                      rounded-md px-4 py-2
-                      text-sm shadow-lg
-                      z-50
-                      whitespace-nowrap
-                    "
+                {/*   <button
+  onClick={() =>
+    setShowServiceFor(showServiceFor === user.id ? null : user.id)
+  }
+  className="text-gray-600 p-2 rounded hover:bg-gray-100 transition"
+>
+  <FaChevronDown />
+</button>
+               {showServiceFor === user.id && (
+  <Link
+    href="./users/service"
+    className="block px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer whitespace-nowrap"
+    onClick={() => setShowServiceFor(null)}
+  >
+    Service
+  </Link> */}
+
+                <div className="relative inline-block"> 
+                  <button
+                    onClick={() =>
+                      setShowServiceFor(showServiceFor === user.id ? null : user.id)
+                    }
+                    className="text-gray-600 p-2 rounded hover:bg-gray-100 transition"
                   >
-                    Service
-                  </div>
-                )}
+                    <FaEllipsisV />
+                  </button>
+
+
+
+                  {showServiceFor === user.id && (
+                    <div className="absolute right-0 mt-1 w-32 bg-white border rounded shadow-lg z-10">
+                      <Link
+                        href="./users/service"
+                        className="block px-3 py-2 text-sm hover:bg-gray-100 cursor-pointer whitespace-nowrap"
+                        onClick={() => setShowServiceFor(null)}
+                      >
+                        Service
+                      </Link>
+                    </div>
+
+
+
+                  )}
+                </div>
               </td>
             </tr>
           ))}

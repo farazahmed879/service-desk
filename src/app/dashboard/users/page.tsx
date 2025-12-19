@@ -60,6 +60,7 @@ export default function UserPage() {
     localStorage.setItem("users", JSON.stringify(filteredUsers));
   };
 
+  
   return (
     <div className="p-6 space-y-6">
 
@@ -94,7 +95,8 @@ export default function UserPage() {
       onEdit={handleEdit}
       onDelete={handleDelete}
     />
-  )}
+  )
+  }
 
 </div>
 

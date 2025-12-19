@@ -12,6 +12,7 @@ export default function PassportForm() {
   const onSubmit = (data: any) => {
     console.log("Passport Form Submitted:", data);
     alert("Passport Form submitted successfully!");
+    window.location.reload
   };
 
   return (
@@ -30,10 +31,17 @@ export default function PassportForm() {
         Passport Application Form
       </h1>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+     <form 
+  onSubmit={(e) => {
+    e.preventDefault();              // default form submit rok do
+    handleSubmit(onSubmit)(e);       // react-hook-form validation
+    window.location.reload();         // page reload
+  }} 
+  className="space-y-6"
+>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <InputField label="First Name" name="FirstName" register={register} placeholder="First Name" />
+          <InputField label="First Name" name="FirstName" register={register} placeholder="First Name"  />
           <InputField label="Middle Name" name="MiddleName" register={register} placeholder="Middle Name" />
           <InputField label="Last Name" name="LastName" register={register} placeholder="Last Name" />
         </div>

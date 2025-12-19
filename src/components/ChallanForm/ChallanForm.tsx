@@ -17,29 +17,28 @@ export default function ChallanForm() {
 
   return (
     <div className="w-full bg-white shadow-md rounded-xl p-6 border border-gray-200">
-     <div className="flex flex-col mb-4">
-  <label className="font-medium text-gray-700 mb-1">User:</label>
+      <div className="flex flex-col mb-4">
+        <label className="font-medium text-gray-700 mb-1 ">User:</label>
+        <input
+          type="text"
+          placeholder="User"
+          {...register("userName")}
+          className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
+        />
+      </div>
 
-  <input
-    type="text"
-    placeholder="User"
-    {...register("userName")}
-    className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
-  />
-</div>
       <h2 className="text-2xl font-bold text-gray-700 mb-6">
         Bill & Payments
       </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <div className="flex flex-col">
             <label className="mb-1 text-sm font-medium text-gray-700">Payment Type</label>
             <select
               {...register("paymentType")}
-              className="border border-gray-300 rounded-lg p-2 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-sm"
+              className="border border-gray-300 rounded-md px-3 py-2 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-sm"
             >
               <option value="">Select Payment Type</option>
               <option value="waterBill">Water Bill</option>
@@ -58,14 +57,20 @@ export default function ChallanForm() {
             registerOptions={{ required: true }}
             placeholder="Enter Your Invoice number"
           />
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <InputField label="Payment Date" name="paymentDate" register={register} type="date" />
-          <InputField label="Amount" name="amount" register={register} type="number" placeholder="Enter amount" />
+
+          <div></div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <InputField label="Payment Date" name="paymentDate" register={register} type="date" />
+          <InputField label="Amount" name="amount" register={register} type="number" placeholder="Enter amount" />
+          <div></div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <InputField label="Paid By (CNIC/Name)" name="paidBy" register={register} placeholder="Enter CNIC or Name" />
+          <div></div>
+          <div></div>
         </div>
 
         <div className="grid grid-cols-1 gap-6">

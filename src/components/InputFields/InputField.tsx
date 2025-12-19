@@ -56,6 +56,7 @@ const InputField: React.FC<InputFieldProps> = ({
           type={type}
           placeholder={placeholder}
           className="border border-gray-300 rounded-lg p-2 w-full bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        required
         />
       )}
 

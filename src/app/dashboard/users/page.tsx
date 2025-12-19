@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import UserForm from "./UserForm";
 import UserList from "./UserList";
-
+import { FaPlus } from "react-icons/fa";
 
 interface User {
   id: number;
@@ -24,7 +24,7 @@ interface User {
 export default function UserPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [showForm, setShowForm] = useState(false);
-  const [editingUser, setEditingUser] = useState<User | undefined>(undefined); // ✅ moved inside function
+  const [editingUser, setEditingUser] = useState<User | undefined>(undefined); 
 
   useEffect(() => {
     const storedUsers = JSON.parse(localStorage.getItem("users") || "[]");
@@ -62,32 +62,42 @@ export default function UserPage() {
 
   return (
     <div className="p-6 space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-lg font-bold"></h2>
-        {!showForm && (
-          <button
-            onClick={() => setShowForm(true)}
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          >
-            Add User
-          </button>
-        )}
-      </div>
 
-      {showForm ? (
-        <UserForm
-          onSave={handleSave}
-          onCancel={handleCancel}
-          existingUser={editingUser}
-        />
-      ) : (
-        <UserList
-          users={users}
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-        />
-      )}
-    </div>
+  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+    
+    <h1 className="text-black text-3xl font-bold drop-shadow-sm">
+      Users
+    </h1>
+    
+    <h2 className="text-lg font-bold"></h2>
+
+    {!showForm && (
+      <button
+        onClick={() => setShowForm(true)}
+        className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition w-full sm:w-auto justify-center"
+      >
+        <FaPlus size={14} />
+        <span>Add User</span>
+      </button>
+    )}
+  </div>
+
+  {showForm ? (
+    <UserForm
+      onSave={handleSave}
+      onCancel={handleCancel}
+      existingUser={editingUser}
+    />
+  ) : (
+    <UserList
+      users={users}
+      onEdit={handleEdit}
+      onDelete={handleDelete}
+    />
+  )}
+
+</div>
+
   );
 }
 

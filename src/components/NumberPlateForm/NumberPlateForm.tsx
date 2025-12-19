@@ -30,28 +30,28 @@ export default function NumberPlateForm() {
       <h2 className="text-2xl font-semibold mb-4">Number Plate Service</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <InputField label="Vehicle Type" name="VehicleType" register={register} />
-        <InputField label="Company / Make" name="Make" register={register} />
-        <InputField label="Model" name="Model" register={register} />
-        <InputField label="Year of Manufacture" name="Year" type="number" register={register} />
-        <InputField label="Engine Number" name="EngineNumber" register={register} />
-        <InputField label="Chassis Number" name="ChassisNumber" register={register} />
-        <InputField label="Color" name="Color" register={register} />
+        <InputField label="Vehicle Type" name="VehicleType" register={register} placeholder="Enter Vehicle Type" />
+        <InputField label="Company / Make" name="Make" register={register} placeholder="Enter Company / Make"/>
+        <InputField label="Model" name="Model" register={register}  placeholder="Enter Model "/>
+        <InputField label="Year of Manufacture" name="Year" type="number" register={register} placeholder="Enter Year of Manufacture"/>
+        <InputField label="Engine Number" name="EngineNumber" register={register} placeholder="Enter Engine Number" />
+        <InputField label="Chassis Number" name="ChassisNumber" register={register}  placeholder="Enter Chassis Number "/>
+        <InputField label="Color" name="Color" register={register}  placeholder="Enter Colour"/>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <InputField label="Owner Name" name="OwnerName" register={register} />
-        <InputField label="Father Name" name="FatherName" register={register} />
-        <InputField label="CNIC" name="CNIC" register={register} />
-        <InputField label="Mobile Number" name="MobileNumber" register={register} />
-        <InputField label="Address" name="Address" register={register} />
+        <InputField label="Owner Name" name="OwnerName" register={register} placeholder="Enter Onwer Name" />
+        <InputField label="Father Name" name="FatherName" register={register} placeholder="Father Name" />
+        <InputField label="CNIC" name="CNIC" register={register}  placeholder="Enter Your CNIC  Number"/>
+        <InputField label="Mobile Number" name="MobileNumber" register={register} placeholder="Enter Your Mobile  Number"/>
+        <InputField label="Address" name="Address" register={register} placeholder="Enter Your Address" />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <InputField label="Province" name="Province" register={register} />
-        <InputField label="City" name="City" register={register} />
-        <InputField label="Registration Purpose" name="Purpose" register={register} />
-        <InputField label="Previous Number Plate (Optional)" name="PreviousPlate" register={register} />
+        <InputField label="Province" name="Province" register={register} placeholder="Province" />
+        <InputField label="City" name="City" register={register} placeholder="City"/>
+        <InputField label="Registration Purpose" name="Purpose" register={register} placeholder="Enter Registration Purpose" />
+        <InputField label="Previous Number Plate (Optional)" name="PreviousPlate" register={register} placeholder="Enter Previous Number Plate " />
       </div>
 
       <div className="w-full flex justify-end gap-4">

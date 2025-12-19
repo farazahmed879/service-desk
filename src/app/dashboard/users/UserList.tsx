@@ -1,5 +1,7 @@
 "use client";
 import { useState, } from "react";
+import { FaEdit, FaTrash, FaTimes, FaEllipsisV } from "react-icons/fa";
+
 
 interface User {
   id: number;
@@ -17,8 +19,6 @@ interface User {
   image: File | null;
 }
 
-
-
 interface UserListProps {
   users: User[];
   onEdit: (user: User) => void;
@@ -26,6 +26,7 @@ interface UserListProps {
 }
 export default function UserList({ users, onEdit, onDelete }: UserListProps) {
   const [editingUser, setEditingUser] = useState<User | undefined>(undefined);
+  const [showServiceFor, setShowServiceFor] = useState<number | null>(null);
 
   return (
     <div className="grid rounded-[10px] bg-white px-7.5 pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card overflow-x-auto">
@@ -37,7 +38,6 @@ export default function UserList({ users, onEdit, onDelete }: UserListProps) {
         <thead>
           <tr className="border-none uppercase [&>th]:text-center text-dark dark:text-white">
 
-            <th className="min-w-[120px] !text-left py-3"></th>
             <th className="min-w-[120px] !text-left py-3">First Name</th>
             <th className="py-3">Last Name</th>
             <th className="py-3">Email</th>
@@ -51,30 +51,51 @@ export default function UserList({ users, onEdit, onDelete }: UserListProps) {
               key={user.id}
               className="text-center text-base font-medium text-dark dark:text-white border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
             >
-
-
               <td className="!text-left py-3">{user.firstName}</td>
               <td className="py-3">{user.lastName}</td>
               <td className="py-3">{user.email}</td>
               <td className="py-3">{user.cnic}</td>
               <td className="py-3">{user.age}</td>
 
-              <td className="py-3 flex justify-center gap-2">
+              <td className="py-3 flex justify-center gap-2 relative overflow-visible">
 
-                <button
-                  onClick={() => onEdit(user)}
-                  className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-hover-700"
-                >
-                  Edit
+                <button onClick={() => onEdit(user)}
+                  className="text-blue-600 p-2 rounded hover:bg-blue-100 transition flex items-center justify-center"
+                  title="Edit"                >
+                  <FaEdit />
                 </button>
+
                 <button
                   onClick={() => onDelete(user.id)}
-                  className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-hover-700"
+                  className="text-red-600 p-2 rounded hover:bg-red-100 transition flex items-center justify-center"
+                  title="Delete"
                 >
-                  Delete
+                  <FaTrash size={14} />
                 </button>
-              </td>
 
+                <button
+                  onClick={() =>
+                    setShowServiceFor(showServiceFor === user.id ? null : user.id)
+                  }
+                  className="text-gray-600 p-2 rounded hover:bg-gray-100 transition"
+                >
+                  <FaEllipsisV />
+                </button>
+                {showServiceFor === user.id && (
+                  <div
+                    className="
+                      absolute right-0 top-full mt-2
+                      bg-white border border-gray-200
+                      rounded-md px-4 py-2
+                      text-sm shadow-lg
+                      z-50
+                      whitespace-nowrap
+                    "
+                  >
+                    Service
+                  </div>
+                )}
+              </td>
             </tr>
           ))}
 
@@ -94,6 +115,10 @@ export default function UserList({ users, onEdit, onDelete }: UserListProps) {
     </div>
   );
 }
+
+
+
+
 /* "use client";
 
 import { useState } from "react";

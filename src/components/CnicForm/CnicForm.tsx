@@ -17,33 +17,37 @@ export default function CnicForm() {
 
   return (
     <div className="w-full bg-white shadow-md rounded-xl p-6 border border-gray-200">
+  <div className="flex flex-col mb-4">
+    <label className="font-medium text-gray-700 mb-1">User:</label>
+    <input
+      type="text"
+      placeholder="User"
+      {...register("userName")}
+      className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
+    />
+  </div>
 
-      <div className="flex flex-col mb-4">
-  <label className="font-medium text-gray-700 mb-1">User:</label>
+  <h1 className="text-2xl font-bold text-gray-700 mb-6">
+    CNIC Application Form
+  </h1>
 
-  <input
-    type="text"
-    placeholder="User"
-    {...register("userName")}
-    className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
-  />
-</div>
+  <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
-      <h1 className="text-2xl font-bold text-gray-700 mb-6">
-        CNIC Application Form
-      </h1>
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <InputField label="Full Name" name="FullName" register={register} placeholder="Enter full name" />
+      <InputField label="Father Name" name="FatherName" register={register} placeholder="Enter father name" />
+      <InputField label="Date of Birth" name="DOB" register={register} type="date" />
+    </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <InputField label="CNIC Number" name="CNIC" register={register} placeholder="Enter CNIC" />
+      <InputField label="Gender" name="Gender" register={register} options={["Male", "Female", "Other"]} />
+      <InputField label="Mobile" name="Mobile" register={register} placeholder="03XXXXXXXXX" />
+    </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <InputField label="Full Name" name="FullName" register={register} placeholder="Enter full name" />
-          <InputField label="Father Name" name="FatherName" register={register} placeholder="Enter father name" />
-          <InputField label="Date of Birth" name="DOB" register={register} type="date" />
-          <InputField label="CNIC Number" name="CNIC" register={register} placeholder="Enter CNIC" />
-          <InputField label="Gender" name="Gender" register={register} options={["Male", "Female", "Other"]} />
-          <InputField label="Mobile" name="Mobile" register={register} placeholder="03XXXXXXXXX" />
-          <InputField label="Address" name="Address" register={register} textarea rows={4} placeholder="Enter address" />
-        </div>
+    <div className="grid grid-cols-1 gap-6">
+      <InputField label="Address" name="Address" register={register} textarea rows={4} placeholder="Enter address" />
+    </div>
 
         <h2 className="text-xl font-semibold text-gray-700 mt-6">Required Documents</h2>
 
@@ -86,6 +90,7 @@ export default function CnicForm() {
               accept="image/*"
               {...register("motherCnicFront")}
               className="border rounded-md w-full px-3 py-2"
+              required
             />
           </div>
 

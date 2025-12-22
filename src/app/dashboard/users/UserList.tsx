@@ -1,8 +1,7 @@
 "use client";
-import { useState, } from "react";
-import { FaEdit, FaTrash,  FaEllipsisV, } from "react-icons/fa";
+import { useState } from "react";
+import { FaEdit, FaTrash, FaEllipsisV } from "react-icons/fa";
 import Link from "next/link";
-
 
 interface User {
   id: number;
@@ -28,7 +27,7 @@ interface UserListProps {
 export default function UserList({ users, onEdit, onDelete }: UserListProps) {
   const [editingUser, setEditingUser] = useState<User | undefined>(undefined);
   const [showServiceFor, setShowServiceFor] = useState<number | null>(null);
-  
+
   /* const handleDeleteClick = (id: number) => {
     setSelectedUserId(id);
     setShowConfirm(true);
@@ -44,95 +43,98 @@ export default function UserList({ users, onEdit, onDelete }: UserListProps) {
     setShowConfirm(false);
     setSelectedUserId(null);
   }; */
+
   return (
-    <div className="grid rounded-[10px] bg-white px-7.5 pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card overflow-x-auto">
+    <div className="grid overflow-x-auto overflow-y-visible rounded-[10px] bg-white px-7.5 pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card">
+      {/* <div className="grid overflow-x-auto overflow-y-visible rounded-[10px] bg-white px-7.5 pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card">
+       */}
       <h2 className="mb-4 text-body-2xlg font-bold text-dark dark:text-white">
         User List
       </h2>
 
-      <table className="min-w-full">
-        <thead>
-          <tr className="border-none uppercase [&>th]:text-center text-dark dark:text-white">
+{/*       <table className="min-w-full">
+ */}        
+ <table className="min-w-full table-auto">
 
-            <th className="min-w-[120px] !text-left py-3">First Name</th>
+        <thead>
+          <tr className="border-none uppercase text-dark dark:text-white [&>th]:text-center">
+            <th className="min-w-[120px] py-3 !text-left">First Name</th>
             <th className="py-3">Last Name</th>
             <th className="py-3">Email</th>
             <th className="py-3">CNIC</th>
             <th className="py-3">Age</th>
+            <th className="min-w-[120px] text-center"></th>
+
           </tr>
         </thead>
         <tbody>
-          
           {users.map((user) => (
             <tr
               key={user.id}
-              className="text-center text-base font-medium text-dark dark:text-white border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
+              className="border-b border-gray-200 text-center text-base font-medium text-dark hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800"
             >
-              <td className="!text-left py-3">{user.firstName}</td>
+              <td className="py-3 !text-left">{user.firstName}</td>
               <td className="py-3">{user.lastName}</td>
               <td className="py-3">{user.email}</td>
               <td className="py-3">{user.cnic}</td>
               <td className="py-3">{user.age}</td>
 
-              <td className="py-3 flex justify-center gap-2 relative overflow-visible">
-
-                <button 
-                onClick={() => onEdit(user)}
-                  className="text-blue-600  p-2 rounded hover:bg-blue-100 transition flex items-center justify-center"
-                  title="Edit"                >
+              <td className="relative flex justify-center gap-2 overflow-visible py-3">
+                <button
+                  onClick={() => onEdit(user)}
+                  className="flex items-center justify-center rounded p-2 text-blue-600 transition hover:bg-blue-100"
+                  title="Edit"
+                >
                   <FaEdit />
                 </button>
 
                 <button
                   onClick={() => onDelete(user.id)}
-                  className="text-red-600 p-2 rounded hover:bg-red-100 transition flex items-center justify-center"
+                  className="flex items-center justify-center rounded p-2 text-red-600 transition hover:bg-red-100"
                   title="Delete"
                 >
                   <FaTrash size={14} />
                 </button>
 
                 {/*   <button
-  onClick={() =>
-    setShowServiceFor(showServiceFor === user.id ? null : user.id)
-  }
-  className="text-gray-600 p-2 rounded hover:bg-gray-100 transition"
->
-  <FaChevronDown />
-</button>
-               {showServiceFor === user.id && (
-  <Link
-    href="./users/service"
-    className="block px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer whitespace-nowrap"
-    onClick={() => setShowServiceFor(null)}
-  >
-    Service
-  </Link> */}
+              onClick={() =>
+                setShowServiceFor(showServiceFor === user.id ? null : user.id)
+              }
+              className="text-gray-600 p-2 rounded hover:bg-gray-100 transition"
+            >
+              <FaChevronDown />
+            </button>
+                          {showServiceFor === user.id && (
+              <Link
+                href="./users/service"
+                className="block px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer whitespace-nowrap"
+                onClick={() => setShowServiceFor(null)}
+              >
+                Service
+              </Link> */}
 
-                <div className="relative inline-block"> 
+                <div className="relative inline-block">
                   <button
                     onClick={() =>
-                      setShowServiceFor(showServiceFor === user.id ? null : user.id)
+                      setShowServiceFor(
+                        showServiceFor === user.id ? null : user.id,
+                      )
                     }
-                    className="text-gray-600 p-2 rounded hover:bg-gray-100 transition"
+                    className="rounded p-2 text-gray-600 transition hover:bg-gray-100"
                   >
                     <FaEllipsisV />
                   </button>
 
-
-
                   {showServiceFor === user.id && (
-                    <div className="absolute right-0 mt-1 w-32 bg-white border rounded shadow-lg z-10">
+                    <div className="absolute right-0 z-10 mt-1 w-32 rounded border bg-white shadow-lg">
                       <Link
                         href="./users/service"
-                        className="block px-3 py-2 text-sm hover:bg-gray-100 cursor-pointer whitespace-nowrap"
+                        className="block cursor-pointer whitespace-nowrap px-3 py-2 text-sm hover:bg-gray-100"
                         onClick={() => setShowServiceFor(null)}
                       >
                         Service
                       </Link>
                     </div>
-
-
-
                   )}
                 </div>
               </td>
@@ -143,21 +145,17 @@ export default function UserList({ users, onEdit, onDelete }: UserListProps) {
             <tr>
               <td
                 colSpan={6}
-                className="text-center py-4 text-gray-500 dark:text-gray-400"
+                className="py-4 text-center text-gray-500 dark:text-gray-400"
               >
                 No users found
               </td>
             </tr>
           )}
         </tbody>
-
       </table>
     </div>
   );
 }
-
-
-
 
 /* "use client";
 
@@ -251,7 +249,6 @@ export default function UserList({
   );
 } */
 
-
 /* "use client";
 
 interface User {
@@ -311,8 +308,6 @@ export default function UserList({ users }: { users: User[] }) {
   );
 } */
 
-
-
 /* "use client";
 
 interface User {
@@ -360,10 +355,6 @@ export default function UserList({ users }: { users: User[] }) {
     </div>
   );
 } */
-
-
-
-
 
 /* "use client";
 
@@ -440,7 +431,6 @@ export default function UserList() {
   );
 } */
 
-
 /* "use client";
 
 import { useEffect, useState } from "react";
@@ -468,6 +458,3 @@ export default function UserList() {
   );
 }
  */
-
-
-

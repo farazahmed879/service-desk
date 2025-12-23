@@ -24,6 +24,9 @@ export default function ServicePage() {
 "birth-certificate": "../birth _certificate/birthcertificate",
   "domicile-prc": "../domicile_prc/domicile_prc",
 
+
+
+
 };
 
 

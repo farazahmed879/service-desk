@@ -90,16 +90,21 @@ export default function UserServicePage() {
       </h2>
 
       <div className="overflow-x-auto">
-        
         <table className="w-full min-w-[500px] table-auto">
           <thead>
-            <tr className="border-none bg-gray-100   dark:bg-gray-200">
-            
-
-              <th className="w-[25%] px-1 py-2 text-left text-black font-weight:200 text-sm ">Full Name</th>
-              <th className="w-[25%] px-1 py-2 text-center text-black font-weight:200 text-sm ">Service</th>
-              <th className="w-[20%] px-1 py-2 text-center  text-black font-weight:200 text-sm">Status</th>
-              <th className="w-[20%] px-1 py-2 text-center  text-black font-weight:200 text-sm">Fees</th>
+            <tr className="border-none bg-gray-100 dark:bg-gray-200">
+              <th className="font-weight:200 w-[25%] px-1 py-2 text-left text-sm text-black">
+                Full Name
+              </th>
+              <th className="font-weight:200 w-[25%] px-1 py-2 text-center text-sm text-black">
+                Service
+              </th>
+              <th className="font-weight:200 w-[20%] px-1 py-2 text-center text-sm text-black">
+                Status
+              </th>
+              <th className="font-weight:200 w-[20%] px-1 py-2 text-center text-sm text-black">
+                Fees
+              </th>
             </tr>
           </thead>
 
@@ -117,7 +122,7 @@ export default function UserServicePage() {
                 </td>
 
                 <td className="flex items-center justify-center px-4 py-3">
-                 {/*  <div className="mx-auto flex w-5 space-x-2">
+                  {/*  <div className="mx-auto flex w-5 space-x-2">
                     {item.status.trim() === "Completed" && (
                       <div className="group relative inline-block cursor-pointer">
                         <FaCheckCircle className="text-green-500" size={25} />
@@ -169,7 +174,6 @@ export default function UserServicePage() {
                       {item.status}
                     </span>
                   </div>
-
                 </td>
 
                 <td className="whitespace-nowrap px-2 py-2 text-center text-green-500">

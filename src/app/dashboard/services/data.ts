@@ -4,7 +4,14 @@ export interface Service {
   image?: string;
 }
 
+
 export const SERVICES: Service[] = [
+
+/*   {
+    title: "Service Registration",
+    slug: "service_registration",
+
+  }, */
   {
     title: " Passport Application",
     slug: "new-passport-application",
@@ -35,11 +42,7 @@ export const SERVICES: Service[] = [
     slug: "driving-license",
     image: "/images/services/passport/driving.png",
   },
-  /* {
-    title: "Track Passport Application Status",
-    slug: "track-passport-application-status",
-    image: "/images/services/passport/track-passport.png",
-  }, */
+  
    {
   title: "Number Plate ",
   slug: "number-plate-services",

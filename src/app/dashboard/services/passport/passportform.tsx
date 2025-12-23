@@ -33,9 +33,9 @@ export default function PassportForm() {
 
      <form 
   onSubmit={(e) => {
-    e.preventDefault();              // default form submit rok do
-    handleSubmit(onSubmit)(e);       // react-hook-form validation
-    window.location.reload();         // page reload
+    e.preventDefault();              
+    handleSubmit(onSubmit)(e);       
+    window.location.reload();        
   }} 
   className="space-y-6"
 >

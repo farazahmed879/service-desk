@@ -162,16 +162,7 @@ export default function UserForm({ existingUser, onSave, onCancel }: UserFormPro
             />
           </div>
 
-          {/* <div className="flex flex-col">
-            <label className="font-medium text-gray-700 mb-1">Passport Expiry Date</label>
-            <input
-              type="date"
-              name="passportExpiry"
-              value={form.passportExpiry}
-              onChange={handleChange}
-              className="border border-gray-300 rounded-md px-3 py-2 w-full"
-            />
-          </div> */}
+         
 
         </div>
 

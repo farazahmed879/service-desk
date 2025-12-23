@@ -1,6 +1,12 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import { FaCheckCircle, FaTimesCircle, FaClock } from "react-icons/fa";
+import { cn } from "@/lib/utils";
 
 export default function UserServicePage() {
+  const router = useRouter();
+
   const services = [
     {
       id: 1,
@@ -9,6 +15,7 @@ export default function UserServicePage() {
       status: "Completed",
       fees: 1000,
     },
+
     {
       id: 1,
       fullName: "Faraz Ahmed ",
@@ -34,7 +41,7 @@ export default function UserServicePage() {
       id: 1,
       fullName: "Shabeeh  Haider ",
       service: " vehicle Transfer and Passport Application",
-      status: "Completed",
+      status: "Failed",
 
       fees: 1000,
     },
@@ -83,18 +90,16 @@ export default function UserServicePage() {
       </h2>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full table-fixed">
+        
+        <table className="w-full min-w-[500px] table-auto">
           <thead>
-            <tr className="border-none bg-gray-100 uppercase dark:bg-gray-700">
-              {/* <th className="w-1/4 px-4 py-3 text-center">Full Name</th>
-        <th className="w-1/4 px-4 py-3 text-center">Service</th>
-        <th className="w-1/6 px-4 py-3 text-center">Status</th>
-        <th className="w-1/6 px-2 py-3 text-center">Fees</th>{" "} */}
+            <tr className="border-none bg-gray-100   dark:bg-gray-200">
+            
 
-              <th className="w-[25%] px-1 py-2 text-left">Full Name</th>
-              <th className="w-[25%] px-1 py-2 text-left">Service</th>
-              <th className="w-[20%] px-1 py-2 text-center">Status</th>
-              <th className="w-[20%] px-1 py-2 text-center">Fees</th>
+              <th className="w-[25%] px-1 py-2 text-left text-black font-weight:200 text-sm ">Full Name</th>
+              <th className="w-[25%] px-1 py-2 text-center text-black font-weight:200 text-sm ">Service</th>
+              <th className="w-[20%] px-1 py-2 text-center  text-black font-weight:200 text-sm">Status</th>
+              <th className="w-[20%] px-1 py-2 text-center  text-black font-weight:200 text-sm">Fees</th>
             </tr>
           </thead>
 
@@ -112,7 +117,7 @@ export default function UserServicePage() {
                 </td>
 
                 <td className="flex items-center justify-center px-4 py-3">
-                  <div className="mx-auto flex w-5 space-x-2">
+                 {/*  <div className="mx-auto flex w-5 space-x-2">
                     {item.status.trim() === "Completed" && (
                       <div className="group relative inline-block cursor-pointer">
                         <FaCheckCircle className="text-green-500" size={25} />
@@ -126,7 +131,7 @@ export default function UserServicePage() {
                       <div className="group relative inline-block cursor-pointer">
                         <FaTimesCircle className="text-red-500" size={25} />
                         <span className="absolute left-full top-1/2 ml-2 w-max -translate-y-1/2 rounded bg-gray-200 px-2 py-1 text-xs text-black opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                          Failed
+                          Un-completed
                         </span>
                       </div>
                     )}
@@ -139,16 +144,49 @@ export default function UserServicePage() {
                         </span>
                       </div>
                     )}
+                  </div> */}
+
+                  {/* Without Icons */}
+
+                  <div className="group relative inline-block cursor-pointer">
+                    <div
+                      className={cn(
+                        "max-w-fit rounded-full px-3.5 py-1 text-sm font-medium",
+                        {
+                          "bg-[#219653]/[0.08] text-[#219653]":
+                            item.status === "Completed",
+                          "bg-[#D34053]/[0.08] text-[#D34053]":
+                            item.status === "Failed",
+                          "bg-[#FFA70B]/[0.08] text-[#FFA70B]":
+                            item.status === "Pending",
+                        },
+                      )}
+                    >
+                      {item.status}
+                    </div>
+
+                    <span className="absolute left-full top-1/2 ml-2 w-max -translate-y-1/2 rounded bg-gray-200 px-2 py-1 text-xs text-black opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      {item.status}
+                    </span>
                   </div>
+
                 </td>
 
-                <td className="w-1/6 px-2 py-2 text-center text-green-500">
+                <td className="whitespace-nowrap px-2 py-2 text-center text-green-500">
                   {item.fees}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="mt-6 flex justify-end">
+        <button
+          onClick={() => router.back()}
+          className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-blue-700"
+        >
+          ← Back
+        </button>
       </div>
     </div>
   );

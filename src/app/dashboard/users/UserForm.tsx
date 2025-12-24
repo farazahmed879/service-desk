@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 
-interface UserFormProps {
-  existingUser?: any;
-  onSave: (user: any) => void;
-  onCancel: () => void;
-}
+import type { UserFormProps } from "./types";
 
-export default function UserForm({ existingUser, onSave, onCancel }: UserFormProps) {
+export default function UserForm({
+  existingUser,
+  onSave,
+  onCancel,
+}: UserFormProps) {
   const [form, setForm] = useState({
     firstName: "",
     MiddleName: "",
@@ -40,73 +40,69 @@ export default function UserForm({ existingUser, onSave, onCancel }: UserFormPro
     onSave(form);
   };
 
-
   return (
-
-    <div className="w-full bg-white shadow-md rounded-xl p-6 border border-gray-200">
-      <h2 className="text-2xl font-bold text-gray-700 mb-6">
+    <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
+      <h2 className="mb-6 text-2xl font-bold text-gray-700">
         {existingUser ? "Edit User" : "User Registration"}
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div className="flex flex-col">
-            <label className="font-medium text-gray-700 mb-1">First Name</label>
+            <label className="mb-1 font-medium text-gray-700">First Name</label>
             <input
               name="firstName"
               placeholder="Enter first name"
               value={form.firstName}
               onChange={handleChange}
-              className="border border-gray-300 rounded-md px-3 py-2 w-full"
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
               required
             />
-
           </div>
 
-
           <div className="flex flex-col">
-            <label className="font-medium text-gray-700 mb-1">Last Name</label>
+            <label className="mb-1 font-medium text-gray-700">Last Name</label>
             <input
               name="lastName"
               placeholder="Enter last name"
               value={form.lastName}
               onChange={handleChange}
-              className="border border-gray-300 rounded-md px-3 py-2 w-full"
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
               required
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div className="flex flex-col">
-            <label className="font-medium text-gray-700 mb-1">Email</label>
+            <label className="mb-1 font-medium text-gray-700">Email</label>
             <input
               type="email"
               name="email"
               placeholder="Enter email"
               value={form.email}
               onChange={handleChange}
-              className="border border-gray-300 rounded-md px-3 py-2 w-full"
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
               required
             />
           </div>
 
           <div className="flex flex-col">
-            <label className="font-medium text-gray-700 mb-1">CNIC</label>
+            <label className="mb-1 font-medium text-gray-700">CNIC</label>
             <input
               name="cnic"
               placeholder="Enter CNIC"
               value={form.cnic}
               onChange={handleChange}
-              className="border border-gray-300 rounded-md px-3 py-2 w-full"
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
               required
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div className="flex flex-col">
-            <label className="font-medium text-gray-700 mb-1">Age</label>
+            <label className="mb-1 font-medium text-gray-700">Age</label>
             <input
               name="age"
               type="number"
@@ -114,18 +110,18 @@ export default function UserForm({ existingUser, onSave, onCancel }: UserFormPro
               placeholder="Enter age"
               value={form.age}
               onChange={handleChange}
-              className="border border-gray-300 rounded-md px-3 py-2 w-full"
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
               required
             />
           </div>
 
           <div className="flex flex-col">
-            <label className="font-medium text-gray-700 mb-1">Gender</label>
+            <label className="mb-1 font-medium text-gray-700">Gender</label>
             <select
               name="gender"
               value={form.gender}
               onChange={handleChange}
-              className="border border-gray-300 rounded-md px-3 py-2 w-full"
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
               required
             >
               <option value="">Select Gender</option>
@@ -149,52 +145,47 @@ export default function UserForm({ existingUser, onSave, onCancel }: UserFormPro
         </div>
  */}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div className="flex flex-col">
-            <label className="font-medium text-gray-700 mb-1">Registration Date</label>
+            <label className="mb-1 font-medium text-gray-700">
+              Registration Date
+            </label>
             <input
               type="date"
               name="passportIssue"
               value={form.passportIssue}
               onChange={handleChange}
-              className="border border-gray-300 rounded-md px-3 py-2 w-full"
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
               required
             />
           </div>
-
-         
-
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-
-        </div>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2"></div>
 
         <div className="flex flex-col">
-          <label className="font-medium text-gray-700 mb-1">Upload
-            Image</label>
+          <label className="mb-1 font-medium text-gray-700">Upload Image</label>
           <input
             type="file"
             name="image"
             accept="image/*"
             onChange={handleChange}
-            className="mt-2 w-full border border-gray-300 rounded-md px-3 py-2"
-
+            className="mt-2 w-full rounded-md border border-gray-300 px-3 py-2"
           />
         </div>
 
-        <div className="w-full flex justify-end gap-4 mt-6">
+        <div className="mt-6 flex w-full justify-end gap-4">
           <button
             type="button"
             onClick={onCancel}
-            className="w-40 bg-gray-200 text-gray-800 font-semibold py-2.5 rounded-lg shadow hover:bg-gray-300 transition-all"
+            className="w-40 rounded-lg bg-gray-200 py-2.5 font-semibold text-gray-800 shadow transition-all hover:bg-gray-300"
           >
             Cancel
           </button>
 
           <button
             type="submit"
-            className="w-40 bg-blue-600 text-white font-semibold py-2.5 rounded-lg shadow hover:bg-blue-700 transition-all"
+            className="w-40 rounded-lg bg-blue-600 py-2.5 font-semibold text-white shadow transition-all hover:bg-blue-700"
           >
             {existingUser ? "Save Changes" : "Register User"}
           </button>
@@ -203,10 +194,6 @@ export default function UserForm({ existingUser, onSave, onCancel }: UserFormPro
     </div>
   );
 }
-
-
-
-
 
 /* "use client";
 
@@ -314,7 +301,6 @@ export default function UserForm({ existingUser, onSave }: UserFormProps) {
 }
  */
 
-
 /* "use client";
 
 import { useState, useEffect } from "react";
@@ -382,10 +368,6 @@ export default function UserForm({ onSave }: UserFormProps) {
     </form>
   );
 } */
-
-
-
-
 
 /* "use client";
 import { useState, useEffect } from "react";
@@ -544,7 +526,6 @@ export default function UserForm({ editingUser, onSave }: UserFormProps) {
     </form>
   );
 } */
-
 
 /* "use client";
 

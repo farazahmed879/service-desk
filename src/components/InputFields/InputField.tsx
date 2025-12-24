@@ -13,7 +13,7 @@ interface InputFieldProps {
   options?: string[];
   textarea?: boolean;
   rows?: number;
-  registerOptions?: any;   
+  registerOptions?: any;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -26,42 +26,43 @@ const InputField: React.FC<InputFieldProps> = ({
   options,
   textarea = false,
   rows = 3,
-  registerOptions = {},  
+  registerOptions = {},
 }) => {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex w-full flex-col">
       <label className="mb-1 font-semibold text-gray-700">{label}</label>
 
       {textarea ? (
         <textarea
-          {...register(name, registerOptions)}   
+          {...register(name, registerOptions)}
           placeholder={placeholder}
           rows={rows}
-          className="border border-gray-300 rounded-lg p-2 w-full bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+          className="w-full rounded-lg border border-gray-300 bg-gray-50 p-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
         />
-
       ) : options ? (
         <select
-          {...register(name, registerOptions)}   
-          className="border border-gray-300 rounded-lg p-2 w-full bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+          {...register(name, registerOptions)}
+          className="w-full rounded-lg border border-gray-300 bg-gray-50 p-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
         >
           <option value="">Select {label}</option>
           {options.map((opt) => (
-            <option key={opt} value={opt}>{opt}</option>
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
           ))}
         </select>
       ) : (
         <input
-          {...register(name, registerOptions)}   
+          {...register(name, registerOptions)}
           type={type}
           placeholder={placeholder}
-          className="border border-gray-300 rounded-lg p-2 w-full bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-        required
+          className="w-full rounded-lg border border-gray-300 bg-gray-50 p-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+          required
         />
       )}
 
       {error && (
-        <p className="text-red-500 text-sm mt-1">{String(error.message)}</p>
+        <p className="mt-1 text-sm text-red-500">{String(error.message)}</p>
       )}
     </div>
   );

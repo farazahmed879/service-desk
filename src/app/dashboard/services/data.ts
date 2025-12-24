@@ -4,14 +4,15 @@ export interface Service {
   image?: string;
 }
 
+export interface FormData {
+  service: string;
+  name: string;
+  fees: string;
+  type: string;
+  description: string;
+}
 
 export const SERVICES: Service[] = [
-
-/*   {
-    title: "Service Registration",
-    slug: "service_registration",
-
-  }, */
   {
     title: " Passport Application",
     slug: "new-passport-application",
@@ -23,16 +24,16 @@ export const SERVICES: Service[] = [
     image: "/images/services/passport/cnic.png",
   },
   {
-  title: "B-Form",
-  slug: "b-form",
-  image: "/images/services/passport/b-form.png",
-},
+    title: "B-Form",
+    slug: "b-form",
+    image: "/images/services/passport/b-form.png",
+  },
   {
-  title: "Bill & Payments",
-  slug: "challan-and-payments",
-  image: "/images/services/passport/challan.png",
-},
-   {
+    title: "Bill & Payments",
+    slug: "challan-and-payments",
+    image: "/images/services/passport/challan.png",
+  },
+  {
     title: "Vehicle Registration",
     slug: "vehicle-registration",
     image: "/images/services/passport/vehicle.png",
@@ -42,54 +43,28 @@ export const SERVICES: Service[] = [
     slug: "driving-license",
     image: "/images/services/passport/driving.png",
   },
-  
-   {
-  title: "Number Plate ",
-  slug: "number-plate-services",
-  image: "/images/services/passport/number-plate.png", 
-},
- {
-  title: "Vehicle Transfer",
-  slug: "vehicle-transfer",
-  image: "/images/services/passport/vehicle-transfer.png", 
-},
- {
-  title: "Birth Certificate",
-  slug: "birth-certificate",
-  image: "/images/services/passport/b-certificate.png", 
-},
-{
-  title: "Domicle and Prc",
-  slug: "domicile-prc",
-  image: "/images/services/passport/domicile.png", 
-},
 
-  
-
-   
-
- /*  {
-    title: "Online Fee Payment",
-    slug: "online-fee-payment",
-    image: "/images/services/passport/online-payment.png",
-  }, */
- /*  {
-    title: "Document Upload Service",
-    slug: "document-upload-service",
-    image: "/images/services/passport/document-upload.png",
-  }, */
- /*  {
-    title: "Customer Support / Helpdesk",
-    slug: "customer-support-helpdesk",
-    image: "/images/services/passport/helpdesk.png",
-  }, */
- /*  {
-    title: "Admin Panel Services",
-    slug: "admin-panel-services",
-    image: "/images/services/passport/admin.png",
-  }, */
+  {
+    title: "Number Plate ",
+    slug: "number-plate-services",
+    image: "/images/services/passport/number-plate.png",
+  },
+  {
+    title: "Vehicle Transfer",
+    slug: "vehicle-transfer",
+    image: "/images/services/passport/vehicle-transfer.png",
+  },
+  {
+    title: "Birth Certificate",
+    slug: "birth-certificate",
+    image: "/images/services/passport/b-certificate.png",
+  },
+  {
+    title: "Domicle and Prc",
+    slug: "domicile-prc",
+    image: "/images/services/passport/domicile.png",
+  },
 ];
-
 
 /* export interface ServiceField {
   name: string;

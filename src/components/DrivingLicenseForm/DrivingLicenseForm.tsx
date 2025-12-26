@@ -11,33 +11,34 @@ export default function DrivingLicenseForm() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const router  = useRouter();
+  const router = useRouter();
 
   const onSubmit = (data: any) => {
     console.log("Driving License Form Submitted:", data);
     alert("Driving License Form submitted successfully!");
-          window.location.reload();
-
+    window.location.reload();
   };
+  
+  console.log("Hello World");
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-4 bg-white p-6 rounded-xl shadow-md"
+      className="space-y-4 rounded-xl bg-white p-6 shadow-md"
     >
-        <div className="flex flex-col mb-4">
-  <label className="font-medium text-gray-700 mb-1">User:</label>
+      <div className="mb-4 flex flex-col">
+        <label className="mb-1 font-medium text-gray-700">User:</label>
 
-  <input
-    type="text"
-    placeholder="User"
-    {...register("userName")}
-    className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
-  />
-</div>
-      <h2 className="text-2xl font-semibold mb-4">Driving License Form</h2>
+        <input
+          type="text"
+          placeholder="User"
+          {...register("userName")}
+          className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+      <h2 className="mb-4 text-2xl font-semibold">Driving License Form</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <InputField
           label="Full Name"
           name="fullName"
@@ -58,7 +59,7 @@ export default function DrivingLicenseForm() {
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <InputField
           label="CNIC Number"
           name="cnic"
@@ -81,7 +82,7 @@ export default function DrivingLicenseForm() {
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <InputField
           label="License Type"
           name="licenseType"
@@ -102,22 +103,22 @@ export default function DrivingLicenseForm() {
         />
       </div>
 
-     <div className="w-full flex justify-end gap-4">
-          <button
-            type="button"
-            onClick={() => router.push("/dashboard/services")}
-            className="w-40 bg-blue-600 text-white font-semibold py-2.5 rounded-lg shadow hover:bg-blue-700 transition-all"
-          >
-            Cancel
-          </button>
+      <div className="flex w-full justify-end gap-4">
+        <button
+          type="button"
+          onClick={() => router.push("/dashboard/services")}
+          className="w-40 rounded-lg bg-blue-600 py-2.5 font-semibold text-white shadow transition-all hover:bg-blue-700"
+        >
+          Cancel
+        </button>
 
-          <button
-            type="submit"
-            className="w-40 bg-blue-600 text-white font-semibold py-2.5 rounded-lg shadow hover:bg-blue-700 transition-all"
-          >
-            Submit
-          </button>
-        </div>
+        <button
+          type="submit"
+          className="w-40 rounded-lg bg-blue-600 py-2.5 font-semibold text-white shadow transition-all hover:bg-blue-700"
+        >
+          Submit
+        </button>
+      </div>
     </form>
   );
 }

@@ -15,6 +15,8 @@ const router =useRouter()
   const onSubmit = (data: any) => {
     console.log("Vehicle Registration Form Submitted:", data);
     alert("Vehicle Registration Form submitted successfully!");
+        window.location.reload();
+
   };
 
   return (

@@ -1,4 +1,3 @@
-
 export interface User {
   id: number;
   firstName: string;
@@ -37,5 +36,15 @@ export interface UserFormState {
   passportType: string;
   image: File | null;
 }
+export interface FormData {
+  service: string;
+  name: string;
+  fees: string;
+  type: string;
+  description: string;
+}
 
-
+export interface ServiceFormProps {
+  onSave: (data: FormData) => void;
+  onClose?: () => void;
+}

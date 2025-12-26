@@ -14,6 +14,7 @@ export default function ChallanForm() {
     window.location.reload();
 
   };
+console.log("Hello World");
 
   return (
     <div className="w-full bg-white shadow-md rounded-xl p-6 border border-gray-200">

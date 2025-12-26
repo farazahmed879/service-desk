@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { SERVICES } from "./data";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Link from "next/link";
 export default function ServicesPage() {
@@ -20,12 +20,16 @@ export default function ServicesPage() {
   const goToService = (service: any) => {
     router.push(`/dashboard/services/${service.slug}`);
   };
-
+  const [allServices, setAllServices] = useState(SERVICES);
+  useEffect(() => {
+    const stored = localStorage.getItem("services");
+    if (stored) {
+      setAllServices([...SERVICES, ...JSON.parse(stored)]);
+    }
+  }, []);
   return (
     <div>
-   
       <div className="sticky top-0 z-30 mb-6 flex items-center justify-between rounded-lg bg-white p-4 shadow">
-
         <input
           type="text"
           placeholder="Search"
@@ -43,38 +47,33 @@ export default function ServicesPage() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {SERVICES.filter((service) =>
-          service.title.toLowerCase().includes(search.toLowerCase()),
-        ).map((service) => (
-          <div
-            key={service.slug}
-            onClick={() => goToService(service)}
-            className="cursor-pointer rounded-lg border p-4 transition hover:bg-gray-50"
-          >
-            {service.image && (
-              <div className="flex h-32 w-full items-center justify-center overflow-hidden rounded-t-lg bg-gray-50 sm:h-36 md:h-40">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="max-h-full max-w-full object-contain"
-                />
-              </div>
-            )}
+        {allServices
+          .filter((service) =>
+            service.title.toLowerCase().includes(search.toLowerCase()),
+          )
+          .map((service, index) => (
+            <div
+              key={`${service.slug}-${index}`}
+              onClick={() => goToService(service)}
+              className="cursor-pointer rounded-lg border p-4 transition hover:bg-gray-50"
+            >
+              {service.image && (
+                <div className="flex h-32 w-full items-center justify-center overflow-hidden rounded-t-lg bg-gray-50 sm:h-36 md:h-40">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="max-h-full max-w-full object-contain"
+                  />
+                </div>
+              )}
 
-            <h3 className="mt-2 text-lg font-semibold">{service.title}</h3>
-          </div>
-        ))}
+              <h3 className="mt-2 text-lg font-semibold">{service.title}</h3>
+            </div>
+          ))}
       </div>
     </div>
   );
 }
-
-
-
-
-
-
-
 
 {
   /* <div className="mb-6 flex items-center justify-between rounded-lg bg-white p-4 shadow">

@@ -15,6 +15,7 @@ export default function BForm() {
     window.location.reload();
 
   };
+  
 
   return (
     <div className="w-full bg-white shadow-md rounded-xl p-6 border border-gray-200">

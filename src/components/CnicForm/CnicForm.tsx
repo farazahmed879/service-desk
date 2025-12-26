@@ -4,6 +4,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import InputField from "@/components/InputFields/InputField";
+import { log } from "console";
 
 export default function CnicForm() {
   const {
@@ -18,7 +19,6 @@ export default function CnicForm() {
     alert("CNIC Form submitted successfully!");
     window.location.reload();
   };
-
   return (
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
       <div className="mb-4 flex flex-col">

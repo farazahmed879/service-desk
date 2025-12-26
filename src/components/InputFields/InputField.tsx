@@ -28,6 +28,7 @@ const InputField: React.FC<InputFieldProps> = ({
   rows = 3,
   registerOptions = {},
 }) => {
+  
   return (
     <div className="flex w-full flex-col">
       <label className="mb-1 font-semibold text-gray-700">{label}</label>

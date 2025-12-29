@@ -1,72 +1,126 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import InputField from "@/components/InputFields/InputField";
+import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import InputField from "@/components/InputFields/InputField";
+import type { domicile_prc } from "@/app/dashboard/users/types";
 
-export default function DomicilePRCForm() {
-  const { register, handleSubmit, watch } = useForm({
-    defaultValues: { serviceType: "domicile" , userName: "",  },
+export default function DomicilePRCServicePage() {
+  const router = useRouter();
+
+  const { register, handleSubmit, control, reset } = useForm<domicile_prc>({
+    defaultValues: {
+      userName: "",
+      serviceType: "",
+      FullName: "",
+      FatherName: "",
+      CNIC: "",
+      Address: "",
+      DOB: "",
+      DistrictOrPlace: "",
+      Purpose: "",
+    },
   });
 
-  const serviceType = watch("serviceType");
-const router = useRouter();
-  const onSubmit = (data: any) => {
-    console.log("Form Data:", data);
-    alert(`Your ${data.serviceType === "domicile" ? "Domicile" : "PRC"} request submitted successfully!`);
-      window.location.reload();
-
+  const onSubmit = (data: domicile_prc) => {
+    console.log("Form Submitted:", data);
+    alert("Form submitted successfully!");
+    reset();
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white p-6 rounded-xl shadow-md">
-       <div className="flex flex-col mb-4">
-  <label className="font-medium text-gray-700 mb-1">User:</label>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="space-y-6 rounded-xl bg-white p-6 shadow-md"
+    >
+      <div className="mb-4 flex flex-col">
+        <label className="mb-1 font-medium text-gray-700">User:</label>
 
-  <input
-    type="text"
-    placeholder="User"
-    {...register("userName")}
-    className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
-  />
-</div>
+        <input
+          type="text"
+          placeholder="User"
+          {...register("userName")}
+          className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
 
-      <h2 className="text-2xl font-semibold mb-4">Domicile / PRC Service</h2>
+      <h2 className="mb-4 text-2xl font-semibold">Domicile / PRC Service</h2>
 
       <div className="mb-4">
-        <label className="block mb-2 font-medium">Select Service Type</label>
-       <select
-  {...register("serviceType")}
-  className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-auto inline-block"
->
-  <option value="domicile">Domicile</option>
-  <option value="prc">PRC</option>
-</select>
+        <label className="mb-2 block font-medium">Select Service Type</label>
+        <select
+          {...register("serviceType")}
+          className="inline-block w-auto rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="domicile">Domicile</option>
+          <option value="prc">PRC</option>
+        </select>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <InputField label="Full Name" name="FullName" register={register} />
-        <InputField label="Father Name" name="FatherName" register={register} />
-        <InputField label="CNIC Number" name="CNIC" register={register} />
-        <InputField label="Date of Birth" name="DOB" type="date" register={register} />
-        <InputField label="District" name="DistrictOrPlace" register={register} />
-        <InputField label="Place of Birth" name="DistrictOrPlace" register={register} />
-        <InputField label="Purpose" name="Purpose" register={register} />
-        <InputField label="Address" name="Address" register={register} />
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <InputField
+          label="Full Name"
+          name="FullName"
+          register={register}
+          placeholder="Enter Full Name"
+        />
+        <InputField
+          label="Father Name"
+          name="FatherName"
+          register={register}
+          placeholder="Enter Father Name"
+        />
+        <InputField
+          label="CNIC Number"
+          name="CNIC"
+          register={register}
+          placeholder="Enter CNIC Number"
+        />
+        <InputField
+          label="Date of Birth"
+          name="DOB"
+          type="date"
+          register={register}
+          placeholder="Enter Date of Birth"
+        />
+        <InputField
+          label="District"
+          name="DistrictOrPlace"
+          register={register}
+          placeholder="Enter Your District"
+        />
+        <InputField
+          label="Place of Birth"
+          name="DistrictOrPlace"
+          register={register}
+          placeholder="Enter Place of Birth"
+        />
+        <InputField
+          label="Purpose"
+          name="Purpose"
+          register={register}
+          placeholder="Enter Purpose"
+        />
+        <InputField
+          label="Address"
+          name="Address"
+          register={register}
+          placeholder="Enter Your current Adress"
+        />
       </div>
 
-      <div className="w-full flex justify-end gap-4">
+      <div className="flex w-full justify-end gap-4">
         <button
           type="button"
-        onClick={() => router.push("/dashboard/services")}
-          className="w-40 bg-blue-600 text-white font-semibold py-2.5 rounded-lg shadow hover:bg-blue-700 transition-all"
+          onClick={() => router.push("/dashboard/services")}
+          className="w-40 rounded-lg bg-blue-600 py-2.5 font-semibold text-white shadow transition-all hover:bg-blue-700"
         >
           Cancel
         </button>
 
         <button
           type="submit"
-          className="w-40 bg-blue-600 text-white font-semibold py-2.5 rounded-lg shadow hover:bg-blue-700 transition-all"
+          className="w-40 rounded-lg bg-blue-600 py-2.5 font-semibold text-white shadow transition-all hover:bg-blue-700"
         >
           Submit
         </button>

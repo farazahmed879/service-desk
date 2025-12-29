@@ -3,6 +3,7 @@
 import React from "react";
 import { FieldError, UseFormRegister } from "react-hook-form";
 
+
 interface InputFieldProps {
   label: string;
   name: string;
@@ -14,6 +15,8 @@ interface InputFieldProps {
   textarea?: boolean;
   rows?: number;
   registerOptions?: any;
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -27,6 +30,7 @@ const InputField: React.FC<InputFieldProps> = ({
   textarea = false,
   rows = 3,
   registerOptions = {},
+  inputProps
 }) => {
   
   return (
@@ -40,6 +44,7 @@ const InputField: React.FC<InputFieldProps> = ({
           rows={rows}
           className="w-full rounded-lg border border-gray-300 bg-gray-50 p-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
         />
+
       ) : options ? (
         <select
           {...register(name, registerOptions)}
@@ -52,15 +57,19 @@ const InputField: React.FC<InputFieldProps> = ({
             </option>
           ))}
         </select>
+        
       ) : (
         <input
           {...register(name, registerOptions)}
           type={type}
           placeholder={placeholder}
+           {...inputProps}
           className="w-full rounded-lg border border-gray-300 bg-gray-50 p-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
           required
         />
       )}
+      
+
 
       {error && (
         <p className="mt-1 text-sm text-red-500">{String(error.message)}</p>

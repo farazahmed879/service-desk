@@ -6,7 +6,7 @@ import ChallanForm from "@/components/ChallanForm/ChallanForm";
 export default function ChallanServicePage() {
   return (
     <div className="p-4">
-      <ChallanForm />
+      <ChallanForm/>
     </div>
   );
 }

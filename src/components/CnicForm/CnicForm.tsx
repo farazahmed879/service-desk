@@ -4,21 +4,40 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import InputField from "@/components/InputFields/InputField";
-import { log } from "console";
+import type { CnicFormData } from "@/app/dashboard/users/types";
 
 export default function CnicForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
   const router = useRouter();
 
-  const onSubmit = (data: any) => {
-    console.log("CNIC Form Submitted:", data);
-    alert("CNIC Form submitted successfully!");
-    window.location.reload();
+  const { register, handleSubmit, control, reset } = useForm<CnicFormData>({
+    defaultValues: {
+      userName: "",
+      FullName: "",
+      MiddleName: "",
+      LastName: "",
+      FatherName: "",
+      DOB: "",
+      PlaceOfBirth: "",
+      CNIC: "",
+      Gender: "",
+      ContactNumber: "",
+      Email: "",
+      CurrentAddress: "",
+      PermanentAddress: "",
+      fatherCnicFront: null,
+      fatherCnicBack: null,
+      motherCnicFront: null,
+      motherCnicBack: null,
+      birthCertificate:null
+    },
+  });
+
+  const onSubmit = (data: CnicFormData) => {
+    console.log("Cnic Form Submitted:", data);
+    alert("Cnic Form submitted successfully!");
+    reset();
   };
+
   return (
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
       <div className="mb-4 flex flex-col">

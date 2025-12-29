@@ -1,26 +1,30 @@
 "use client";
-
-import React from "react";
+import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
 import InputField from "@/components/InputFields/InputField";
+import type { driving_License } from "@/app/dashboard/users/types";
 
-export default function DrivingLicenseForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+export default function DrivingLicenseService() {
   const router = useRouter();
 
-  const onSubmit = (data: any) => {
-    console.log("Driving License Form Submitted:", data);
-    alert("Driving License Form submitted successfully!");
-    window.location.reload();
-  };
-  
-  console.log("Hello World");
+  const { register, handleSubmit, control, reset } = useForm<driving_License>({
+    defaultValues: {
+      userName: "",
+      fullName: "",
+      fatherName: "",
+      dob: "",
+      address: "",
+      licenseType: "",
+      issueDate: "",
+      expiryDate: "",
+    },
+  });
 
+  const onSubmit = (data: driving_License) => {
+    console.log("Form Submitted:", data);
+    alert("Driving License Form submitted successfully!");
+    reset();
+  };
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

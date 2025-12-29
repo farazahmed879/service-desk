@@ -1,19 +1,34 @@
 "use client";
 
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import InputField from "@/components/InputFields/InputField";
 
-export default function BForm() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+import type { b_form } from "@/app/dashboard/users/types";
+
+export default function b_Form() {
   const router = useRouter();
 
-  const onSubmit = (data: any) => {
-    console.log("B-Form Submitted:", data);
-    alert("B-Form submitted successfully!");
-    window.location.reload();
+  const { register, handleSubmit, control, reset } = useForm<b_form>({
+    defaultValues: {
+      userName: "",
+      childName: "",
+      fatherName: "",
+      motherName :"",
+      dob: "",
+      PlaceOfBirth: "",
+      permanentAddress: "",
+      gender: "",
+      ContactNumber: "",
+      parentCnic: "",
+    },
+  });
 
+  const onSubmit = (data: b_form) => {
+    console.log("B_Form  Submitted:", data);
+    alert("B_Form  submitted successfully!");
+    reset();
   };
   
 

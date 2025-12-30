@@ -214,3 +214,36 @@ export interface domicile_prc {
   Purpose: string;
   Address: string;
 }
+
+export interface FormValues {
+  firstName: string;
+  MiddleName: string;
+  lastName: string;
+  email: string;
+  cnic: string;
+  age: string;
+  gender: string;
+  passportIssue: string;
+  image: File | null;
+}
+
+export interface UserList {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  cnic: string;
+  age: string;
+  gender: string;
+  passportNumber: string;
+  passportIssue: string;
+  passportExpiry: string;
+  passportCountry: string;
+  passportType: string;
+  image: File | null;
+}
+export interface UserListProps {
+  users: UserList[];
+  onEdit: (user: UserList) => void;
+  onDelete: (id: number) => void;
+}

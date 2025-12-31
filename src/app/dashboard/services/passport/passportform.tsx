@@ -166,31 +166,23 @@ export default function PassportForm() {
               Father CNIC (Front)
             </label>
 
-            {/* <Controller
-              name="fatherCnicFront"
-              control={control}
-              render={({ field }) => (
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => field.onChange(e.target.files?.[0])}
-                  className="w-full rounded-md border px-3 py-2"
-                />
-              )}
-            /> */}
+           
 
-            <Controller
-              name="fatherCnicFront"
-              control={control}
-              render={({ field }) => (
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => field.onChange(e.target.files?.[0])}
-                  className="bprder w-full rounded-md px-3 py-2"
+            
+            <Controller 
+                name ="fatherCnicFront"
+                control ={control}
+                render ={({field}) =>
+                (
+                <input 
+                type ="file"
+                accept ="image/*"
+                onChange ={(e) => field.onChange (e.target.files?.[0])}
+                className ="border w-full rounded-md px-3 py-2"
                 />
-              )}
-            />
+                )}
+            /> 
+            
           </div>
 
           <div>

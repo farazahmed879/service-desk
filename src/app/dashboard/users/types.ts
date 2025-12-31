@@ -247,3 +247,17 @@ export interface UserListProps {
   onEdit: (user: UserList) => void;
   onDelete: (id: number) => void;
 }
+/* export interface InputFieldProps {
+  label: string;
+  name: string;
+  type?: string;
+  placeholder?: string;
+  register: UseFormRegister<any>;
+  error?: FieldError;
+  options?: string[];
+  textarea?: boolean;
+  rows?: number;
+  registerOptions?: any;
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  
+} */

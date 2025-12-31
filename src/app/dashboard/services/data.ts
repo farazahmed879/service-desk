@@ -18,6 +18,7 @@ export const SERVICES: Service[] = [
     slug: "new-passport-application",
     image: "/images/services/passport/new.png",
   },
+  
   {
     title: "CNIC ",
     slug: "cnic-application",

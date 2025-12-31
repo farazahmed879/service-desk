@@ -16,7 +16,6 @@ interface InputFieldProps {
   rows?: number;
   registerOptions?: any;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
-  
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -68,7 +67,6 @@ const InputField: React.FC<InputFieldProps> = ({
           required
         />
       )}
-      
 
 
       {error && (
@@ -79,6 +77,7 @@ const InputField: React.FC<InputFieldProps> = ({
 };
 
 export default InputField;
+
 
 /* "use client";
 

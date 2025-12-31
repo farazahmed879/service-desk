@@ -93,7 +93,7 @@ export default function DrivingLicenseService() {
           register={register}
           options={["Motorcycle", "Car", "Heavy Vehicle"]}
         />
-        <InputField
+        {/* <InputField
           label="Issue Date"
           name="issueDate"
           register={register}
@@ -104,7 +104,7 @@ export default function DrivingLicenseService() {
           name="expiryDate"
           register={register}
           type="date"
-        />
+        /> */}
       </div>
 
       <div className="flex w-full justify-end gap-4">

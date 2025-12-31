@@ -57,7 +57,7 @@ export default function ServicesPage() {
               onClick={() => goToService(service)}
               className="cursor-pointer rounded-lg border p-4 transition hover:bg-gray-50"
             >
-              {service.image && (
+                {service.image && (
                 <div className="flex h-32 w-full items-center justify-center overflow-hidden rounded-t-lg bg-gray-50 sm:h-36 md:h-40">
                   <img
                     src={service.image}

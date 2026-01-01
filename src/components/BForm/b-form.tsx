@@ -1,20 +1,49 @@
 "use client";
 
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import InputField from "@/components/InputFields/InputField";
 
-export default function BForm() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+import type { b_form } from "@/app/dashboard/users/types";
 
-  const onSubmit = (data: any) => {
-    console.log("B-Form Submitted:", data);
-    alert("B-Form submitted successfully!");
+export default function b_Form() {
+  const router = useRouter();
+
+  const { register, handleSubmit, control, reset } = useForm<b_form>({
+    defaultValues: {
+      userName: "",
+      childName: "",
+      fatherName: "",
+      motherName :"",
+      dob: "",
+      PlaceOfBirth: "",
+      permanentAddress: "",
+      gender: "",
+      ContactNumber: "",
+      parentCnic: "",
+    },
+  });
+
+  const onSubmit = (data: b_form) => {
+    console.log("B_Form  Submitted:", data);
+    alert("B_Form  submitted successfully!");
+    reset();
   };
+  
 
   return (
     <div className="w-full bg-white shadow-md rounded-xl p-6 border border-gray-200">
+      <div className="flex flex-col mb-4">
+  <label className="font-medium text-gray-700 mb-1">User:</label>
 
+  <input
+    type="text"
+    placeholder="User"
+    {...register("userName")}
+    className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
+  />
+</div>
       <h2 className="text-2xl font-bold text-gray-700 mb-6">
         B-Form Application
       </h2>
@@ -45,10 +74,18 @@ export default function BForm() {
           />
         </div>
 
-        <div className="w-full flex justify-end">
+        <div className="w-full flex justify-end gap-4">
+          <button
+            type="button"
+            onClick={() => router.push("/dashboard/services")}
+            className="w-40 bg-blue-600 text-white font-semibold py-2.5 rounded-lg shadow hover:bg-blue-700 transition-all"
+          >
+            Cancel
+          </button>
+
           <button
             type="submit"
-            className="w-32 bg-blue-600 text-white font-medium py-2.5 rounded-lg shadow hover:bg-blue-700 transition"
+            className="w-40 bg-blue-600 text-white font-semibold py-2.5 rounded-lg shadow hover:bg-blue-700 transition-all"
           >
             Submit
           </button>

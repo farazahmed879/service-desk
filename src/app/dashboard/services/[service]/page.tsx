@@ -19,18 +19,21 @@ export default function ServicePage() {
     "vehicle-registration": "../vehicle-Registration/registration",
     "driving-license": "../driving-license/DrivingLicense",
     "track-passport-application-status": "../track-passport/track",
-  "online-fee-payment": "../onlinefee/onlinefee",
-   
+    "number-plate-services": "../number_plate_services/number_plate_service",
+    "vehicle-transfer": "../vehicle_transfer/VehicleTransfer",
+    "birth-certificate": "../birth _certificate/birthcertificate",
+    "domicile-prc": "../domicile_prc/domicile_prc",
   };
 
   const key = service.toLowerCase().trim();
   const selectedService = serviceComponents[key];
 
-  if (!selectedService) return <p className="text-red-500">This service is not ready yet</p>;
+  if (!selectedService)
+    return <p className="text-red-500">This service is not ready yet</p>;
 
   const FormComponent = dynamic(
     () => import(selectedService).then((mod) => mod.default),
-    { ssr: false }
+    { ssr: false },
   );
 
   return (

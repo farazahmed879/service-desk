@@ -1,34 +1,37 @@
 "use client";
+
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import InputField from "@/components/InputFields/InputField";
-import type { driving_License } from "@/app/dashboard/users/types";
+import type { domicile_prc } from "@/app/dashboard/users/types";
 
-export default function DrivingLicenseService() {
+export default function DomicilePRCServicePage() {
   const router = useRouter();
 
-  const { register, handleSubmit, control, reset } = useForm<driving_License>({
+  const { register, handleSubmit, control, reset } = useForm<domicile_prc>({
     defaultValues: {
       userName: "",
-      fullName: "",
-      fatherName: "",
-      dob: "",
-      address: "",
-      licenseType: "",
-      issueDate: "",
-      expiryDate: "",
+      serviceType: "",
+      FullName: "",
+      FatherName: "",
+      CNIC: "",
+      Address: "",
+      DOB: "",
+      DistrictOrPlace: "",
+      Purpose: "",
     },
   });
 
-  const onSubmit = (data: driving_License) => {
+  const onSubmit = (data: domicile_prc) => {
     console.log("Form Submitted:", data);
-    alert("Driving License Form submitted successfully!");
+    alert("Form submitted successfully!");
     reset();
   };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-4 rounded-xl bg-white p-6 shadow-md"
+      className="space-y-6 rounded-xl bg-white p-6 shadow-md"
     >
       <div className="mb-4 flex flex-col">
         <label className="mb-1 font-medium text-gray-700">User:</label>
@@ -40,71 +43,70 @@ export default function DrivingLicenseService() {
           className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
-      <h2 className="mb-4 text-2xl font-semibold">Driving License Form</h2>
+
+      <h2 className="mb-4 text-2xl font-semibold">Domicile / PRC Service</h2>
+
+      <div className="mb-4">
+        <label className="mb-2 block font-medium">Select Service Type</label>
+        <select
+          {...register("serviceType")}
+          className="inline-block w-auto rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="domicile">Domicile</option>
+          <option value="prc">PRC</option>
+        </select>
+      </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <InputField
           label="Full Name"
-          name="fullName"
+          name="FullName"
           register={register}
-          placeholder="Enter your full name"
+          placeholder="Enter Full Name"
         />
         <InputField
-          label="Father/Husband Name"
-          name="fatherName"
+          label="Father Name"
+          name="FatherName"
           register={register}
-          placeholder="Enter father/husband name"
+          placeholder="Enter Father Name"
+        />
+        <InputField
+          label="CNIC Number"
+          name="CNIC"
+          register={register}
+          placeholder="Enter CNIC Number"
         />
         <InputField
           label="Date of Birth"
-          name="dob"
-          register={register}
+          name="DOB"
           type="date"
-        />
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <InputField
-          label="CNIC Number"
-          name="cnic"
           register={register}
-          placeholder="Enter CNIC"
+          placeholder="Enter Date of Birth"
         />
         <InputField
-          label="Contact Number"
-          name="contactNumber"
+          label="District"
+          name="DistrictOrPlace"
           register={register}
-          placeholder="03XXXXXXXXX"
+          placeholder="Enter Your District"
+        />
+        <InputField
+          label="Place of Birth"
+          name="DistrictOrPlace"
+          register={register}
+          placeholder="Enter Place of Birth"
+        />
+        <InputField
+          label="Purpose"
+          name="Purpose"
+          register={register}
+          placeholder="Enter Purpose"
         />
         <InputField
           label="Address"
-          name="address"
+          name="Address"
           register={register}
-          textarea
-          rows={3}
-          placeholder="Enter your address"
+          placeholder="Enter Your current Adress"
         />
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <InputField
-          label="License Type"
-          name="licenseType"
-          register={register}
-          options={["Motorcycle", "Car", "Heavy Vehicle"]}
-        />
-        {/* <InputField
-          label="Issue Date"
-          name="issueDate"
-          register={register}
-          type="date"
-        />
-        <InputField
-          label="Expiry Date"
-          name="expiryDate"
-          register={register}
-          type="date"
-        /> */}
       </div>
 
       <div className="flex w-full justify-end gap-4">

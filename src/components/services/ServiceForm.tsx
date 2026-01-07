@@ -14,7 +14,6 @@ interface ServiceFormProps {
   onSave: (data: FormData) => void;
   onClose?: () => void;
 }
-console.log("Faraz Bhai")
 
 export default function ServiceForm({ onSave, onClose }: ServiceFormProps) {
   const router = useRouter();

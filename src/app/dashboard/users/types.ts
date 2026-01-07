@@ -261,3 +261,9 @@ export interface UserListProps {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   
 } */
+export interface Service {
+  id: string;
+  name: string;
+  fees: number;
+  type: string;
+}

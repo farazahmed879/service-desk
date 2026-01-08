@@ -1,22 +1,17 @@
-/* import type { Service } from "@/app/dashboard/users/types";
+import type { DogImage } from "@/app/dashboard/users/types";
 
-// GET ALL
-export const getAllServices = async (): Promise<Service[]> => {
-  return new Promise(resolve => {
-    setTimeout(() => resolve(services), 300);
-  });
+
+
+export const getAll = async <T>(url: string): Promise<T[]> => {
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch from ${url}`);
+  }
+
+  const data = await res.json();
+
+  // If API returns a single object, wrap it in an array
+  return Array.isArray(data) ? data : [data];
 };
 
-// CREATE
-export const createService = async (data: Omit<Service, "id">) => {
-  const newService: Service = {
-    id: Date.now().toString(),
-    ...data,
-  };
-
-  services.push(newService);
-  return newService;
-};
-
-
- */

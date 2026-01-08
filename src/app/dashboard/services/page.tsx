@@ -3,8 +3,9 @@
 import { useRouter } from "next/navigation";
 import { SERVICES } from "./data";
 import { useState, useEffect } from "react";
-
 import Link from "next/link";
+
+
 export default function ServicesPage() {
   const router = useRouter();
   const [search, setSearch] = useState("");
@@ -27,6 +28,8 @@ export default function ServicesPage() {
       setAllServices([...SERVICES, ...JSON.parse(stored)]);
     }
   }, []);
+  
+  
   return (
     <div>
       <div className="sticky top-0 z-30 mb-6 flex items-center justify-between rounded-lg bg-white p-4 shadow">

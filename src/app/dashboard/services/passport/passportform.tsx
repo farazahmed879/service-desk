@@ -1,4 +1,63 @@
-"use client";
+/* "use client";
+
+import { useEffect, useState } from "react";
+import { getAll } from "@/app/services/crud_services";
+import type { DogImage } from "@/app/dashboard/users/types";
+
+export default function DogsPage() {
+  const [dogs, setDogs] = useState<DogImage[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const fetchDogs = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const data = await getAll();
+      setDogs(data);
+    } catch (err) {
+      console.error(err);
+      setError("Failed to fetch dog images");
+    } finally {
+      setLoading(false);
+    }
+  }; 
+
+  useEffect(() => {
+    fetchDogs();
+  }, []); 
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
+
+  return (
+    <div className="p-4">
+      <h1 className="mb-4 text-2xl font-bold">Random Dog Image</h1>
+      <div className="flex flex-col items-center gap-4">
+        {dogs.map((dog, index) => (
+          <img
+            key={index}
+            src={dog.message}
+            alt="Random Dog"
+            className="h-64 w-64 rounded-lg object-cover shadow-md"
+          />
+        ))}
+      </div>
+
+      <button
+        onClick={fetchDogs}
+        className="mt-4 rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+      >
+        Fetch New Dog
+      </button>
+    </div>
+  );
+} */
+
+
+
+
+/* "use client";
 
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -166,23 +225,18 @@ export default function PassportForm() {
               Father CNIC (Front)
             </label>
 
-           
-
-            
-            <Controller 
-                name ="fatherCnicFront"
-                control ={control}
-                render ={({field}) =>
-                (
-                <input 
-                type ="file"
-                accept ="image/*"
-                onChange ={(e) => field.onChange (e.target.files?.[0])}
-                className ="border w-full rounded-md px-3 py-2"
+            <Controller
+              name="fatherCnicFront"
+              control={control}
+              render={({ field }) => (
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => field.onChange(e.target.files?.[0])}
+                  className="w-full rounded-md border px-3 py-2"
                 />
-                )}
-            /> 
-            
+              )}
+            />
           </div>
 
           <div>
@@ -260,3 +314,4 @@ export default function PassportForm() {
     </div>
   );
 }
+ */

@@ -1,16 +1,18 @@
 import Api from "../utils/api";
 
-const signUpService = async (signupData) => {
+export  const signUpService = async (signupData) => {
   try {
     const res = await Api.post("/signup", signupData);
-
+    console.log(res.data);
+    
     return res.data;
+
   } catch (error) {
     throw error.response?.data || { message: "signUp failed" };
   }
 };
 
-const loginService = async (loginData) => {
+ export const loginService = async (loginData) => {
   try {
     const res = await Api.post("/login", loginData);
 
@@ -20,4 +22,4 @@ const loginService = async (loginData) => {
   }
 };
 
-export { signUpService, loginService };
+ 

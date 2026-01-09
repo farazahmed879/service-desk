@@ -1,9 +1,9 @@
 "use client";
 
-import { loginService } from "@/backendServices/authService";
+
 import Signin from "@/components/Auth/Signin";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-
+import {loginService} from "@/services/authServices"
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -31,6 +31,7 @@ export default function SignIn() {
       router.push("/auth/sign-in");
 
       router.push("/");
+      
     } catch (error: any) {
       console.log(error.message);
       console.log(error?.response);

@@ -4,7 +4,8 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import InputField from "@/components/InputFields/InputField";
-import type { CnicFormData } from "@/app/dashboard/users/types";
+import type { CnicFormData ,Cnic_data } from "@/app/dashboard/users/types";
+import { getAll } from "@/app/services/crud_services";
 
 export default function CnicForm() {
   const router = useRouter();
@@ -37,7 +38,18 @@ export default function CnicForm() {
     alert("Cnic Form submitted successfully!");
     reset();
   };
+/*  const fetchAllCnic = async () => {
+    try {
+      const data = await getAll<Passport>("https://dog.ceo/dog-api");
+      setPassports(data);
+    } catch (error) {
+      console.error("Failed to fetch passports:", error);
+    }
+  };
 
+  useEffect(() => {
+    fetchAllPassports();
+  }, []); */
   return (
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
       <div className="mb-4 flex flex-col">

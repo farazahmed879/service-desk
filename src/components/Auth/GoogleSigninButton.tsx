@@ -10,7 +10,7 @@ export default function GoogleSigninButton({ text }: { text: string }) {
     localStorage.setItem("isLoggedIn", "true");
     localStorage.setItem("userEmail", "googleuser@test.com");
 
-    router.push("/");
+    // router.push("/");
   };
 
   return (

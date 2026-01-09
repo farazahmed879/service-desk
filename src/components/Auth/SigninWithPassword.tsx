@@ -40,7 +40,7 @@ export default function SigninWithPassword() {
 
       setTimeout(() => {
         setLoading(false);
-        router.push("/"); 
+      
       }, 800);
     } else {
       setLoading(false);

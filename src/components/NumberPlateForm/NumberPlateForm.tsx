@@ -4,10 +4,12 @@ import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import InputField from "@/components/InputFields/InputField";
 import type { number_Plate } from "@/app/dashboard/users/types";
-
+import { useState } from "react";
+import { getAll } from "@/app/services/crud_services";
+import { useEffect } from "react";
 export default function NumberPlateServicePage() {
   const router = useRouter();
-
+const [number_plate ,setNumber_plate ] = useState<number_Plate[]>([]);
   const { register, handleSubmit, control, reset } = useForm<number_Plate>({
     defaultValues: {
       userName: "",
@@ -32,6 +34,18 @@ export default function NumberPlateServicePage() {
     reset();
   };
 
+  const fetchAllNumberPlate = async () => {
+    try {
+      const data = await getAll<number_Plate>("https://dog.ceo/dog-api");
+      setNumber_plate(data);
+    } catch (error) {
+      console.error("Failed to fetch passports:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllNumberPlate();
+  }, []);
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

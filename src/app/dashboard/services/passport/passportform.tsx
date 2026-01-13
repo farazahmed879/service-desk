@@ -42,7 +42,8 @@ export default function PassportForm() {
 
   const fetchAllPassports = async () => {
     try {
-      const data = await getAll<Passport>("https://dog.ceo/dog-api");
+      const data = await getAll<Passport>("localhost:8080/services/passport");
+
       setPassports(data);
     } catch (error) {
       console.error("Failed to fetch passports:", error);
@@ -60,7 +61,7 @@ export default function PassportForm() {
       </h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        {/* User Info */}
+       
         <div className="mb-4 flex flex-col">
           <label className="mb-1 font-medium text-gray-700">User</label>
           <input

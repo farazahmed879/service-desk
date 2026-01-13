@@ -4,10 +4,13 @@ import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import InputField from "@/components/InputFields/InputField";
 import type { domicile_prc } from "@/app/dashboard/users/types";
+import { useState } from "react";
+import { useEffect } from "react";
 
+import { getAll } from "@/app/services/crud_services";
 export default function DomicilePRCServicePage() {
   const router = useRouter();
-
+  const [Domicile, setDomicile] = useState<domicile_prc[]>([]);
   const { register, handleSubmit, control, reset } = useForm<domicile_prc>({
     defaultValues: {
       userName: "",
@@ -27,7 +30,18 @@ export default function DomicilePRCServicePage() {
     alert("Form submitted successfully!");
     reset();
   };
+  const fetchAllDomicile = async () => {
+    try {
+      const data = await getAll<domicile_prc>("https://dog.ceo/dog-api");
+      setDomicile(data);
+    } catch (error) {
+      console.error("Failed to fetch Domicle and Prc :", error);
+    }
+  };
 
+  useEffect(() => {
+    fetchAllDomicile();
+  }, []);
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

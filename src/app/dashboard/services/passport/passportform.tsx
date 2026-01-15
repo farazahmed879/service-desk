@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 import InputField from "@/components/InputFields/InputField";
 import type { PassportFormData, Passport } from "@/app/dashboard/users/types";
-import { getAll } from "@/app/services/crud_services";
+import { getAll, create } from "@/app/services/crud_services";
 
 export default function PassportForm() {
   const router = useRouter();
@@ -40,9 +40,13 @@ export default function PassportForm() {
     reset();
   };
 
+  const BASE_URL = "http://localhost:8080";
+
   const fetchAllPassports = async () => {
     try {
-      const data = await getAll<Passport>("localhost:8080/services/passport");
+      const data = await getAll<Passport>(
+        "http://localhost:8080/services/allPassport",
+      );
 
       setPassports(data);
     } catch (error) {
@@ -54,6 +58,21 @@ export default function PassportForm() {
     fetchAllPassports();
   }, []);
 
+  const createPassport = async (passportData: Partial<Passport>) => {
+    try {
+      const newPassport = await create<Passport>(
+        "http://localhost:8080/services/PassportByCnic",
+        passportData,
+      );
+
+      setPassports((prev) => [...prev, newPassport]);
+
+      console.log("Passport created successfully:", newPassport);
+    } catch (error) {
+      console.error("Failed to create passport:", error);
+    }
+  };
+
   return (
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
       <h1 className="mb-6 text-2xl font-bold text-gray-700">
@@ -61,7 +80,6 @@ export default function PassportForm() {
       </h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-       
         <div className="mb-4 flex flex-col">
           <label className="mb-1 font-medium text-gray-700">User</label>
           <input
@@ -72,7 +90,6 @@ export default function PassportForm() {
           />
         </div>
 
-        {/* Name fields */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           <InputField
             label="First Name"
@@ -94,7 +111,6 @@ export default function PassportForm() {
           />
         </div>
 
-        {/* Father/Husband Name, DOB, Place of Birth */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           <InputField
             label="Father/Husband Name"
@@ -117,7 +133,6 @@ export default function PassportForm() {
           />
         </div>
 
-        {/* CNIC, Gender, Contact Number */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           <InputField
             label="CNIC Number"
@@ -152,7 +167,6 @@ export default function PassportForm() {
           />
         </div>
 
-        {/* Email, Addresses */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           <InputField
             label="Email"
@@ -179,7 +193,6 @@ export default function PassportForm() {
           />
         </div>
 
-        {/* Required Documents */}
         <h2 className="mt-6 text-xl font-semibold text-gray-700">
           Required Documents
         </h2>
@@ -210,7 +223,6 @@ export default function PassportForm() {
           ))}
         </div>
 
-        {/* Buttons */}
         <div className="flex w-full justify-end gap-4">
           <button
             type="button"
@@ -227,22 +239,6 @@ export default function PassportForm() {
           </button>
         </div>
       </form>
-
-      {/* Display fetched passports */}
-      {passports.length > 0 && (
-        <div className="mt-8">
-          <h2 className="text-lg font-semibold text-gray-700">
-            All Passports:
-          </h2>
-          <ul className="mt-2 space-y-1">
-            {passports.map((p) => (
-              <li key={p.id} className="border-b py-1">
-                {p.FirstName} {p.LastName} - {p.CNIC}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
   );
 }

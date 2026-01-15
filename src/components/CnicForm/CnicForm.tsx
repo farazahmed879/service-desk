@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import InputField from "@/components/InputFields/InputField";
 import type { CnicFormData } from "@/app/dashboard/users/types";
-import { getAll } from "@/app/services/crud_services";
+import { getAll, create } from "@/app/services/crud_services";
 
 export default function CnicForm() {
   const router = useRouter();
@@ -52,6 +52,20 @@ export default function CnicForm() {
   useEffect(() => {
     fetchAllCnic();
   }, []);
+  const createCnic = async (cnicData: Partial<CnicFormData>) => {
+    try {
+      const newCnic = await create<CnicFormData>(
+        "http://localhost:8080/services/PassportByCnic",
+        cnicData,
+      );
+
+      setCnic((prev) => [...prev, newCnic]);
+
+      console.log("Passport created successfully:", newCnic);
+    } catch (error) {
+      console.error("Failed to create passport:", error);
+    }
+  };
 
   return (
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">

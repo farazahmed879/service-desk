@@ -62,6 +62,10 @@ export interface Passport {
   fatherCnicBackUrl?: string;
   motherCnicFrontUrl?: string;
   motherCnicBackUrl?: string;
+  _id: string;
+  firstName: string;
+  lastName: string;
+  cnicNumber: string;
 }
 export interface UserFormState {
   id: number;

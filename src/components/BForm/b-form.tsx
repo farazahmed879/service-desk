@@ -81,7 +81,7 @@ export default function b_Form() {
               Create
             </button>
 
-            <button
+            {/* <button
               type="button"
               className="flex items-center gap-1 rounded-md
                       bg-blue-600 px-3 py-2 text-xs font-medium text-white
@@ -89,7 +89,7 @@ export default function b_Form() {
             >
               <FaUsers size={12} />
               Get All Clients
-            </button>
+            </button> */}
           </div>
         </div>
       )}

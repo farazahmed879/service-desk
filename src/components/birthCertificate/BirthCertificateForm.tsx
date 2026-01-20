@@ -7,9 +7,13 @@ import type { birth_Certificate } from "@/app/dashboard/users/types";
 import { useState } from "react";
 import { getAll } from "@/app/services/crud_services";
 import { useEffect } from "react";
+import { FaPlus, FaUsers } from "react-icons/fa";
+
 export default function BirthCertificateServicePage() {
   const router = useRouter();
 const [ birth_Certificate ,setbirth_Certificate] =useState<birth_Certificate[]>([])
+  const [showForm, setShowForm] = useState(false);
+
   const { register, handleSubmit, control, reset } = useForm<birth_Certificate>(
     {
       defaultValues: {
@@ -48,21 +52,49 @@ const [ birth_Certificate ,setbirth_Certificate] =useState<birth_Certificate[]>(
   }, []);
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6 rounded-xl bg-white p-6 shadow-md"
-    >
-      <div className="mb-4 flex flex-col">
-        <label className="mb-1 font-medium text-gray-700">User:</label>
-
-        <input
-          type="text"
-          placeholder="User"
-          {...register("userName")}
-          className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <h2 className="mb-4 text-2xl font-semibold">Birth Certificate</h2>
+    <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
+          {!showForm && (
+            <div className="flex items-end justify-between gap-4">
+              <div className="flex flex-col">
+                <h1 className="mb-6 text-2xl font-bold text-gray-700">
+                  Birth Certificate Service
+                </h1>
+                <label className="mb-1 font-medium text-gray-700">User :</label>
+                <input
+                  type="text"
+                  placeholder="User"
+                  {...register("userName")}
+                  className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+    
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowForm(true)}
+                  className="flex items-center gap-1 rounded-md bg-blue-600 px-3 py-2 text-xs font-medium text-white hover:bg-blue-700 active:scale-95"
+                >
+                  <FaPlus size={12} />
+                  Create
+                </button>
+    
+                {/* <button
+                  type="button"
+                  className="flex items-center gap-1 rounded-md
+                      bg-blue-600 px-3 py-2 text-xs font-medium text-white
+                      hover:bg-blue-700 active:scale-95"
+                >
+                  <FaUsers size={12} />
+                  Get All Clients
+                </button> */}
+              </div>
+            </div>
+          )}
+    
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            {showForm && (
+              <>
+      <h2 className="mb-4 text-2xl font-semibold">Birth Certificate Form</h2>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <InputField
@@ -150,6 +182,10 @@ const [ birth_Certificate ,setbirth_Certificate] =useState<birth_Certificate[]>(
           Submit
         </button>
       </div>
+      </>
+            )}
     </form>
+          </div>
+
   );
 }

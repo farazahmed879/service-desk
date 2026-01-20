@@ -6,11 +6,14 @@ import InputField from "@/components/InputFields/InputField";
 import type { domicile_prc } from "@/app/dashboard/users/types";
 import { useState } from "react";
 import { useEffect } from "react";
+import { FaPlus, FaUsers } from "react-icons/fa";
 
 import { getAll } from "@/app/services/crud_services";
 export default function DomicilePRCServicePage() {
   const router = useRouter();
   const [Domicile, setDomicile] = useState<domicile_prc[]>([]);
+    const [showForm, setShowForm] = useState(false);
+
   const { register, handleSubmit, control, reset } = useForm<domicile_prc>({
     defaultValues: {
       userName: "",
@@ -43,10 +46,48 @@ export default function DomicilePRCServicePage() {
     fetchAllDomicile();
   }, []);
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6 rounded-xl bg-white p-6 shadow-md"
-    >
+    <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
+          {!showForm && (
+            <div className="flex items-end justify-between gap-4">
+              <div className="flex flex-col">
+                <h1 className="mb-6 text-2xl font-bold text-gray-700">
+                 Domicile and Prc Service
+                </h1>
+                <label className="mb-1 font-medium text-gray-700">User :</label>
+                <input
+                  type="text"
+                  placeholder="User"
+                  {...register("userName")}
+                  className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+    
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowForm(true)}
+                  className="flex items-center gap-1 rounded-md bg-blue-600 px-3 py-2 text-xs font-medium text-white hover:bg-blue-700 active:scale-95"
+                >
+                  <FaPlus size={12} />
+                  Create
+                </button>
+    
+                {/* <button
+                  type="button"
+                  className="flex items-center gap-1 rounded-md
+                      bg-blue-600 px-3 py-2 text-xs font-medium text-white
+                      hover:bg-blue-700 active:scale-95"
+                >
+                  <FaUsers size={12} />
+                  Get All Clients
+                </button> */}
+              </div>
+            </div>
+          )}
+    
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            {showForm && (
+              <>
       <div className="mb-4 flex flex-col">
         <label className="mb-1 font-medium text-gray-700">User:</label>
 
@@ -58,7 +99,7 @@ export default function DomicilePRCServicePage() {
         />
       </div>
 
-      <h2 className="mb-4 text-2xl font-semibold">Domicile / PRC Service</h2>
+      <h2 className="mb-4 text-2xl font-semibold">Domicile / PRC  Form</h2>
 
       <div className="mb-4">
         <label className="mb-2 block font-medium">Select Service Type</label>
@@ -139,6 +180,10 @@ export default function DomicilePRCServicePage() {
           Submit
         </button>
       </div>
+      </>
+)}
     </form>
+          </div>
+
   );
 }

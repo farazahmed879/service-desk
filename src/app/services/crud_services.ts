@@ -12,6 +12,22 @@ export const getAll = async <T>(url: string): Promise<T[]> => {
     throw err;
   }
 };
+/* export const getAll = async <T>(url: string): Promise<T[]> => {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      throw new Error(`failed to fetch from ${url}: ${res.status}`);
+    }
+
+    const result = await res.json();
+
+    // backend me data array ke andar aa raha hai
+    return Array.isArray(result.data) ? result.data : [];
+  } catch (err) {
+    console.error("fetch failed", err);
+    throw err;
+  }
+}; */
 
 
 // Generic POST/create function
@@ -36,10 +52,6 @@ export const create = async <T>(url: string, body: Partial<T>): Promise<T> => {
     throw err;
   }
 };
-
-
-
-
 
 /* 
 export const getAll = async <T>(url: string): Promise<T[]> => {

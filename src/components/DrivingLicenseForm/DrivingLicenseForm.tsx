@@ -6,9 +6,13 @@ import type { driving_License } from "@/app/dashboard/users/types";
 import { useEffect } from "react";
 import { useState } from "react";
 import { getAll } from "@/app/services/crud_services";
+import { FaPlus, FaUsers } from "react-icons/fa";
+
 export default function DrivingLicenseService() {
   const router = useRouter();
   const [DrivingLicense, setDrivingLicense] = useState<driving_License[]>([]);
+  const [showForm, setShowForm] = useState(false);
+
   const { register, handleSubmit, control, reset } = useForm<driving_License>({
     defaultValues: {
       userName: "",
@@ -41,74 +45,114 @@ export default function DrivingLicenseService() {
     fetchAllLicense();
   }, []);
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="space-y-4 rounded-xl bg-white p-6 shadow-md"
-    >
-      <div className="mb-4 flex flex-col">
-        <label className="mb-1 font-medium text-gray-700">User:</label>
+    <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
+      {!showForm && (
+        <div className="flex items-end justify-between gap-4">
+          <div className="flex flex-col">
+            <h1 className="mb-6 text-2xl font-bold text-gray-700">
+              Driving License Service
+            </h1>
+            <label className="mb-1 font-medium text-gray-700">User :</label>
+            <input
+              type="text"
+              placeholder="User"
+              {...register("userName")}
+              className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-        <input
-          type="text"
-          placeholder="User"
-          {...register("userName")}
-          className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <h2 className="mb-4 text-2xl font-semibold">Driving License Form</h2>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => setShowForm(true)}
+              className="flex items-center gap-1 rounded-md bg-blue-600 px-3 py-2 text-xs font-medium text-white hover:bg-blue-700 active:scale-95"
+            >
+              <FaPlus size={12} />
+              Create
+            </button>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <InputField
-          label="Full Name"
-          name="fullName"
-          register={register}
-          placeholder="Enter your full name"
-        />
-        <InputField
-          label="Father/Husband Name"
-          name="fatherName"
-          register={register}
-          placeholder="Enter father/husband name"
-        />
-        <InputField
-          label="Date of Birth"
-          name="dob"
-          register={register}
-          type="date"
-        />
-      </div>
+            {/*  <button
+              type="button"
+              className="flex items-center gap-1 rounded-md
+            bg-blue-600 px-3 py-2 text-xs font-medium text-white
+            hover:bg-blue-700 active:scale-95"
+            >
+              <FaUsers size={12} />
+              Get All Clients
+            </button> */}
+          </div>
+        </div>
+      )}
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <InputField
-          label="CNIC Number"
-          name="cnic"
-          register={register}
-          placeholder="Enter CNIC"
-        />
-        <InputField
-          label="Contact Number"
-          name="contactNumber"
-          register={register}
-          placeholder="03XXXXXXXXX"
-        />
-        <InputField
-          label="Address"
-          name="address"
-          register={register}
-          textarea
-          rows={3}
-          placeholder="Enter your address"
-        />
-      </div>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        {showForm && (
+          <>
+            <div className="mb-4 flex flex-col">
+              <label className="mb-1 font-medium text-gray-700">User:</label>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <InputField
-          label="License Type"
-          name="licenseType"
-          register={register}
-          options={["Motorcycle", "Car", "Heavy Vehicle"]}
-        />
-        {/* <InputField
+              <input
+                type="text"
+                placeholder="User"
+                {...register("userName")}
+                className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <h2 className="mb-4 text-2xl font-semibold">
+              Driving License Form
+            </h2>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <InputField
+                label="Full Name"
+                name="fullName"
+                register={register}
+                placeholder="Enter your full name"
+              />
+              <InputField
+                label="Father/Husband Name"
+                name="fatherName"
+                register={register}
+                placeholder="Enter father/husband name"
+              />
+              <InputField
+                label="Date of Birth"
+                name="dob"
+                register={register}
+                type="date"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <InputField
+                label="CNIC Number"
+                name="cnic"
+                register={register}
+                placeholder="Enter CNIC"
+              />
+              <InputField
+                label="Contact Number"
+                name="contactNumber"
+                register={register}
+                placeholder="03XXXXXXXXX"
+              />
+              <InputField
+                label="Address"
+                name="address"
+                register={register}
+                textarea
+                rows={3}
+                placeholder="Enter your address"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <InputField
+                label="License Type"
+                name="licenseType"
+                register={register}
+                options={["Motorcycle", "Car", "Heavy Vehicle"]}
+              />
+              {/* <InputField
           label="Issue Date"
           name="issueDate"
           register={register}
@@ -120,24 +164,27 @@ export default function DrivingLicenseService() {
           register={register}
           type="date"
         /> */}
-      </div>
+            </div>
 
-      <div className="flex w-full justify-end gap-4">
-        <button
-          type="button"
-          onClick={() => router.push("/dashboard/services")}
-          className="w-40 rounded-lg bg-blue-600 py-2.5 font-semibold text-white shadow transition-all hover:bg-blue-700"
-        >
-          Cancel
-        </button>
+            <div className="flex w-full justify-end gap-4">
+              <button
+                type="button"
+                onClick={() => router.push("/dashboard/services")}
+                className="w-40 rounded-lg bg-blue-600 py-2.5 font-semibold text-white shadow transition-all hover:bg-blue-700"
+              >
+                Cancel
+              </button>
 
-        <button
-          type="submit"
-          className="w-40 rounded-lg bg-blue-600 py-2.5 font-semibold text-white shadow transition-all hover:bg-blue-700"
-        >
-          Submit
-        </button>
-      </div>
-    </form>
+              <button
+                type="submit"
+                className="w-40 rounded-lg bg-blue-600 py-2.5 font-semibold text-white shadow transition-all hover:bg-blue-700"
+              >
+                Submit
+              </button>
+            </div>
+          </>
+        )}
+      </form>
+    </div>
   );
 }

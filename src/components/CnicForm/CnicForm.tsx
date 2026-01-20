@@ -70,6 +70,7 @@ export default function CnicForm() {
   };
 
   return (
+    
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
       {!showForm && (
 
@@ -101,7 +102,7 @@ export default function CnicForm() {
               Create
             </button>
 
-            <button
+           {/*  <button
               type="button"
               className="flex items-center gap-1 rounded-md
             bg-blue-600 px-3 py-2 text-xs font-medium text-white
@@ -109,7 +110,7 @@ export default function CnicForm() {
             >
               <FaUsers size={12} />
               Get All Clients
-            </button>
+            </button> */}
           </div>
         </div>
       )}

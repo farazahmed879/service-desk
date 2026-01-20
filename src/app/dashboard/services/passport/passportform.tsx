@@ -13,6 +13,9 @@ export default function PassportForm() {
   const router = useRouter();
   const [passports, setPassports] = useState<Passport[]>([]);
   const [showForm, setShowForm] = useState(false);
+  const [selectedPassport, setSelectedPassport] = useState<Passport | null>(
+    null,
+  );
 
   const { register, handleSubmit, control, reset } = useForm<PassportFormData>({
     defaultValues: {
@@ -46,13 +49,15 @@ export default function PassportForm() {
 
   const fetchAllPassports = async () => {
     try {
-      const data = await getAll<Passport>(
-        "http://localhost:8080/services/allPassport",
-      );
+      const res = await fetch("http://localhost:8080/services/allPassport");
+      if (!res.ok) throw new Error("Failed to fetch");
 
-      setPassports(data);
-    } catch (error) {
-      console.error("Failed to fetch passports:", error);
+      const result = await res.json();
+
+      setPassports(result.data || []);
+    } catch (err) {
+      console.error("Failed to fetch passports:", err);
+      setPassports([]);
     }
   };
 
@@ -75,25 +80,20 @@ export default function PassportForm() {
     }
   };
 
-
   return (
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
-
       {!showForm && (
-
         <div className="flex items-end justify-between gap-4">
-
           <div className="flex flex-col">
             <h1 className="mb-6 text-2xl font-bold text-gray-700">
-              Passport  Service
+              Passport Service
             </h1>
             <label className="mb-1 font-medium text-gray-700">User :</label>
             <input
               type="text"
               placeholder="User"
               {...register("userName")}
-              className="w-64 rounded-md border border-gray-300 px-3 py-2
-          focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -101,15 +101,13 @@ export default function PassportForm() {
             <button
               type="button"
               onClick={() => setShowForm(true)}
-              className="flex items-center gap-1 rounded-md
-            bg-blue-600 px-3 py-2 text-xs font-medium text-white
-            hover:bg-blue-700 active:scale-95"
+              className="flex items-center gap-1 rounded-md bg-blue-600 px-3 py-2 text-xs font-medium text-white hover:bg-blue-700 active:scale-95"
             >
               <FaPlus size={12} />
               Create
             </button>
 
-            <button
+            {/* <button
               type="button"
               className="flex items-center gap-1 rounded-md
             bg-blue-600 px-3 py-2 text-xs font-medium text-white
@@ -117,16 +115,53 @@ export default function PassportForm() {
             >
               <FaUsers size={12} />
               Get All Clients
-            </button>
+            </button> */}
           </div>
         </div>
       )}
+      <div className="rounded-md bg-white shadow">
+        {passports.length === 0 ? (
+          <p className="p-4 text-gray-500">No passports found</p>
+        ) : (
+          passports.map((passport, index) => (
+            <div
+              key={passport.cnicNumber + "-" + index}
+              className="flex justify-between border-b p-4 hover:bg-gray-50"
+            >
+              <div>
+                <p className="font-semibold">
+                  {passport.firstName} {passport.lastName}
+                </p>
+                <p className="text-sm text-gray-600">
+                  CNIC: {passport.cnicNumber}
+                </p>
+              </div>
 
+              <button
+                onClick={() => setSelectedPassport(passport)}
+                className="text-sm text-blue-600"
+              >
+                View
+              </button>
+            </div>
+          ))
+        )}
+      </div>
 
+      {selectedPassport && (
+        <div className="mt-4 rounded-md border bg-gray-50 p-4">
+          <h2 className="mb-2 font-semibold">Passport Details</h2>
+          <p>
+            <strong>Name:</strong> {selectedPassport.firstName}{" "}
+            {selectedPassport.lastName}
+          </p>
+          <p>
+            <strong>CNIC:</strong> {selectedPassport.cnicNumber}
+          </p>
+        </div>
+      )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-
-
         {showForm && (
           <>
             <h1 className="mb-6 text-2xl font-bold text-gray-700">
@@ -284,8 +319,6 @@ export default function PassportForm() {
     </div>
   );
 }
-
-
 
 /* return (
   <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
@@ -478,7 +511,6 @@ export default function PassportForm() {
 );
 }
 */
-
 
 //Main Code Passport Form
 /* "use client";

@@ -35,9 +35,10 @@ export default function b_Form() {
     alert("B_Form  submitted successfully!");
     reset();
   };
+
   const fetchAllCnic = async () => {
     try {
-      const data = await getAll<b_form>("https://dog.ceo/dog-api");
+      const data = await getAll<b_form>("http://localhost:5000/bform/get-all");
       setB_Form(data);
     } catch (error) {
       console.error("Failed to fetch B-Form:", error);

@@ -11,7 +11,7 @@ import { FaPlus, FaUsers } from "react-icons/fa";
 
 export default function PassportForm() {
   const router = useRouter();
-  const [passports, setPassports] = useState<Passport[]>([]);
+  const [passports, setPassports] = useState<Passport[]>([]); //here we call passporys
   const [showForm, setShowForm] = useState(false);
   const [selectedPassport, setSelectedPassport] = useState<Passport | null>(
     null,
@@ -45,11 +45,24 @@ export default function PassportForm() {
     reset();
   };
 
-  const BASE_URL = "http://localhost:8080";
+  /*   const BASE_URL = "http://localhost:8080";
+   */
 
-  const fetchAllPassports = async () => {
+const fetchAllPassports = async () => {
     try {
-      const res = await fetch("http://localhost:8080/services/allPassport");
+      const res = await getAll(urls.passport.getAll);
+      if (!res) return;
+
+      setPassports(res);
+    } catch (err) {
+      console.error("Failed to fetch passports:", err);
+      setPassports([]);
+    }
+  };
+
+/*   const fetchAllPassports = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/passport/get-all");
       if (!res.ok) throw new Error("Failed to fetch");
 
       const result = await res.json();
@@ -59,13 +72,13 @@ export default function PassportForm() {
       console.error("Failed to fetch passports:", err);
       setPassports([]);
     }
-  };
+  }; */
 
   useEffect(() => {
     fetchAllPassports();
   }, []);
 
-  const createPassport = async (passportData: Partial<Passport>) => {
+/*   const createPassport = async (passportData: Partial<Passport>) => {
     try {
       const newPassport = await create<Passport>(
         "http://localhost:8080/services/PassportByCnic",
@@ -78,7 +91,7 @@ export default function PassportForm() {
     } catch (error) {
       console.error("Failed to create passport:", error);
     }
-  };
+  }; */
 
   return (
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
@@ -106,20 +119,11 @@ export default function PassportForm() {
               <FaPlus size={12} />
               Create
             </button>
-
-            {/* <button
-              type="button"
-              className="flex items-center gap-1 rounded-md
-            bg-blue-600 px-3 py-2 text-xs font-medium text-white
-            hover:bg-blue-700 active:scale-95"
-            >
-              <FaUsers size={12} />
-              Get All Clients
-            </button> */}
           </div>
         </div>
       )}
-      <div className="rounded-md bg-white shadow">
+
+      <div className="mt-6 rounded-md bg-white shadow">
         {passports.length === 0 ? (
           <p className="p-4 text-gray-500">No passports found</p>
         ) : (

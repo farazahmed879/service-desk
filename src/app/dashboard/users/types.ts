@@ -37,8 +37,8 @@ export interface PassportFormData {
   fatherCnicBack: File | null;
   motherCnicFront: File | null;
   motherCnicBack: File | null;
-  clientID: string; // <-- add this
-  cnicFrontPic: FileList; // input type="file"
+  clientID: string;
+  cnicFrontPic: FileList; 
   cnicBackPic: FileList;
   degreePicture: FileList;
 }
@@ -136,7 +136,17 @@ export interface CnicFormData {
   motherCnicBack: File | null;
   livePhoto: File | null;
   signatureImage: File | null;
+  id: string;
+  clientID: {
+    firstName: string;
+    lastName: string;
+  };
+  cnic: string;
+  
+
 }
+
+
 
 export interface b_form {
   childName: string;

@@ -11,8 +11,9 @@ import { FaPlus, FaUsers } from "react-icons/fa";
 
 export default function CnicForm() {
   const router = useRouter();
-  const [cnic, setCnic] = useState<CnicFormData[]>([]);
+  const [cnic, setCnic] = useState<CnicFormData[]>([]); 
   const [showForm, setShowForm] = useState(false);
+  const [selectedcnic, setSelectedcnic] = useState<CnicFormData | null>(null);
   const { register, handleSubmit, control, reset } = useForm<CnicFormData>({
     defaultValues: {
       userName: "",
@@ -44,7 +45,9 @@ export default function CnicForm() {
 
   const fetchAllCnic = async () => {
     try {
-      const data = await getAll<CnicFormData>("https://dog.ceo/dog-api");
+      const data = await getAll<CnicFormData>(
+        "http://localhost:5000/cnic/get-all",
+      );
       setCnic(data);
     } catch (error) {
       console.error("Failed to fetch CNIC:", error);
@@ -70,12 +73,9 @@ export default function CnicForm() {
   };
 
   return (
-    
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
       {!showForm && (
-
         <div className="flex items-end justify-between gap-4">
-
           <div className="flex flex-col">
             <h1 className="mb-6 text-2xl font-bold text-gray-700">
               Cnic Service
@@ -85,8 +85,7 @@ export default function CnicForm() {
               type="text"
               placeholder="User"
               {...register("userName")}
-              className="w-64 rounded-md border border-gray-300 px-3 py-2
-          focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -94,15 +93,13 @@ export default function CnicForm() {
             <button
               type="button"
               onClick={() => setShowForm(true)}
-              className="flex items-center gap-1 rounded-md
-            bg-blue-600 px-3 py-2 text-xs font-medium text-white
-            hover:bg-blue-700 active:scale-95"
+              className="flex items-center gap-1 rounded-md bg-blue-600 px-3 py-2 text-xs font-medium text-white hover:bg-blue-700 active:scale-95"
             >
               <FaPlus size={12} />
               Create
             </button>
 
-           {/*  <button
+            {/*  <button
               type="button"
               className="flex items-center gap-1 rounded-md
             bg-blue-600 px-3 py-2 text-xs font-medium text-white
@@ -114,13 +111,62 @@ export default function CnicForm() {
           </div>
         </div>
       )}
-     
+
+     <div className="mt-6 rounded-md bg-white shadow">
+  {cnic.length === 0 ? (
+    <p className="p-4 text-gray-500">No CNIC found</p>
+  ) : (
+    cnic.map((item, index) => (
+      <div
+        key={item.cnic + "-" + index}
+        className="flex justify-between border-b p-4 hover:bg-gray-50"
+      >
+        <div>
+          <p className="font-semibold">
+            {item.clientID?.firstName} {item.clientID?.lastName}
+          </p>
+          <p className="text-sm text-gray-600">
+            CNIC: {item.cnic}
+          </p>
+        </div>
+
+        <button
+          onClick={() => {
+            console.log("Clicked CNIC:", item); 
+            setSelectedcnic(item);
+          }}
+          className="text-sm text-blue-600"
+        >
+          View
+        </button>
+      </div>
+    ))
+  )}
+</div>
+{selectedcnic && (
+  <div className="mt-4 rounded-md border bg-gray-50 p-4">
+    <h2 className="mb-3 text-lg font-semibold text-gray-700">
+      CNIC Details
+    </h2>
+
+    <p className="text-sm text-gray-700">
+      <span className="font-medium">Name:</span>{" "}
+      {selectedcnic.clientID?.firstName}{" "}
+      {selectedcnic.clientID?.lastName}
+    </p>
+
+    <p className="mt-1 text-sm text-gray-700">
+      <span className="font-medium">CNIC:</span>{" "}
+      {selectedcnic.cnic}
+    </p>
+  </div>
+)}
+
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-       
         {showForm && (
           <>
-          <h1 className="mb-6 text-2xl font-bold text-gray-700">
+            <h1 className="mb-6 text-2xl font-bold text-gray-700">
               Cnic Application Form
             </h1>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
@@ -241,15 +287,17 @@ export default function CnicForm() {
                   className="w-full rounded-md border px-3 py-2"
                 />
               </div>
-
-
             </div>
 
-            <h2 className="mt-6 text-xl font-semibold text-gray-700">Biometrics</h2>
+            <h2 className="mt-6 text-xl font-semibold text-gray-700">
+              Biometrics
+            </h2>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
-                <label className="mb-2 block text-gray-700">Your Live Photo</label>
+                <label className="mb-2 block text-gray-700">
+                  Your Live Photo
+                </label>
                 <input
                   type="file"
                   accept="image/*"
@@ -260,7 +308,9 @@ export default function CnicForm() {
               </div>
 
               <div>
-                <label className="mb-2 block text-gray-700">Signature Image</label>
+                <label className="mb-2 block text-gray-700">
+                  Signature Image
+                </label>
                 <input
                   type="file"
                   accept="image/*"

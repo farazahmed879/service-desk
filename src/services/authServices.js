@@ -8,6 +8,7 @@ export  const signUpService = async (signupData) => {
     return res.data;
 
   } catch (error) {
+    console.log(error.message);
     throw error.response?.data || { message: "signUp failed" };
   }
 };
@@ -18,8 +19,36 @@ export  const signUpService = async (signupData) => {
 
     return res.data;
   } catch (error) {
+    console.log(error.message);
     throw error.response?.data || { message: error.message };
   }
 };
 
  
+export const forgetPassword = async(forgetPasswordData)=>{
+  try {
+    
+       const res = await  Api.post("/forget-password" , forgetPasswordData)
+      return res.data  
+
+    } catch (error) {
+    console.log(error.message);
+      throw error.response?.data  || {message:error.message}
+         
+
+  }
+}
+ 
+export const savePassword = async(savePasswordData)=>{
+  try {
+    
+       const res = await  Api.post("/new-password" , savePasswordData)
+      return res.data  
+
+    } catch (error) {
+    console.log(error.message);
+      throw error.response?.data  || {message:error.message}
+         
+
+  }
+}

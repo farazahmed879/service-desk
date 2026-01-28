@@ -82,7 +82,24 @@ export default function SignIn() {
                       >
                         Sign Up
                       </Link>
+                      
+                    
                     </p>
+                    
+                  </div>
+                  <div className="mt-4 text-center">
+                    <p>
+                        Can’t remember password? 
+                      <Link
+                        href="/auth/forget-password"
+                        className="text-primary underline"
+                      >
+                        Reset
+                      </Link>
+                      
+                    
+                    </p>
+                    
                   </div>
                 </form>
               </Signin>

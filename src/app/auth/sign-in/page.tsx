@@ -35,6 +35,8 @@ export default function SignIn() {
       router.push("/");
     } catch (error: any) {
       console.log(error.message);
+      alert(error.message)
+
       console.log(error?.response);
     }
   };

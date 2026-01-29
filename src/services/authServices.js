@@ -2,7 +2,7 @@ import Api from "../utils/api";
 
 export  const signUpService = async (signupData) => {
   try {
-    const res = await Api.post("/signup", signupData);
+    const res = await Api.post("/users/signup", signupData);
     console.log(res.data);
     
     return res.data;
@@ -15,7 +15,7 @@ export  const signUpService = async (signupData) => {
 
  export const loginService = async (loginData) => {
   try {
-    const res = await Api.post("/login", loginData);
+    const res = await Api.post("/users/login", loginData);
 
     return res.data;
   } catch (error) {
@@ -28,7 +28,7 @@ export  const signUpService = async (signupData) => {
 export const forgetPassword = async(forgetPasswordData)=>{
   try {
     
-       const res = await  Api.post("/forget-password" , forgetPasswordData)
+       const res = await  Api.post("/users/forget-password" , forgetPasswordData)
       return res.data  
 
     } catch (error) {
@@ -42,7 +42,7 @@ export const forgetPassword = async(forgetPasswordData)=>{
 export const savePassword = async(savePasswordData)=>{
   try {
     
-       const res = await  Api.post("/new-password" , savePasswordData)
+       const res = await  Api.post("/users/new-password" , savePasswordData)
       return res.data  
 
     } catch (error) {

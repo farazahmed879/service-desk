@@ -1,4 +1,4 @@
-import Api from "../services/getUserService"
+import Api from "@/utils/api"
 
 
 export const getAllUser  = async () =>{
@@ -6,8 +6,7 @@ export const getAllUser  = async () =>{
     try {
       
         const res  = await Api.get("/client/get-all")
-        console.log(res.data)
-    //    return res.data
+       return res.data
  
     } catch (error) {
         

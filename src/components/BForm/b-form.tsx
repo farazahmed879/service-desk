@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import InputField from "@/components/InputFields/InputField";
 import { useState } from "react";
 import { useEffect } from "react";
-import { getAll } from "@/app/services/crud_services";
+// import { getAll } from "@/app/services/crud_services";
 
 import type { b_form } from "@/app/dashboard/users/types";
 
@@ -35,8 +35,8 @@ const [b_form ,setB_Form] = useState<b_form[]>([])
   };
   const fetchAllCnic = async () => {
       try {
-        const data = await getAll<b_form>("https://dog.ceo/dog-api");
-        setB_Form(data);
+        // const data = await getAll<b_form>("https://dog.ceo/dog-api");
+        // setB_Form(data);
       } catch (error) {
         console.error("Failed to fetch B-Form:", error);
       }

@@ -1,14 +1,17 @@
 "use client";
 
-import React from "react";
+import { useEffect } from "react";
 
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import InputField from "@/components/InputFields/InputField";
 import type { bill_and_payment } from "@/app/dashboard/users/types";
+import { useState } from "react";
+import { getAll } from "@/app/services/crud_services";
 
 export default function PassportForm() {
   const router = useRouter();
+  const [Challan, setChallan] = useState<bill_and_payment[]>([]);
 
   const { register, handleSubmit, control, reset } = useForm<bill_and_payment>({
     defaultValues: {
@@ -27,6 +30,17 @@ export default function PassportForm() {
     alert("Payment Form submitted successfully!");
     reset();
   };
+  const fetchAllpayment = async () => {
+    try {
+      const data = await getAll<bill_and_payment>("https://dog.ceo/dog-api");
+      setChallan(data);
+    } catch (error) {
+      console.error("failed to fetch the Payments");
+    }
+  };
+  useEffect(() => {
+    fetchAllpayment();
+  }, []);
 
   return (
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">

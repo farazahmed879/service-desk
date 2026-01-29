@@ -1,14 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import InputField from "@/components/InputFields/InputField";
 import type { CnicFormData } from "@/app/dashboard/users/types";
+import { getAll, create } from "@/app/services/crud_services";
 
 export default function CnicForm() {
   const router = useRouter();
-
+  const [cnic, setCnic] = useState<CnicFormData[]>([]);
   const { register, handleSubmit, control, reset } = useForm<CnicFormData>({
     defaultValues: {
       userName: "",
@@ -28,7 +30,7 @@ export default function CnicForm() {
       fatherCnicBack: null,
       motherCnicFront: null,
       motherCnicBack: null,
-      birthCertificate:null
+      birthCertificate: null,
     },
   });
 
@@ -36,6 +38,33 @@ export default function CnicForm() {
     console.log("Cnic Form Submitted:", data);
     alert("Cnic Form submitted successfully!");
     reset();
+  };
+
+  const fetchAllCnic = async () => {
+    try {
+      const data = await getAll<CnicFormData>("https://dog.ceo/dog-api");
+      setCnic(data);
+    } catch (error) {
+      console.error("Failed to fetch CNIC:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllCnic();
+  }, []);
+  const createCnic = async (cnicData: Partial<CnicFormData>) => {
+    try {
+      const newCnic = await create<CnicFormData>(
+        "http://localhost:8080/services/PassportByCnic",
+        cnicData,
+      );
+
+      setCnic((prev) => [...prev, newCnic]);
+
+      console.log("Passport created successfully:", newCnic);
+    } catch (error) {
+      console.error("Failed to create passport:", error);
+    }
   };
 
   return (

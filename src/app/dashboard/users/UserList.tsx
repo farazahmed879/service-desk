@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEdit, FaTrash, FaEllipsisV } from "react-icons/fa";
 import Link from "next/link";
 import type { UserList } from "@/app/dashboard/users/types";
+// import getAllUser from "."
 
 import type { UserListProps } from "./types";
 
@@ -10,6 +11,19 @@ export default function UserList({ users, onEdit, onDelete }: UserListProps) {
   const [editingUser, setEditingUser] = useState<UserList | undefined>(
     undefined,
   );
+
+//   const gettingData = async () => {
+//     try {
+//       const data = await getAllUser();
+//       console.log(data);
+      
+//     } catch (error: any) {
+//       console.log(error.message);
+//     }
+//   };
+
+// gettingData()
+
   const [showServiceFor, setShowServiceFor] = useState<number | null>(null);
   return (
     <div className="grid overflow-x-auto overflow-y-visible rounded-[10px] bg-white px-7.5 pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card">

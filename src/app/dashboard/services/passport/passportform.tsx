@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 import { urls } from "@/app/dashboard/services/crud";
 import InputField from "@/components/InputFields/InputField";
 import type { PassportFormData, Passport } from "@/app/dashboard/users/types";
-import { getAll, create } from "@/app/services/crud_services";
-
-import { FaPlus, FaUsers } from "react-icons/fa";
+import { getAll } from "@/app/services/crud_services";
+import { FaPlus } from "react-icons/fa";
 
 export default function PassportForm() {
   const router = useRouter();
   const [passports, setPassports] = useState<Passport[]>([]);
   const [showForm, setShowForm] = useState(false);
+  const [showView, setShowView] = useState(false);
   const [selectedPassport, setSelectedPassport] = useState<Passport | null>(
     null,
   );
@@ -46,6 +46,8 @@ export default function PassportForm() {
   };
 
   const fetchAllPassports = async () => {
+    console.log("Fetching Passport from:", urls.passport.getAll);
+
     try {
       const res = await getAll<Passport>(urls.passport.getAll);
       if (!res) return;
@@ -120,45 +122,49 @@ export default function PassportForm() {
         </div>
       )}
 
-      <div className="mt-6 rounded-md bg-white shadow">
-        {passports.length === 0 ? (
-          <p className="p-4 text-gray-500">No passports found</p>
-        ) : (
-          passports.map((passport, index) => (
-            <div
-              key={passport.cnicNumber + "-" + index}
-              className="flex justify-between border-b p-4 hover:bg-gray-50"
-            >
-              <div>
-                <p className="font-semibold">
-                  {passport.firstName} {passport.lastName}
-                </p>
-                <p className="text-sm text-gray-600">
-                  CNIC: {passport.cnicNumber}
-                </p>
-              </div>
-
-              <button
-                onClick={() => setSelectedPassport(passport)}
-                className="text-sm text-blue-600"
+      {!showForm && (
+        <div className="mt-6 rounded-md bg-white shadow">
+          {passports.length === 0 ? (
+            <p className="p-4 text-gray-500">No passports found</p>
+          ) : (
+            passports.map((passport, index) => (
+              <div
+                key={passport.cnicNumber + "-" + index}
+                className="flex justify-between border-b p-4 hover:bg-gray-50"
               >
-                View
-              </button>
-            </div>
-          ))
-        )}
-      </div>
+                <div>
+                  <p className="font-semibold">
+                    {passport.firstName} {passport.lastName}
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Passport Clients: {passport.cnicNumber}
+                  </p>
+                </div>
 
-      {selectedPassport && (
-        <div className="mt-4 rounded-md border bg-gray-50 p-4">
-          <h2 className="mb-2 font-semibold">Passport Details</h2>
-          <p>
-            <strong>Name:</strong> {selectedPassport.firstName}{" "}
-            {selectedPassport.lastName}
-          </p>
-          <p>
-            <strong>CNIC:</strong> {selectedPassport.cnicNumber}
-          </p>
+                <button
+                  onClick={() => {
+                    setSelectedPassport(passport);
+                    setShowView(true);
+                  }}
+                  className="text-blue-600 hover:underline"
+                >
+                  View
+                </button>
+              </div>
+            ))
+          )}
+          {showView && selectedPassport && (
+            <div className="mt-4 rounded-md border bg-gray-50 p-4">
+              <h2 className="mb-2 font-semibold">Passport Details</h2>
+              <p>
+                <strong>Name:</strong> {selectedPassport.firstName}{" "}
+                {selectedPassport.lastName}
+              </p>
+              <p>
+                <strong>CNIC:</strong> {selectedPassport.cnicNumber}
+              </p>
+            </div>
+          )}
         </div>
       )}
 

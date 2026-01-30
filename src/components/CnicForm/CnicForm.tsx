@@ -10,11 +10,11 @@ import { getAll, create } from "@/app/services/crud_services";
 import { FaPlus, FaUsers } from "react-icons/fa";
 import { urls } from "@/app/dashboard/services/crud";
 
-
 export default function CnicForm() {
   const router = useRouter();
-  const [cnic, setCnic] = useState<CnicFormData[]>([]); 
+  const [cnic, setCnic] = useState<CnicFormData[]>([]);
   const [showForm, setShowForm] = useState(false);
+
   const [selectedcnic, setSelectedcnic] = useState<CnicFormData | null>(null);
   const { register, handleSubmit, control, reset } = useForm<CnicFormData>({
     defaultValues: {
@@ -46,22 +46,23 @@ export default function CnicForm() {
   };
 
   const fetchAllCnic = async () => {
-      try {
-        const res = await getAll<CnicFormData>(urls.cnic.getAll);
-        if (!res) return;
-  
-        setCnic(res);
-      } catch (err) {
-        console.error("Failed to fetch Cnic:", err);
-        setCnic([]);
-      }
-    };
+    try {
+      const res = await getAll<CnicFormData>(urls.cnic.getAll);
+      if (!res) return;
+
+      setCnic(res);
+    } catch (err) {
+      console.error("Failed to fetch Cnic:", err);
+      setCnic([]);
+    }
+  };
 
   useEffect(() => {
     fetchAllCnic();
   }, []);
 
-/*   const createCnic = async (cnicData: Partial<CnicFormData>) => {
+
+  /*   const createCnic = async (cnicData: Partial<CnicFormData>) => {
     try {
       const newCnic = await create<CnicFormData>(
         "http://localhost:8080/services/PassportByCnic",
@@ -103,69 +104,59 @@ export default function CnicForm() {
               Create
             </button>
 
-            {/*  <button
-              type="button"
-              className="flex items-center gap-1 rounded-md
-            bg-blue-600 px-3 py-2 text-xs font-medium text-white
-            hover:bg-blue-700 active:scale-95"
-            >
-              <FaUsers size={12} />
-              Get All Clients
-            </button> */}
+           
           </div>
         </div>
       )}
 
-     <div className="mt-6 rounded-md bg-white shadow">
-  {cnic.length === 0 ? (
-    <p className="p-4 text-gray-500">No CNIC found</p>
-  ) : (
-    cnic.map((item, index) => (
-      <div
-        key={item.cnic + "-" + index}
-        className="flex justify-between border-b p-4 hover:bg-gray-50"
-      >
-        <div>
-          <p className="font-semibold">
-            {item.clientID?.firstName} {item.clientID?.lastName}
+      {!showForm && (
+        <div className="mt-6 rounded-md bg-white shadow">
+          {cnic.length === 0 ? (
+            <p className="p-4 text-gray-500">No CNIC found</p>
+          ) : (
+            cnic.map((item, index) => (
+              <div
+                key={item.cnic + "-" + index}
+                className="flex justify-between border-b p-4 hover:bg-gray-50"
+              >
+                
+                <div>
+                  <p className="font-semibold">
+                    {item.clientID?.firstName} {item.clientID?.lastName}
+                  </p>
+                  <p className="text-sm text-gray-600">CNIC: {item.cnic}</p>
+                </div>
+
+                <button
+                  onClick={() => {
+                    console.log("Clicked CNIC:", item);
+                    setSelectedcnic(item);
+                  }}
+                  className="text-sm text-blue-600"
+                >
+                  View
+                </button>
+              </div>
+            ))
+          )}
+        </div>
+      )}
+      {selectedcnic && (
+        <div className="mt-4 rounded-md border bg-gray-50 p-4">
+          <h2 className="mb-3 text-lg font-semibold text-gray-700">
+            CNIC Details
+          </h2>
+
+          <p className="text-sm text-gray-700">
+            <span className="font-medium">Name:</span>{" "}
+            {selectedcnic.clientID?.firstName} {selectedcnic.clientID?.lastName}
           </p>
-          <p className="text-sm text-gray-600">
-            CNIC: {item.cnic}
+
+          <p className="mt-1 text-sm text-gray-700">
+            <span className="font-medium">CNIC:</span> {selectedcnic.cnic}
           </p>
         </div>
-
-        <button
-          onClick={() => {
-            console.log("Clicked CNIC:", item); 
-            setSelectedcnic(item);
-          }}
-          className="text-sm text-blue-600"
-        >
-          View
-        </button>
-      </div>
-    ))
-  )}
-</div>
-{selectedcnic && (
-  <div className="mt-4 rounded-md border bg-gray-50 p-4">
-    <h2 className="mb-3 text-lg font-semibold text-gray-700">
-      CNIC Details
-    </h2>
-
-    <p className="text-sm text-gray-700">
-      <span className="font-medium">Name:</span>{" "}
-      {selectedcnic.clientID?.firstName}{" "}
-      {selectedcnic.clientID?.lastName}
-    </p>
-
-    <p className="mt-1 text-sm text-gray-700">
-      <span className="font-medium">CNIC:</span>{" "}
-      {selectedcnic.cnic}
-    </p>
-  </div>
-)}
-
+      )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {showForm && (

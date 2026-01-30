@@ -159,6 +159,8 @@ export interface b_form {
   gender: string;
   ContactNumber: string;
   parentCnic: string;
+  
+ 
 }
 export interface bill_and_payment {
   userName: string;

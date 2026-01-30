@@ -15,11 +15,10 @@ getByCnic: "GET / POST" //  depend on situation
 
 export const urls = {
   passport: {
-    create :"passport/create",
-    getAll: "/passport/get-all",
+    create :"/passport/create",
+    getAll: "http://localhost:5000/passport/get-all",
     getPassportByCnic: "/passport/get-by-cnic",
     update: "/passport//update/:id",
-
     delete: "",
   },
 

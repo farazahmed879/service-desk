@@ -9,11 +9,13 @@ import { useEffect } from "react";
 import { getAll } from "@/app/services/crud_services";
 import { FaPlus, FaUsers } from "react-icons/fa";
 import type { b_form } from "@/app/dashboard/users/types";
-import {urls} from "@/app/dashboard/services/crud"
+import { urls } from "@/app/dashboard/services/crud";
 
 export default function b_Form() {
   const router = useRouter();
-  const [b_form, setB_Form] = useState<b_form[]>([])
+  const [bForm, setBForm] = useState<b_form[]>([]); // array of BForm
+  const [selectedItem, setSelectedItem] = useState<b_form | null>(null);
+  const [b_form, setB_Form] = useState<b_form[]>([]);
   const [showForm, setShowForm] = useState(false);
   const { register, handleSubmit, control, reset } = useForm<b_form>({
     defaultValues: {
@@ -37,29 +39,25 @@ export default function b_Form() {
   };
 
   const fetchAllBform = async () => {
-        try {
-          const res = await getAll<b_form>(urls.b_form.getAll);
-          if (!res) return;
-    
-          setB_Form(res);
-        } catch (err) {
-          console.error("Failed to fetch  B-form:", err);
-          setB_Form([]);
-        }
-      };
+    try {
+      const res = await getAll<b_form>(urls.b_form.getAll);
+      if (!res) return;
+
+      setB_Form(res);
+    } catch (err) {
+      console.error("Failed to fetch  B-form:", err);
+      setB_Form([]);
+    }
+  };
 
   useEffect(() => {
     fetchAllBform();
   }, []);
 
-
   return (
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
       {!showForm && (
-
-
         <div className="flex items-end justify-between gap-4">
-
           <div className="flex flex-col">
             <h2 className="mb-6 text-2xl font-bold text-gray-700">
               B-Form Service
@@ -69,8 +67,7 @@ export default function b_Form() {
               type="text"
               placeholder="User"
               {...register("userName")}
-              className="w-64 rounded-md border border-gray-300 px-3 py-2
-                    focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -78,9 +75,7 @@ export default function b_Form() {
             <button
               type="button"
               onClick={() => setShowForm(true)}
-              className="flex items-center gap-1 rounded-md
-                      bg-blue-600 px-3 py-2 text-xs font-medium text-white
-                      hover:bg-blue-700 active:scale-95"
+              className="flex items-center gap-1 rounded-md bg-blue-600 px-3 py-2 text-xs font-medium text-white hover:bg-blue-700 active:scale-95"
             >
               <FaPlus size={12} />
               Create
@@ -98,8 +93,39 @@ export default function b_Form() {
           </div>
         </div>
       )}
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
+     {!showForm && (
+  <div className="mt-6 rounded-md bg-white shadow">
+    {bForm.length === 0 ? (
+      <p className="p-4 text-gray-500">No B-form found</p>
+    ) : (
+      bForm.map((bform, index) => (
+        <div
+          key={bform.parentCnic + "-" + index}  
+          className="flex justify-between border-b p-4 hover:bg-gray-50"
+        >
+          <div>
+            <p className="font-semibold">
+              {bform.userName} 
+            </p>
+            <p className="text-sm text-gray-600">
+              CNIC: {bform.parentCnic}
+            </p>
+          </div>
+
+          <button
+            onClick={() => setSelectedItem(bform)} 
+            className="text-sm text-blue-600"
+          >
+            View
+          </button>
+        </div>
+      ))
+    )}
+  </div>
+)}
+
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {showForm && (
           <>
             <h2 className="mb-6 text-2xl font-bold text-gray-700">

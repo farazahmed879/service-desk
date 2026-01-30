@@ -10,7 +10,6 @@ const Api =axios.create({
         "Content-Type":"application/json",
     },
 
-
 })
 
 

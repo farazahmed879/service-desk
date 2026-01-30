@@ -1,19 +1,19 @@
+//get used form getting the data
+// create /post
+//getByCnic: "POST" (agar body me CNIC bhej rahe ho)
+
+//update /put to update the data
+//delete
+
+/* getAll: "GET",          // every  records
+create: "POST",        // new  record
+update: "PUT",         // update record
+delete: "DELETE",      // delete record
+get: "GET",             // single record by id
+getByCnic: "GET / POST" //  depend on situation 
+*/
+
 export const urls = {
-  //get used form getting the data
-  // create /post
-  //getByCnic: "POST" (agar body me CNIC bhej rahe ho)
-
-  //update /put to update the data
-  //delete
-
-  /* getAll: "GET",          // every  records
-    create: "POST",        // new  record
-    update: "PUT",         // update record
-    delete: "DELETE",      // delete record
-    get: "GET",             // single record by id
-    getByCnic: "GET / POST" //  depend on situation 
-    */
-
   passport: {
     create :"passport/create",
     getAll: "/passport/get-all",

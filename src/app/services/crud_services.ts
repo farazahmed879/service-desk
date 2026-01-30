@@ -1,3 +1,4 @@
+
 export const getAll = async <T>(url: string): Promise<T[]> => {
   console.log("Fetching Url", url);
   try {
@@ -12,6 +13,7 @@ export const getAll = async <T>(url: string): Promise<T[]> => {
     throw err;
   }
 };
+
 /* export const getAll = async <T>(url: string): Promise<T[]> => {
   try {
     const res = await fetch(url);

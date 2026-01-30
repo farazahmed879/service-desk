@@ -8,8 +8,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { getAll } from "@/app/services/crud_services";
 import { FaPlus, FaUsers } from "react-icons/fa";
-
 import type { b_form } from "@/app/dashboard/users/types";
+import {urls} from "@/app/dashboard/services/crud"
 
 export default function b_Form() {
   const router = useRouter();
@@ -36,17 +36,20 @@ export default function b_Form() {
     reset();
   };
 
-  const fetchAllCnic = async () => {
-    try {
-      const data = await getAll<b_form>("http://localhost:5000/bform/get-all");
-      setB_Form(data);
-    } catch (error) {
-      console.error("Failed to fetch B-Form:", error);
-    }
-  };
+  const fetchAllBform = async () => {
+        try {
+          const res = await getAll<b_form>(urls.b_form.getAll);
+          if (!res) return;
+    
+          setB_Form(res);
+        } catch (err) {
+          console.error("Failed to fetch  B-form:", err);
+          setB_Form([]);
+        }
+      };
 
   useEffect(() => {
-    fetchAllCnic();
+    fetchAllBform();
   }, []);
 
   return (

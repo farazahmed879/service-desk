@@ -12,7 +12,7 @@ import { FaPlus, FaUsers } from "react-icons/fa";
 
 export default function PassportForm() {
   const router = useRouter();
-  const [passports, setPassports] = useState<Passport[]>([]); //here we call passporys
+  const [passports, setPassports] = useState<Passport[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [selectedPassport, setSelectedPassport] = useState<Passport | null>(
     null,
@@ -46,10 +46,7 @@ export default function PassportForm() {
     reset();
   };
 
-  /*   const BASE_URL = "http://localhost:8080";
-   */
-
-const fetchAllPassports = async () => {
+  const fetchAllPassports = async () => {
     try {
       const res = await getAll<Passport>(urls.passport.getAll);
       if (!res) return;
@@ -61,7 +58,7 @@ const fetchAllPassports = async () => {
     }
   };
 
-/*   const fetchAllPassports = async () => {
+  /*   const fetchAllPassports = async () => {
     try {
       const res = await fetch("http://localhost:5000/passport/get-all");
       if (!res.ok) throw new Error("Failed to fetch");
@@ -79,7 +76,7 @@ const fetchAllPassports = async () => {
     fetchAllPassports();
   }, []);
 
-/*   const createPassport = async (passportData: Partial<Passport>) => {
+  /*   const createPassport = async (passportData: Partial<Passport>) => {
     try {
       const newPassport = await create<Passport>(
         "http://localhost:8080/services/PassportByCnic",

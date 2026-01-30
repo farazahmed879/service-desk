@@ -8,6 +8,8 @@ import InputField from "@/components/InputFields/InputField";
 import type { CnicFormData } from "@/app/dashboard/users/types";
 import { getAll, create } from "@/app/services/crud_services";
 import { FaPlus, FaUsers } from "react-icons/fa";
+import { urls } from "@/app/dashboard/services/crud";
+
 
 export default function CnicForm() {
   const router = useRouter();
@@ -44,20 +46,22 @@ export default function CnicForm() {
   };
 
   const fetchAllCnic = async () => {
-    try {
-      const data = await getAll<CnicFormData>(
-        "http://localhost:5000/cnic/get-all",
-      );
-      setCnic(data);
-    } catch (error) {
-      console.error("Failed to fetch CNIC:", error);
-    }
-  };
+      try {
+        const res = await getAll<CnicFormData>(urls.cnic.getAll);
+        if (!res) return;
+  
+        setCnic(res);
+      } catch (err) {
+        console.error("Failed to fetch Cnic:", err);
+        setCnic([]);
+      }
+    };
 
   useEffect(() => {
     fetchAllCnic();
   }, []);
-  const createCnic = async (cnicData: Partial<CnicFormData>) => {
+
+/*   const createCnic = async (cnicData: Partial<CnicFormData>) => {
     try {
       const newCnic = await create<CnicFormData>(
         "http://localhost:8080/services/PassportByCnic",
@@ -70,7 +74,7 @@ export default function CnicForm() {
     } catch (error) {
       console.error("Failed to create passport:", error);
     }
-  };
+  }; */
 
   return (
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">

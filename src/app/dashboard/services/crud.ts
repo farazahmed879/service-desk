@@ -19,6 +19,7 @@ export const urls = {
     getAll: "/passport/get-all",
     getPassportByCnic: "/passport/get-by-cnic",
     update: "/passport//update/:id",
+
     delete: "",
   },
 
@@ -31,12 +32,13 @@ export const urls = {
   },
 
   b_form: {
-    getB_formByCnic:"/bform/get-by-cnic",
+
     getAll: "/bform/get-all",
     create: "/bform//create",
     update: "/bform/update/:id",
     delete: "/bform/deletebForm",
     get: "/bform/AllbForm",
+
   },
 
   bill_and_payments: {

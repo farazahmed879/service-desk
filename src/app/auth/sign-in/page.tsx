@@ -2,13 +2,12 @@
 
 import Signin from "@/components/Auth/Signin";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import type { Metadata } from "next";
+import { loginService } from "@/services/authServices";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
-
+import { json } from "stream/consumers";
 
 export default function SignIn() {
   const router = useRouter();
@@ -16,24 +15,30 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignIn = (e: React.FormEvent) => {
+  const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const stored = localStorage.getItem("users");
-    const users = stored ? JSON.parse(stored) : [];
+    try {
+      const payload = {
+        email,
+        password,
+      };
 
-    const foundUser = users.find(
-      (u: any) => u.email === email && u.password === password
-    );
+      const res = await loginService(payload);
 
-    if (!foundUser) {
-      alert("Incorrect Email or Password");
-      return;
+      alert(`login successFullyy `);
+      console.log("backend response", res.user);
+      sessionStorage.setItem("data",JSON.stringify(res.user._doc));
+      sessionStorage.setItem("token", res.user.token);
+      router.push("/auth/sign-in");
+
+      router.push("/");
+    } catch (error: any) {
+      console.log(error.message);
+      alert(error.message)
+
+      console.log(error?.response);
     }
-
-    localStorage.setItem("currentUser", JSON.stringify(foundUser));
-
-    router.push("/"); 
   };
 
   return (
@@ -46,7 +51,7 @@ export default function SignIn() {
             <div className="w-full p-4 sm:p-12.5 xl:p-15">
               {/* Your Signin component — injecting form fields inside */}
               <Signin>
-                <form onSubmit={handleSignIn} className="space-y-4 mt-4">
+                <form onSubmit={handleSignIn} className="mt-4 space-y-4">
                   <input
                     type="email"
                     placeholder="Email Address"
@@ -73,10 +78,30 @@ export default function SignIn() {
                   <div className="mt-4 text-center">
                     <p>
                       Don’t have any account?{" "}
-                      <Link href="/auth/sign-up" className="text-primary underline">
+                      <Link
+                        href="/auth/sign-up"
+                        className="text-primary underline"
+                      >
                         Sign Up
                       </Link>
+                      
+                    
                     </p>
+                    
+                  </div>
+                  <div className="mt-4 text-center">
+                    <p>
+                        Can’t remember password? 
+                      <Link
+                        href="/auth/forget-password"
+                        className="text-primary underline"
+                      >
+                        Reset
+                      </Link>
+                      
+                    
+                    </p>
+                    
                   </div>
                 </form>
               </Signin>
@@ -111,7 +136,8 @@ export default function SignIn() {
               </h1>
 
               <p className="max-w-[375px] font-medium text-dark-4 dark:text-dark-6">
-                Please sign in to your account by completing the necessary fields below
+                Please sign in to your account by completing the necessary
+                fields below
               </p>
 
               <div className="mt-31">
@@ -130,8 +156,6 @@ export default function SignIn() {
     </>
   );
 }
-
-
 
 /* import Signin from "@/components/Auth/Signin";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";

@@ -4,6 +4,10 @@ import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { urls } from "@/app/dashboard/services/crud";
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 import InputField from "@/components/InputFields/InputField";
 import type { PassportFormData, Passport } from "@/app/dashboard/users/types";
 import { getAll, create } from "@/app/services/crud_services";
@@ -49,7 +53,7 @@ export default function PassportForm() {
 
   /* const fetchAllPassports = async () => {
     try {
-      const res = await getAll(urls.passport.getAll);
+      const res = await getAll<Passport>(urls.passport.getAll);
       if (!res) return;
 
       setPassports(res);

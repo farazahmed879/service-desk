@@ -46,18 +46,18 @@ export interface PassportFormData {
 export interface Passport {
   id: string;
   userName: string;
-  FirstName: string;
-  MiddleName: string;
-  LastName: string;
-  FatherName: string;
-  DOB: string;
-  PlaceOfBirth: string;
-  CNIC: string;
-  Gender: string;
-  ContactNumber: string;
-  Email: string;
-  CurrentAddress: string;
-  PermanentAddress: string;
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  fatherName: string;
+  dob: string;
+  placeOfBirth: string;
+  cnic: string;
+  gender: string;
+  contactNumber: string;
+  email: string;
+  currentAddress: string;
+  permanentAddress: string;
   fatherCnicFrontUrl?: string;
   fatherCnicBackUrl?: string;
   motherCnicFrontUrl?: string;
@@ -249,14 +249,14 @@ export interface FormValues {
   Age: string;
   Gender: string;
   contact: string;
-  emergencyContactNumber:string;
-  permenentAddress:string;
-  city:string;
-  country:string;
-  postalCode:string;
-  birthDate:string;
-  role:string;
-  religion:string;
+  emergencyContactNumber: string;
+  permenentAddress: string;
+  city: string;
+  country: string;
+  postalCode: string;
+  birthDate: string;
+  role: string;
+  religion: string;
   facePicture: File | null;
 }
 

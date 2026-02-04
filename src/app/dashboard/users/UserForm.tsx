@@ -15,7 +15,7 @@ export default function UserForm({
     register,
     control,
     handleSubmit,
-    reset,
+    // reset,
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
@@ -38,19 +38,20 @@ export default function UserForm({
     },
   });
 
-  useEffect(() => {
-    if (existingUser) {
-      reset(existingUser);
-    }
-  }, [existingUser, reset]);
+  // useEffect(() => {
+  //   if (existingUser) {
+  //     reset(existingUser);
+  //   }
+  // }, [existingUser, reset]);
 
-  const onSubmit = (data: FormValues) => {
-    onSave({
-      ...data,
-    });
+  const onSubmit  async= (data: FormValues) => {
+   
+      const res= await 
     console.log("User Form Submitted:", data);
-    alert("User Form submitted successfully!");
-    reset();
+    setTimeout(() => {
+      alert("User Form submitted successfully!");
+    }, 2000);
+    // reset();
   };
 
   return (
@@ -148,29 +149,63 @@ export default function UserForm({
           error={errors.contact}
         />
         <InputField
-          label="permenentAddress"
-          name="permenentAddress"
-          placeholder="Enter permenent Address"
+          label="city"
+          name="city"
+          placeholder="Enter city Address"
           register={register}
-          registerOptions={{ required: "permenent Address is required" }}
-          error={errors.permenentAddress}
+          registerOptions={{ required: "city  is required" }}
+          error={errors.city}
         />
         <InputField
-          label="permenentAddress"
-          name="permenentAddress"
-          placeholder="Enter permenent Address"
+          label="country"
+          name="country"
+          placeholder="Enter country name"
           register={register}
-          registerOptions={{ required: "permenent Address is required" }}
-          error={errors.permenentAddress}
+          registerOptions={{ required: "country name is required" }}
+          error={errors.country}
         />
         <InputField
-          label="permenentAddress"
-          name="permenentAddress"
-          placeholder="Enter permenent Address"
+          label="postalCode"
+          name="postalCode"
+          placeholder="Enter postal code"
           register={register}
-          registerOptions={{ required: "permenent Address is required" }}
-          error={errors.permenentAddress}
+          registerOptions={{ required: "postal code  is required" }}
+          error={errors.postalCode}
         />
+        <InputField
+          label="emergency Contact Number"
+          name="emergencyContactNumber"
+          placeholder="Enter    emergency Contact Number"
+          register={register}
+          registerOptions={{ required: "emergency Contact Number is required" }}
+          error={errors.emergencyContactNumber}
+        />
+        <InputField
+          label="face picture"
+          name="facePicture"
+          type="file"
+          register={register}
+          registerOptions={{ required: "face picture is required" }}
+          error={errors.facePicture}
+        />
+
+        <div className="mt-6 flex w-full justify-end gap-4">
+          <button
+            type="button"
+            onClick={onCancel}
+            className="w-40 rounded-lg bg-gray-200 py-2.5 font-semibold text-gray-800 shadow transition-all hover:bg-gray-300"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            className="w-40 rounded-lg bg-blue-600 py-2.5 font-semibold text-white shadow transition-all hover:bg-blue-700"
+          >
+            {/* {existingUser ? "Save Changes" : "Register User"} */}
+            submit
+          </button>
+        </div>
       </form>
     </div>
   );
@@ -428,8 +463,8 @@ export default function UserForm({
   existingUser,
   onSave,
   onCancel,
-}: UserFormProps) {
-  const [form, setForm] = useState({
+  }: UserFormProps) {
+    const [form, setForm] = useState({
     firstName: "",
     MiddleName: "",
     lastName: "",

@@ -16,3 +16,19 @@ export const getAllUser  = async () =>{
     }
 
 }
+
+
+
+export const rigisterUser= async (data)=>{
+    try{
+       const res= await Api.post("/client/create" , data)
+     
+        return res.data
+     
+    }catch(error){
+
+    console.log(error.message)
+      
+
+    }
+}

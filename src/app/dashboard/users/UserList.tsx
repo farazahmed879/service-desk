@@ -19,12 +19,12 @@ export default function UserList() {
     const getclient = async () => {
       try {
         const data = await getAllUser();
-        setClient(data.dat);
+        setClient(data.data);
         console.log(clients);
         console.log(data);
       } catch (error: any) {
         console.log(error.message || error);
-      } finally {
+      } finally { 
         setLoading(false);
       }
     };
@@ -52,12 +52,12 @@ export default function UserList() {
           </tr>
         </thead>
         <tbody>
-          {clients.length === 0 ? (
+          {clients?.length === 0 ? (
             <tr>
               <td style={{ textAlign: "center" }}>No clients found</td>
             </tr>
           ) : (
-               clients.map((client: any) => (
+               clients?.map((client: any) => (
               <tr
                 key={client.id}
                 className="border-b border-gray-200 text-center text-base font-medium text-dark hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800"

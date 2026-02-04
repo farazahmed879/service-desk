@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 import InputField from "@/components/InputFields/InputField";
 import type { PassportFormData, Passport } from "@/app/dashboard/users/types";
-import { getAll, create } from "@/app/services/crud_services";
+import { getAll, create } from "@/services/crud_services";
 
 export default function PassportForm() {
   const router = useRouter();

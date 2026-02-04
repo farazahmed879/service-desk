@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import InputField from "@/components/InputFields/InputField";
 import type { number_Plate } from "@/app/dashboard/users/types";
 import { useState } from "react";
-import { getAll } from "@/app/services/crud_services";
+import { getAll } from "@/services/crud_services";
 import { useEffect } from "react";
 export default function NumberPlateServicePage() {
   const router = useRouter();

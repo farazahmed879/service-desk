@@ -241,15 +241,23 @@ export interface domicile_prc {
 }
 
 export interface FormValues {
-  firstName: string;
-  MiddleName: string;
-  lastName: string;
+  name: string;
+  fatherName: string;
+  motherName: string;
   email: string;
   cnic: string;
-  age: string;
-  gender: string;
-  passportIssue: string;
-  image: File | null;
+  Age: string;
+  Gender: string;
+  contact: string;
+  emergencyContactNumber:string;
+  permenentAddress:string;
+  city:string;
+  country:string;
+  postalCode:string;
+  birthDate:string;
+  role:string;
+  religion:string;
+  facePicture: File | null;
 }
 
 export interface UserList {

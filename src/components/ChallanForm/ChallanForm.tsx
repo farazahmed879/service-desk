@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import InputField from "@/components/InputFields/InputField";
 import type { bill_and_payment } from "@/app/dashboard/users/types";
 import { useState } from "react";
-import { getAll } from "@/app/services/crud_services";
+import { getAll } from "@/services/crud_services";
 
 export default function PassportForm() {
   const router = useRouter();

@@ -5,7 +5,7 @@ import InputField from "@/components/InputFields/InputField";
 import type { driving_License } from "@/app/dashboard/users/types";
 import { useEffect } from "react";
 import { useState } from "react";
-import { getAll } from "@/app/services/crud_services";
+import { getAll } from "@/services/crud_services";
 export default function DrivingLicenseService() {
   const router = useRouter();
   const [DrivingLicense, setDrivingLicense] = useState<driving_License[]>([]);

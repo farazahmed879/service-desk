@@ -4,6 +4,7 @@ import Image from "next/image";
 
 export function Logo() {
   return (
+    
     <div className="relative flex h-8 w-[240px] items-center overflow-visible">
       <Image
         src={logo}

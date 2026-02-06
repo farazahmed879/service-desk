@@ -1,11 +1,13 @@
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import InputField from "@/components/InputFields/InputField";
 import type { vehicle_form } from "@/app/dashboard/users/types";
-
+import { getAll } from "@/app/services/crud_services";
+import { useEffect } from "react";
 export default function VehicleRegistrationService() {
   const router = useRouter();
-
+  const [Vehicle, setVehicle] = useState<vehicle_form[]>([]);
   const { register, handleSubmit, control, reset } = useForm<vehicle_form>({
     defaultValues: {
       userName: "",
@@ -25,6 +27,18 @@ export default function VehicleRegistrationService() {
     alert(" Vehicle Form submitted successfully!");
     reset();
   };
+
+  const fetchAllvehicles = async () => {
+    try {
+      const data = await getAll<vehicle_form>("https://dog.ceo/dog-api");
+      setVehicle(data);
+    } catch (error) {
+      console.error("failed to fetch the Vehicle");
+    }
+  };
+  useEffect(() => {
+    fetchAllvehicles();
+  }, []);
 
   return (
     <form

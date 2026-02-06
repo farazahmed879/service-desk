@@ -37,8 +37,32 @@ export interface PassportFormData {
   fatherCnicBack: File | null;
   motherCnicFront: File | null;
   motherCnicBack: File | null;
+  clientID: string; // <-- add this
+  cnicFrontPic: FileList; // input type="file"
+  cnicBackPic: FileList;
+  degreePicture: FileList;
 }
 
+export interface Passport {
+  id: string;
+  userName: string;
+  FirstName: string;
+  MiddleName: string;
+  LastName: string;
+  FatherName: string;
+  DOB: string;
+  PlaceOfBirth: string;
+  CNIC: string;
+  Gender: string;
+  ContactNumber: string;
+  Email: string;
+  CurrentAddress: string;
+  PermanentAddress: string;
+  fatherCnicFrontUrl?: string;
+  fatherCnicBackUrl?: string;
+  motherCnicFrontUrl?: string;
+  motherCnicBackUrl?: string;
+}
 export interface UserFormState {
   id: number;
   firstName: string;
@@ -109,6 +133,7 @@ export interface CnicFormData {
   livePhoto: File | null;
   signatureImage: File | null;
 }
+
 export interface b_form {
   childName: string;
   userName: string;
@@ -247,17 +272,16 @@ export interface UserListProps {
   onEdit: (user: UserList) => void;
   onDelete: (id: number) => void;
 }
-/* export interface InputFieldProps {
-  label: string;
-  name: string;
-  type?: string;
-  placeholder?: string;
-  register: UseFormRegister<any>;
-  error?: FieldError;
-  options?: string[];
-  textarea?: boolean;
-  rows?: number;
-  registerOptions?: any;
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
-  
-} */
+
+export interface Service {
+  id: string;
+  title: string;
+  description?: string;
+  price?: number;
+  image?: string;
+  slug?: string;
+}
+export interface DogImage {
+  message: string;
+  status: string;
+}

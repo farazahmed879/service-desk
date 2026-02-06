@@ -5,8 +5,14 @@ import { useRouter } from "next/navigation";
 import InputField from "@/components/InputFields/InputField";
 import type { vehicle_Transfer } from "@/app/dashboard/users/types";
 
+import { useState } from "react";
+import { getAll } from "@/app/services/crud_services";
+import { useEffect } from "react";
 export default function VehicleTransfer() {
   const router = useRouter();
+  const [Vehicle_Transfer, setVehicle_Transfer] = useState<vehicle_Transfer[]>(
+    [],
+  );
 
   const { register, handleSubmit, control, reset } = useForm<vehicle_Transfer>({
     defaultValues: {
@@ -33,6 +39,18 @@ export default function VehicleTransfer() {
     alert("Vehicle Transfer Form submitted successfully!");
     reset();
   };
+  const fetchAllVehicles = async () => {
+    try {
+      const data = await getAll<vehicle_Transfer>("https://dog.ceo/dog-api");
+      setVehicle_Transfer(data);
+    } catch (error) {
+      console.error("Failed to fetch Transfers:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllVehicles();
+  }, []);
 
   return (
     <form

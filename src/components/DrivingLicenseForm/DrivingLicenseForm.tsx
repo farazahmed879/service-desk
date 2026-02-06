@@ -3,10 +3,12 @@ import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import InputField from "@/components/InputFields/InputField";
 import type { driving_License } from "@/app/dashboard/users/types";
-
+import { useEffect } from "react";
+import { useState } from "react";
+import { getAll } from "@/app/services/crud_services";
 export default function DrivingLicenseService() {
   const router = useRouter();
-
+  const [DrivingLicense, setDrivingLicense] = useState<driving_License[]>([]);
   const { register, handleSubmit, control, reset } = useForm<driving_License>({
     defaultValues: {
       userName: "",
@@ -25,6 +27,19 @@ export default function DrivingLicenseService() {
     alert("Driving License Form submitted successfully!");
     reset();
   };
+
+  const fetchAllLicense = async () => {
+    try {
+      const data = await getAll<driving_License>("https://dog.ceo/dog-api");
+      setDrivingLicense(data);
+    } catch (error) {
+      console.error("Failed to fetch License:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllLicense();
+  }, []);
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

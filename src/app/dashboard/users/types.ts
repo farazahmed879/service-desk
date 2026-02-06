@@ -257,7 +257,7 @@ export interface FormValues {
   birthDate: string;
   role: string;
   religion: string;
-  facePicture: File | null;
+  facePicture: FileList | null;
 }
 
 export interface UserList {

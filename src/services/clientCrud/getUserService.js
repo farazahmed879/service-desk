@@ -21,14 +21,19 @@ export const getAllUser  = async () =>{
 
 export const rigisterUser= async (data)=>{
     try{
-       const res= await Api.post("/client/create" , data)
+
+           const res= await Api.post("/client/create" , data  ,{
+            headers:{
+                
+            }
+        } )
      
         return res.data
      
     }catch(error){
 
     console.log(error.message)
-      
+     throw error.response?.data || {message:"request failed"}    
 
     }
 }

@@ -5,6 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 import type { UserFormProps } from "./types";
 import type { FormValues } from "@/app/dashboard/users/types";
 import InputField from "@/components/InputFields/InputField";
+import { rigisterUser } from "@/services/clientCrud/getUserService";
 
 export default function UserForm({
   existingUser,
@@ -35,6 +36,7 @@ export default function UserForm({
       postalCode: "",
       birthDate: "",
       emergencyContactNumber: "",
+      facePicture: null,
     },
   });
 
@@ -44,10 +46,37 @@ export default function UserForm({
   //   }
   // }, [existingUser, reset]);
 
-  const onSubmit  async= (data: FormValues) => {
-   
-      const res= await 
-    console.log("User Form Submitted:", data);
+  const onSubmit = async (data: FormValues) => {
+    console.log( data);
+     const formData = new FormData()
+     
+     formData.append("role" , data.role)
+     formData.append("name" , data.name)
+     formData.append("fatherName" , data.fatherName)
+     formData.append("motherName" , data.motherName)
+     formData.append("religion" , data.religion)
+     formData.append("email" , data.email)
+     formData.append("cnic" , data.cnic)
+     formData.append("Age" , data.Age)
+     formData.append("Gender" , data.Gender)
+     formData.append("contact" , data.contact)
+     formData.append("permenentAddress" , data.permenentAddress)
+     formData.append("city" , data.city)
+     formData.append("country" , data.country)
+     formData.append("postalCode" , data.postalCode)
+     formData.append("birthDate" , data.birthDate)
+     formData.append("emergencyContactNumber" , data.emergencyContactNumber)
+if(data?.facePicture && data.facePicture.length > 0){
+  const file = data.facePicture[0]
+  formData.append("facePicture" , file)
+}
+
+    const res = await rigisterUser(formData);
+    if (res) {
+      console.log("hit ");
+
+      console.log(res.data);
+    }
     setTimeout(() => {
       alert("User Form submitted successfully!");
     }, 2000);
@@ -149,6 +178,14 @@ export default function UserForm({
           error={errors.contact}
         />
         <InputField
+          label="permenent Address"
+          name="permenentAddress"
+          placeholder="Enter permenent Address"
+          register={register}
+          registerOptions={{ required: "permenent Address is required" }}
+          error={errors.permenentAddress}
+        />
+        <InputField
           label="city"
           name="city"
           placeholder="Enter city Address"
@@ -179,6 +216,15 @@ export default function UserForm({
           register={register}
           registerOptions={{ required: "emergency Contact Number is required" }}
           error={errors.emergencyContactNumber}
+        />
+        <InputField
+          label="birth date"
+          type="date"
+          name="birthDate"
+          placeholder="Enter  birthDate"
+          register={register}
+          registerOptions={{ required: "emergency Contact Number is required" }}
+          error={errors.birthDate}
         />
         <InputField
           label="face picture"

@@ -23,14 +23,14 @@ export const rigisterUser= async (data)=>{
     try{
 
            const res= await Api.post("/client/create" , data  ,{
-            headers:{
+  headers:{
                 
             }
         } )
      
         return res.data
      
-    }catch(error){
+    }catch(error ){
 
     console.log(error.message)
      throw error.response?.data || {message:"request failed"}    

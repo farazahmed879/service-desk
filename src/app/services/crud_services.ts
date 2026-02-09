@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 // export const getAll = async <T>(url: string): Promise<T[]> => {
 //   console.log("Fetching Url", url);
 //   try {
@@ -40,7 +39,6 @@
 
 
 
-=======
 export const getAll = async <T>(url: string): Promise<T[]> => {
   console.log("Fetching Url", url);
   try {
@@ -84,7 +82,7 @@ export const getAll = async <T>(url: string): Promise<T[]> => {
 }; */
 
 // Generic POST/create function
-export const create = async <T>(url: string, body: Partial<T>): Promise<T> => {
+export const create = async <T>(url: string, body: Partial<T>) => {
   console.log("Posting to URL:", url, "with body:", body);
   try {
     const res = await fetch(url, {
@@ -94,9 +92,13 @@ export const create = async <T>(url: string, body: Partial<T>): Promise<T> => {
       },
       body: JSON.stringify(body),
     });
->>>>>>> Stashed changes
+  }
 
+catch(error){
 
+}
+}
+  
 /* 
 export const getAll = async <T>(url: string): Promise<T[]> => {
   console.log("Fetching Url", url);

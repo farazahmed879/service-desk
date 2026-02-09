@@ -10,7 +10,7 @@ import { FaPlus, FaUsers } from "react-icons/fa";
 import { getAll } from "@/services/crud_services";
 import { urls } from "../api-urls";
 
-export default function PassportForm() {
+export default function Passportform() {
   const router = useRouter();
   const [passports, setPassports] = useState<Passport[]>([]);
   const [showForm, setShowForm] = useState(false);
@@ -58,17 +58,17 @@ export default function PassportForm() {
     }
   }; */
 
-  const fetchAllPassports = async () => {
-    try {
-      const res = await getAll<Passport>(urls.passport.getAll);
-      if (!res) return;
+  // const fetchAllPassports = async () => {
+  //   try {
+  //     const res = await getAll<Passport>(urls.passport.getAll);
+  //     if (!res) return;
 
-      setPassports(res);
-    } catch (err) {
-      console.error("Failed to fetch passports:", err);
-      setPassports([]);
-    }
-  };
+  //     setPassports(res);
+  //   } catch (err) {
+  //     console.error("Failed to fetch passports:", err);
+  //     setPassports([]);
+  //   }
+  // };
 
   /*   const fetchAllPassports = async () => {
     try {
@@ -84,9 +84,9 @@ export default function PassportForm() {
     }
   }; */
 
-  useEffect(() => {
-    fetchAllPassports();
-  }, []);
+  // useEffect(() => {
+  //   fetchAllPassports();
+  // }, []);
 
   /*   const createPassport = async (passportData: Partial<Passport>) => {
     try {

@@ -2,14 +2,14 @@
 
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import InputField from "@/components/InputFields/InputField";
+import InputField from "@/components/InputField/InputField";
 import type { number_Plate } from "@/app/dashboard/users/types";
 import { useState } from "react";
 import { getAll } from "@/services/crud_services";
 import { useEffect } from "react";
 export default function NumberPlateServicePage() {
   const router = useRouter();
-const [number_plate ,setNumber_plate ] = useState<number_Plate[]>([]);
+  const [number_plate, setNumber_plate] = useState<number_Plate[]>([]);
   const { register, handleSubmit, control, reset } = useForm<number_Plate>({
     defaultValues: {
       userName: "",
@@ -27,7 +27,7 @@ const [number_plate ,setNumber_plate ] = useState<number_Plate[]>([]);
       PreviousPlate: "",
     },
   });
-  
+
   const onSubmit = (data: number_Plate) => {
     console.log(" Form Submitted:", data);
     alert("Number Plate Form submitted successfully!");

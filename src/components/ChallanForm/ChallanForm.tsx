@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import InputField from "@/components/InputFields/InputField";
+import InputField from "@/components/InputField/InputField";
 import type { bill_and_payment } from "@/app/dashboard/users/types";
 import { useState } from "react";
 import { getAll } from "@/services/crud_services";

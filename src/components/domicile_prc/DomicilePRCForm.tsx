@@ -2,7 +2,7 @@
 
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import InputField from "@/components/InputFields/InputField";
+import InputField from "@/components/InputField/InputField";
 import type { domicile_prc } from "@/app/dashboard/users/types";
 import { useState } from "react";
 import { useEffect } from "react";

@@ -3,7 +3,7 @@
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import InputField from "@/components/InputFields/InputField";
+import InputField from "@/components/InputField/InputField";
 import type { PassportFormData, Passport } from "@/app/dashboard/users/types";
 
 import { FaPlus, FaUsers } from "react-icons/fa";

@@ -3,7 +3,7 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import InputField from "@/components/InputFields/InputField";
+import InputField from "@/components/InputField/InputField";
 import { useState } from "react";
 import { useEffect } from "react";
 // import { getAll } from "@/app/services/crud_services";
@@ -12,7 +12,7 @@ import type { b_form } from "@/app/dashboard/users/types";
 
 export default function b_Form() {
   const router = useRouter();
-const [b_form ,setB_Form] = useState<b_form[]>([])
+  const [b_form, setB_Form] = useState<b_form[]>([])
   const { register, handleSubmit, control, reset } = useForm<b_form>({
     defaultValues: {
       userName: "",
@@ -34,17 +34,17 @@ const [b_form ,setB_Form] = useState<b_form[]>([])
     reset();
   };
   const fetchAllCnic = async () => {
-      try {
-        // const data = await getAll<b_form>("https://dog.ceo/dog-api");
-        // setB_Form(data);
-      } catch (error) {
-        console.error("Failed to fetch B-Form:", error);
-      }
-    };
-  
-    useEffect(() => {
-      fetchAllCnic();
-    }, []);
+    try {
+      // const data = await getAll<b_form>("https://dog.ceo/dog-api");
+      // setB_Form(data);
+    } catch (error) {
+      console.error("Failed to fetch B-Form:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllCnic();
+  }, []);
 
   return (
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">

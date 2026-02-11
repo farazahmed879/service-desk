@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
-import InputField from "@/components/InputFields/InputField";
+import InputField from "@/components/InputField/InputField";
 
 export default function TrackPassportForm() {
   const {

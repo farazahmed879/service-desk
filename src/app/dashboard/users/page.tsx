@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import UserForm from "./UserForm";
+import UserForm from "../../../components/User/page";
 import UserList from "./UserList";
 import { FaPlus } from "react-icons/fa";
 import type { User } from "./types";

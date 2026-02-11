@@ -28,7 +28,7 @@ export function Sidebar() {
     // Keep collapsible open, when it's subpage is active
     NAV_DATA.some((section) => {
       return section.items.some((item) => {
-        return item.items.some((subItem) => {
+        return item.items.some((subItem: any) => {
           if (subItem?.url === pathname) {
             if (!expandedItems.includes(item.title)) {
               toggleExpanded(item.title);
@@ -55,20 +55,34 @@ export function Sidebar() {
 
       <aside
         className={cn(
-          "max-w-[290px] overflow-hidden border-r border-gray-200 bg-white transition-[width] duration-200 ease-linear dark:border-gray-800 dark:bg-gray-dark",
-          isMobile ? "fixed bottom-0 top-0 z-50" : "sticky top-0 h-screen",
-          isOpen ? "w-full" : "w-0",
+          "max-w-[290px] overflow-hidden rounded-r-3xl border-r border-gray-200 bg-gray-200 transition-[width] duration-300 ease-in-out dark:border-gray-800 dark:bg-gray-dark",
+          isMobile ? "fixed bottom-0 top-0 z-50 w-[290px]" : "sticky top-0 h-screen",
+          isMobile
+            ? isOpen
+              ? "translate-x-0"
+              : "-translate-x-full"
+            : isOpen
+              ? "w-[290px]"
+              : "w-[90px]",
         )}
         aria-label="Main navigation"
-        aria-hidden={!isOpen}
-        inert={!isOpen}
+        aria-hidden={isMobile && !isOpen}
+        inert={isMobile && !isOpen ? true : undefined}
       >
-        <div className="flex h-full flex-col py-10 pl-[25px] pr-[7px]">
-          <div className="relative pr-4.5">
+        <div
+          className={cn(
+            "flex h-full flex-col py-10 transition-all duration-300 ease-in-out",
+            isOpen ? "pl-[25px] pr-[7px]" : "items-center px-4",
+          )}
+        >
+          <div className={cn("relative", isOpen ? "pr-4.5" : "")}>
             <Link
               href={"/"}
               onClick={() => isMobile && toggleSidebar()}
-              className="px-0 py-2.5 min-[850px]:py-0"
+              className={cn(
+                "block px-0 py-2.5 min-[850px]:py-0",
+                !isOpen && "flex justify-center",
+              )}
             >
               <Logo />
             </Link>
@@ -89,45 +103,56 @@ export function Sidebar() {
           <div className="custom-scrollbar mt-6 flex-1 overflow-y-auto pr-3 min-[850px]:mt-10">
             {NAV_DATA.map((section) => (
               <div key={section.label} className="mb-6">
-                <h2 className="mb-5 text-sm font-medium text-dark-4 dark:text-dark-6">
-                  {section.label}
+                <h2
+                  className={cn(
+                    "mb-5 text-sm font-medium text-dark-4 dark:text-dark-6",
+                    !isOpen && "text-center text-xs",
+                  )}
+                >
+                  {isOpen ? section.label : "..."}
                 </h2>
 
                 <nav role="navigation" aria-label={section.label}>
                   <ul className="space-y-2">
-                    {section.items.map((item) => (
+                    {section.items.map((item: any) => (
                       <li key={item.title}>
                         {item.items.length ? (
                           <div>
                             <MenuItem
                               isActive={item.items.some(
-                                ({ url }) => url === pathname,
+                                ({ url }: any) => url === pathname,
                               )}
-                              onClick={() => toggleExpanded(item.title)}
+                              onClick={() =>
+                                isOpen
+                                  ? toggleExpanded(item.title)
+                                  : setIsOpen(true)
+                              }
                             >
                               <item.icon
                                 className="size-6 shrink-0"
                                 aria-hidden="true"
                               />
 
-                              <span>{item.title}</span>
+                              {isOpen && <span>{item.title}</span>}
 
-                              <ChevronUp
-                                className={cn(
-                                  "ml-auto rotate-180 transition-transform duration-200",
-                                  expandedItems.includes(item.title) &&
-                                  "rotate-0",
-                                )}
-                                aria-hidden="true"
-                              />
+                              {isOpen && (
+                                <ChevronUp
+                                  className={cn(
+                                    "ml-auto rotate-180 transition-transform duration-200",
+                                    expandedItems.includes(item.title) &&
+                                    "rotate-0",
+                                  )}
+                                  aria-hidden="true"
+                                />
+                              )}
                             </MenuItem>
 
-                            {expandedItems.includes(item.title) && (
+                            {isOpen && expandedItems.includes(item.title) && (
                               <ul
                                 className="ml-9 mr-0 space-y-1.5 pb-[15px] pr-0 pt-2"
                                 role="menu"
                               >
-                                {item.items.map((subItem) => (
+                                {item.items.map((subItem: any) => (
                                   <li key={subItem.title} role="none">
                                     <MenuItem
                                       as="link"
@@ -147,11 +172,17 @@ export function Sidebar() {
                               "url" in item
                                 ? item.url + ""
                                 : "/" +
-                                item?.title.toLowerCase().split(" ").join("-");
+                                item?.title
+                                  .toLowerCase()
+                                  .split(" ")
+                                  .join("-");
 
                             return (
                               <MenuItem
-                                className="flex items-center gap-3 py-3"
+                                className={cn(
+                                  "flex items-center gap-3 py-3",
+                                  !isOpen && "justify-center px-2",
+                                )}
                                 as="link"
                                 href={href}
                                 isActive={pathname === href}
@@ -161,7 +192,7 @@ export function Sidebar() {
                                   aria-hidden="true"
                                 />
 
-                                <span>{item.title}</span>
+                                {isOpen && <span>{item.title}</span>}
                               </MenuItem>
                             );
                           })()

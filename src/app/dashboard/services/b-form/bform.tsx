@@ -5,7 +5,7 @@ import BForm from "@/components/BForm/b-form";
 
 export default function BFormServicePage() {
   return (
-    <div className="p-4">
+    <div >
       <BForm />
     </div>
   );

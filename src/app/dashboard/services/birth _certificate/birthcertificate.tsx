@@ -5,7 +5,7 @@ import BirthCertificateForm from "@/components/birthCertificate/BirthCertificate
 
 export default function BirthCertificateServicePage() {
   return (
-    <div className="p-4">
+    <div >
       <BirthCertificateForm />
     </div>
   );

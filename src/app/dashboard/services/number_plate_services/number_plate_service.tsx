@@ -6,7 +6,7 @@ import NumberPlateForm from "@/components/NumberPlateForm/NumberPlateForm";
 
 export default function NumberPlateServicePage() {
   return (
-    <div className="p-4">
+    <div >
       <NumberPlateForm />
     </div>
   );

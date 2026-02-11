@@ -13,7 +13,7 @@ export default function ServiceFormPage() {
   const DynamicForm = dynamic(() => import(`./${service}`), { ssr: false });
 
   return (
-    <div className="p-4">
+    <div >
       <h1 className="text-2xl font-bold mb-4">
         {service.replace(/-/g, " ")} Form
       </h1>

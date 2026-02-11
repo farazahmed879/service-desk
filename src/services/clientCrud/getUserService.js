@@ -1,18 +1,13 @@
 import Api from "@/utils/api"
 
 
-export const getAllUser  = async () =>{
-  
+export const getAllUser = async () => {
     try {
-      
-        const res  = await Api.get("/client/get-all")
-       return res.data
- 
+        const res = await Api.get("/client/get-all")
+        return res.data
+
     } catch (error) {
-        
-    console.log(error.message);
-    throw error.response?.data || { message: "data not found" };
-
+        console.log(error.message);
+        throw error.response?.data || { message: "data not found" };
     }
-
 }

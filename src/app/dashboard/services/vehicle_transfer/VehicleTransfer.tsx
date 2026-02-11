@@ -6,7 +6,7 @@ import VehicleTransferForm from "@/components/VehicleTransfer/VehicleTransferFor
 
 export default function VehicleTransfer() {
   return (
-    <div className="p-4">
+    <div >
       <VehicleTransferForm />
     </div>
   );

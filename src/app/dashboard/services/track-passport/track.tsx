@@ -10,7 +10,7 @@ export default function TrackPassportService() {
   );
 
   return (
-    <div className="p-4">
+    <div >
       <TrackForm />
     </div>
   );

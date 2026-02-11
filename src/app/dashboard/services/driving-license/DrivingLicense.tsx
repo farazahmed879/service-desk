@@ -13,7 +13,7 @@ export default function DrivingLicenseService() {
   );
 
   return (
-    <div className="p-4">
+    <div >
       <DrivingLicenseForm />
     </div>
   );

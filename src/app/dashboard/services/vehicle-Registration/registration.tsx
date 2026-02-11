@@ -12,7 +12,7 @@ export default function VehicleRegistrationService() {
   );
 
   return (
-    <div className="p-4">
+    <div >
       <VehicleForm />
     </div>
   );

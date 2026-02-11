@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import UserForm from "./UserForm";
 import UserList from "./UserList";
 import { FaPlus } from "react-icons/fa";
-import type { User } from "./types"; 
-
+import type { User } from "./types";
+import { getAllUser } from "@/services/clientCrud/getUserService";
 
 export default function UserPage() {
   const [users, setUsers] = useState<User[]>([]);
@@ -16,7 +16,28 @@ export default function UserPage() {
   useEffect(() => {
     const storedUsers = JSON.parse(localStorage.getItem("users") || "[]");
     setUsers(storedUsers);
-  },[]);
+  }, []);
+
+  const [clients, setClient] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getclient = async () => {
+      try {
+        //todo: wrong you need to call getAllUser from the UserList component and generic get all service
+        const data = await getAllUser();
+        setClient(data.data);
+        console.log(clients);
+        console.log(data);
+      } catch (error: any) {
+        console.log(error.message || error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getclient();
+  }, []);
 
   const handleSave = (user: User) => {
     let updatedUsers;
@@ -48,7 +69,7 @@ export default function UserPage() {
   };
 
   return (
-    <div className="space-y-6 p-6">
+    <div >
       <div className="mb-6 flex items-center justify-between rounded-xl bg-white p-5 shadow-md transition hover:shadow-lg">
         <div className="flex flex-col">
           <h1 className="font- text-2xl font-semibold tracking-tight text-gray-900 sm:text-2xl">
@@ -77,7 +98,7 @@ export default function UserPage() {
           existingUser={editingUser}
         />
       ) : (
-        <UserList users={users} onEdit={handleEdit} onDelete={handleDelete} />
+        <UserList clients={clients} onEdit={handleEdit} onDelete={(id: number) => handleDelete(id)} />
       )}
     </div>
   );

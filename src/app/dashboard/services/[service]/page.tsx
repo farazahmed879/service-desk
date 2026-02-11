@@ -12,14 +12,14 @@ export default function ServicePage() {
   if (!service) return <p className="text-red-500">Service not specified</p>;
 
   const serviceComponents: Record<string, string> = {
-    "new-passport-application": "../passport/passportform",
-    "cnic-application": "../cnic/cnicform",
+    "passport": "../passport/passportform",
+    "cnic": "../cnic/cnicform",
     "b-form": "../b-form/bform",
     "challan-and-payments": "../challan_and_payments/challans",
     "vehicle-registration": "../vehicle-Registration/registration",
     "driving-license": "../driving-license/DrivingLicense",
     "track-passport-application-status": "../track-passport/track",
-    "number-plate-services": "../number_plate_services/number_plate_service",
+    "number-plate": "../number_plate_services/number_plate_service",
     "vehicle-transfer": "../vehicle_transfer/VehicleTransfer",
     "birth-certificate": "../birth _certificate/birthcertificate",
     "domicile-prc": "../domicile_prc/domicile_prc",
@@ -37,7 +37,7 @@ export default function ServicePage() {
   );
 
   return (
-    <div className="p-4">
+    <div>
       <FormComponent />
     </div>
   );

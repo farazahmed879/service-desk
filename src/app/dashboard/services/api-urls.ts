@@ -15,50 +15,30 @@ getByCnic: "GET / POST" //  depend on situation
 
 export const urls = {
   passport: {
-<<<<<<< Updated upstream
-    getAll: "/services/allPassport",
-    createBycnic: "/services/PassportByCnic",
-    update: "/services/passportUpdate/:id",
-=======
     create: "passport/create",
     getAll: "/passport/get-all",
     getPassportByCnic: "/passport/get-by-cnic",
     update: "/passport//update/:id",
->>>>>>> Stashed changes
     delete: "",
     get: "/services/allPassport",
   },
 
   cnic: {
-<<<<<<< Updated upstream
-    getAll: "/services/getAllCnic",
-    create: "/services/getClientCnicNumber",
-    update: "/services//cnic/:cnicID",
-=======
     getAll: "/cnic/get-all",
     create: "/cnic/create",
     update: "/services/cnic/:cnicID",
     getCnicByNumber: "/cnic/get-by-cnic-number",
->>>>>>> Stashed changes
     delete: "",
     get: "/services/getAllCnic",
   },
 
   b_form: {
-<<<<<<< Updated upstream
-    getAll: "/services/AllbForm",
-    create: "/services/Bform",
-    update: "/services/getbForm",
-    delete: "/services/deletebForm",
-    get: "/services/AllbForm",
-=======
     getB_formByCnic: "/bform/get-by-cnic",
     getAll: "/bform/get-all",
     create: "/bform//create",
     update: "/bform/update/:id",
     delete: "/bform/deletebForm",
     get: "/bform/AllbForm",
->>>>>>> Stashed changes
   },
 
   bill_and_payments: {

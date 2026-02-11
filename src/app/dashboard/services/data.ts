@@ -15,13 +15,13 @@ export interface FormData {
 export const SERVICES: Service[] = [
   {
     title: " Passport Application",
-    slug: "new-passport-application",
+    slug: "passport",
     image: "/images/services/passport/new.png",
   },
-  
+
   {
     title: "CNIC ",
-    slug: "cnic-application",
+    slug: "cnic",
     image: "/images/services/passport/cnic.png",
   },
   {
@@ -47,7 +47,7 @@ export const SERVICES: Service[] = [
 
   {
     title: "Number Plate ",
-    slug: "number-plate-services",
+    slug: "number-plate",
     image: "/images/services/passport/number-plate.png",
   },
   {

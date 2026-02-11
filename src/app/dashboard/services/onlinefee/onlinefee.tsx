@@ -10,7 +10,7 @@ export default function OnlineFeePaymentService() {
   );
 
   return (
-    <div className="p-4">
+    <div >
       <OnlineFeePaymentForm />
     </div>
   );

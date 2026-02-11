@@ -1,15 +1,219 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useForm, Controller } from "react-hook-form";
+import type { UserFormProps } from "./types";
+import type { FormValues } from "@/app/dashboard/users/types";
 
-interface UserFormProps {
-  existingUser?: any;
-  onSave: (user: any) => void;
+export default function UserForm({
+  existingUser,
+  onSave,
+  onCancel,
+}: UserFormProps) {
+  const { register, control, handleSubmit, reset } = useForm<FormValues>({
+    defaultValues: {
+      firstName: "",
+      MiddleName: "",
+      lastName: "",
+      email: "",
+      cnic: "",
+      age: "",
+      gender: "",
+      passportIssue: "",
+      image: null,
+    },
+  });
+
+  useEffect(() => {
+    if (existingUser) {
+      reset(existingUser);
+    }
+  }, [existingUser, reset]);
+
+  const onSubmit = (data: FormValues) => {
+    onSave({
+      ...data,
+      id: existingUser?.id ?? Date.now(),
+    });
+    console.log("User Form Submitted:", data);
+    alert("User Form submitted successfully!");
+    reset();
+  };
+
+  
+  return (
+    <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
+      <h2 className="mb-6 text-2xl font-bold text-gray-700">
+        {existingUser ? "Edit User" : "User Registration"}
+      </h2>
+
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700">First Name</label>
+            <input
+              placeholder="Enter first name"
+              {...register("firstName", { required: true })}
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700">Last Name</label>
+            <input
+              placeholder="Enter last name"
+              {...register("lastName", { required: true })}
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700">Email</label>
+            <input
+              type="email"
+              placeholder="Enter email"
+              {...register("email", { required: true })}
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700">CNIC</label>
+            <input
+              placeholder="Enter CNIC"
+              {...register("cnic", { required: true })}
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700">Age</label>
+            <input
+              type="number"
+              min={1}
+              placeholder="Enter age"
+              {...register("age", { required: true })}
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700">Gender</label>
+            <Controller
+              name="gender"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <select
+                  {...field}
+                  className="w-full rounded-md border border-gray-300 px-3 py-2"
+                >
+                  <option value="">Select Gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+              )}
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700">
+              Registration Date
+            </label>
+            <Controller
+              name="passportIssue"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <input
+                  type="date"
+                  {...field}
+                  className="w-full rounded-md border border-gray-300 px-3 py-2"
+                />
+              )}
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col">
+          <label className="mb-1 font-medium text-gray-700">Upload Image</label>
+          <Controller
+            name="image"
+            control={control}
+            render={({ field }) => (
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => field.onChange(e.target.files?.[0] || null)}
+                className="mt-2 w-full rounded-md border border-gray-300 px-3 py-2"
+              />
+            )}
+          />
+        </div>
+
+        <div className="mt-6 flex w-full justify-end gap-4">
+          <button
+            type="button"
+            onClick={onCancel}
+            className="w-40 rounded-lg bg-gray-200 py-2.5 font-semibold text-gray-800 shadow transition-all hover:bg-gray-300"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            className="w-40 rounded-lg bg-blue-600 py-2.5 font-semibold text-white shadow transition-all hover:bg-blue-700"
+          >
+            {existingUser ? "Save Changes" : "Register User"}
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 }
 
-export default function UserForm({ existingUser, onSave }: UserFormProps) {
+/* import {useState} from "react"
+
+function App(){
+const [count, setCount] = useState(0)
+return (
+    <div style={styles.main}>
+      <h1 style={styles.title}>Hello, World!</h1>
+      <div>
+        <p> this is {count} increment</p>
+        <button onClick ={() => setCount(count + 10)}
+> 
+increment {count}
+        
+        </button>
+      </div>
+    </div>
+  )
+}
+
+*/
+
+/* "use client";
+
+import { useState, useEffect } from "react";
+import type { UserFormProps } from "./types";
+import type { CnicFormData } from "@/app/dashboard/users/types";
+import { useForm } from "react-hook-form";
+
+export default function UserForm({
+  existingUser,
+  onSave,
+  onCancel,
+}: UserFormProps) {
   const [form, setForm] = useState({
     firstName: "",
+    MiddleName: "",
     lastName: "",
     email: "",
     cnic: "",
@@ -39,143 +243,145 @@ export default function UserForm({ existingUser, onSave }: UserFormProps) {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="bg-white p-6 rounded-[10px] shadow-1 dark:bg-gray-dark space-y-4"
-    >
-      <h2 className="text-xl font-bold mb-4">
+    <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
+      <h2 className="mb-6 text-2xl font-bold text-gray-700">
         {existingUser ? "Edit User" : "User Registration"}
       </h2>
 
-      <div className="grid grid-cols-2 gap-4">
-        <input
-          name="firstName"
-          placeholder="First Name"
-          value={form.firstName}
-          onChange={handleChange}
-          className="border p-3 rounded-xl w-full"
-        />
-        <input
-          name="lastName"
-          placeholder="Last Name"
-          value={form.lastName}
-          onChange={handleChange}
-          className="border p-3 rounded-xl w-full"
-        />
-      </div>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700">First Name</label>
+            <input
+              name="firstName"
+              placeholder="Enter first name"
+              value={form.firstName}
+              onChange={handleChange}
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
+              required
+            />
+          </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <input
-          type="email"
-          name="email"
-          placeholder="example@gmail.com"
-          value={form.email}
-          onChange={handleChange}
-          className="border p-3 rounded-xl w-full"
-          required
-        />
-        <input
-          name="cnic"
-          placeholder="CNIC"
-          value={form.cnic}
-          onChange={handleChange}
-          className="border p-3 rounded-xl w-full"
-        />
-      </div>
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700">Last Name</label>
+            <input
+              name="lastName"
+              placeholder="Enter last name"
+              value={form.lastName}
+              onChange={handleChange}
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
+              required
+            />
+          </div>
+        </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <input
-          name="age"
-          type="number"
-          min={1}
-          placeholder="Age"
-          value={form.age}
-          onChange={handleChange}
-          className="border p-3 rounded-xl w-full"
-        />
-        <select
-          name="gender"
-          value={form.gender}
-          onChange={handleChange}
-          className="border p-3 rounded-xl w-full"
-        >
-          <option value="">Select Gender</option>
-          <option>Male</option>
-          <option>Female</option>
-        </select>
-      </div>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700">Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              value={form.email}
+              onChange={handleChange}
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
+              required
+            />
+          </div>
 
-      <h3 className="font-semibold pt-3">Passport Information</h3>
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700">CNIC</label>
+            <input
+              name="cnic"
+              placeholder="Enter CNIC"
+              value={form.cnic}
+              onChange={handleChange}
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
+              required
+            />
+          </div>
+        </div>
 
-      <input
-        name="passportNumber"
-        placeholder="Passport Number"
-        value={form.passportNumber}
-        onChange={handleChange}
-        className="border p-3 rounded-xl w-full"
-      />
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700">Age</label>
+            <input
+              name="age"
+              type="number"
+              min={1}
+              placeholder="Enter age"
+              value={form.age}
+              onChange={handleChange}
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
+              required
+            />
+          </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <input
-          type="date"
-          name="passportIssue"
-          value={form.passportIssue}
-          onChange={handleChange}
-          className="border p-3 rounded-xl w-full"
-        />
-        <input
-          type="date"
-          name="passportExpiry"
-          value={form.passportExpiry}
-          onChange={handleChange}
-          className="border p-3 rounded-xl w-full"
-        />
-      </div>
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700">Gender</label>
+            <select
+              name="gender"
+              value={form.gender}
+              onChange={handleChange}
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
+              required
+            >
+              <option value="">Select Gender</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+        </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <input
-          name="passportCountry"
-          placeholder="Passport Country"
-          value={form.passportCountry}
-          onChange={handleChange}
-          className="border p-3 rounded-xl w-full"
-        />
-        <input
-          name="passportType"
-          placeholder="Passport Type"
-          value={form.passportType}
-          onChange={handleChange}
-          className="border p-3 rounded-xl w-full"
-        />
-      </div>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700">
+              Registration Date
+            </label>
+            <input
+              type="date"
+              name="passportIssue"
+              value={form.passportIssue}
+              onChange={handleChange}
+              className="w-full rounded-md border border-gray-300 px-3 py-2"
+              required
+            />
+          </div>
+        </div>
 
-      <div>
-        <label className="font-medium">Upload Passport Image</label>
-        <input
-          type="file"
-          name="image"
-          accept="image/*"
-          onChange={handleChange}
-          className="mt-2 w-full"
-        />
-      </div>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2"></div>
 
-      <button
-        type="submit"
-        className="bg-blue-600 text-white px-6 py-3 rounded-xl w-full mt-4 hover:bg-blue-700"
-      >
-        {existingUser ? "Save Changes" : "Register User"}
-      </button>
-    </form>
+        <div className="flex flex-col">
+          <label className="mb-1 font-medium text-gray-700">Upload Image</label>
+          <input
+            type="file"
+            name="image"
+            accept="image/*"
+            onChange={handleChange}
+            className="mt-2 w-full rounded-md border border-gray-300 px-3 py-2"
+          />
+        </div>
+
+        <div className="mt-6 flex w-full justify-end gap-4">
+          <button
+            type="button"
+            onClick={onCancel}
+            className="w-40 rounded-lg bg-gray-200 py-2.5 font-semibold text-gray-800 shadow transition-all hover:bg-gray-300"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            className="w-40 rounded-lg bg-blue-600 py-2.5 font-semibold text-white shadow transition-all hover:bg-blue-700"
+          >
+            {existingUser ? "Save Changes" : "Register User"}
+          </button>
+        </div>
+      </form>
+    </div>
   );
-}
-
-
-
-
-
-
-
+} */
 
 /* "use client";
 
@@ -283,7 +489,6 @@ export default function UserForm({ existingUser, onSave }: UserFormProps) {
 }
  */
 
-
 /* "use client";
 
 import { useState, useEffect } from "react";
@@ -351,10 +556,6 @@ export default function UserForm({ onSave }: UserFormProps) {
     </form>
   );
 } */
-
-
-
-
 
 /* "use client";
 import { useState, useEffect } from "react";
@@ -513,7 +714,6 @@ export default function UserForm({ editingUser, onSave }: UserFormProps) {
     </form>
   );
 } */
-
 
 /* "use client";
 

@@ -1,29 +1,63 @@
 "use client";
-
-import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import InputField from "@/components/InputFields/InputField";
+import type { driving_License } from "@/app/dashboard/users/types";
+import { useEffect } from "react";
+import { useState } from "react";
+import { getAll } from "@/app/services/crud_services";
+export default function DrivingLicenseService() {
+  const router = useRouter();
+  const [DrivingLicense, setDrivingLicense] = useState<driving_License[]>([]);
+  const { register, handleSubmit, control, reset } = useForm<driving_License>({
+    defaultValues: {
+      userName: "",
+      fullName: "",
+      fatherName: "",
+      dob: "",
+      address: "",
+      licenseType: "",
+      issueDate: "",
+      expiryDate: "",
+    },
+  });
 
-export default function DrivingLicenseForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data: any) => {
-    console.log("Driving License Form Submitted:", data);
+  const onSubmit = (data: driving_License) => {
+    console.log("Form Submitted:", data);
     alert("Driving License Form submitted successfully!");
+    reset();
   };
 
+  const fetchAllLicense = async () => {
+    try {
+      const data = await getAll<driving_License>("https://dog.ceo/dog-api");
+      setDrivingLicense(data);
+    } catch (error) {
+      console.error("Failed to fetch License:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllLicense();
+  }, []);
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-4 bg-white p-6 rounded-xl shadow-md"
+      className="space-y-4 rounded-xl bg-white p-6 shadow-md"
     >
-      <h2 className="text-2xl font-semibold mb-4">Driving License Form</h2>
+      <div className="mb-4 flex flex-col">
+        <label className="mb-1 font-medium text-gray-700">User:</label>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <input
+          type="text"
+          placeholder="User"
+          {...register("userName")}
+          className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+      <h2 className="mb-4 text-2xl font-semibold">Driving License Form</h2>
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <InputField
           label="Full Name"
           name="fullName"
@@ -44,7 +78,7 @@ export default function DrivingLicenseForm() {
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <InputField
           label="CNIC Number"
           name="cnic"
@@ -67,14 +101,14 @@ export default function DrivingLicenseForm() {
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <InputField
           label="License Type"
           name="licenseType"
           register={register}
           options={["Motorcycle", "Car", "Heavy Vehicle"]}
         />
-        <InputField
+        {/* <InputField
           label="Issue Date"
           name="issueDate"
           register={register}
@@ -85,13 +119,21 @@ export default function DrivingLicenseForm() {
           name="expiryDate"
           register={register}
           type="date"
-        />
+        /> */}
       </div>
 
-      <div className="mt-4 flex justify-end">
+      <div className="flex w-full justify-end gap-4">
+        <button
+          type="button"
+          onClick={() => router.push("/dashboard/services")}
+          className="w-40 rounded-lg bg-blue-600 py-2.5 font-semibold text-white shadow transition-all hover:bg-blue-700"
+        >
+          Cancel
+        </button>
+
         <button
           type="submit"
-          className="w-32 bg-green-600 text-white py-2.5 rounded-lg hover:bg-blue-700 transition"
+          className="w-40 rounded-lg bg-blue-600 py-2.5 font-semibold text-white shadow transition-all hover:bg-blue-700"
         >
           Submit
         </button>

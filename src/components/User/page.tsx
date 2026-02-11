@@ -2,9 +2,8 @@
 
 import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
-import type { UserFormProps } from "../../app/dashboard/users/types";
-import type { FormValues } from "@/app/dashboard/users/types";
 import InputField from "@/components/InputField/InputField";
+import { FormValues, UserFormProps } from "@/app/users/types";
 
 export default function UserForm({
   existingUser,
@@ -180,13 +179,13 @@ export default function UserForm({
             submit
           </button>
           <button
-          className="bg-gray-300 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-400 transition"
-          onClick={onCancel}
-        >
-          cancel
-        </button>
+            className="bg-gray-300 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-400 transition"
+            onClick={onCancel}
+          >
+            cancel
+          </button>
         </div>
-        
+
       </form>
     </div>
   );

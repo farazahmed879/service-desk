@@ -1,36 +1,29 @@
 import * as Icons from "../icons";
 
 export const NAV_DATA = [
-  
+
   {
     label: "MAIN MENU",
     items: [
       {
         title: "Dashboard",
         icon: Icons.HomeIcon,
-        items: [
-          
-          {
-            title: "eCommerce",
-            url: "/",
-          },
-          
-        ],
-        
+        url: "/",
+        items: [],
       },
-      
-      {
-      title: "Users",
-      icon: Icons.UsersIcon,
-      url: "/dashboard/users",
-            items: [], 
 
-    },
-    {
+      {
+        title: "Users",
+        icon: Icons.UsersIcon,
+        url: "/users",
+        items: [],
+
+      },
+      {
         title: "Services",
-        url: "/dashboard/services",
+        url: "/utilities-services",
         icon: Icons.ServicesIcon,
-        items: [], 
+        items: [],
       },
 
       /* {
@@ -39,47 +32,47 @@ export const NAV_DATA = [
         icon: Icons.Calendar,
         items: [],
       }, */
-     /*  {
-        title: "Profile",
-        url: "/profile",
-        icon: Icons.User,
-        items: [],
-      }, */
-    /*   {
-        title: "Forms",
-        icon: Icons.Alphabet,
-        items: [
-          {
-            title: "Form Elements",
-            url: "/forms/form-elements",
-          },
-          {
-            title: "Form Layout",
-            url: "/forms/form-layout",
-          },
-        ],
-      }, */
-     /*  {
-        title: "Tables",
-        url: "/tables",
-        icon: Icons.Table,
-        items: [
-          {
-            title: "Tables",
-            url: "/tables",
-          },
-        ],
-      }, */
-     /*  {
-        title: "Pages",
-        icon: Icons.Alphabet,
-        items: [
-          {
-            title: "Settings",
-            url: "/pages/settings",
-          },
-        ],
-      }, */
+      /*  {
+         title: "Profile",
+         url: "/profile",
+         icon: Icons.User,
+         items: [],
+       }, */
+      /*   {
+          title: "Forms",
+          icon: Icons.Alphabet,
+          items: [
+            {
+              title: "Form Elements",
+              url: "/forms/form-elements",
+            },
+            {
+              title: "Form Layout",
+              url: "/forms/form-layout",
+            },
+          ],
+        }, */
+      /*  {
+         title: "Tables",
+         url: "/tables",
+         icon: Icons.Table,
+         items: [
+           {
+             title: "Tables",
+             url: "/tables",
+           },
+         ],
+       }, */
+      /*  {
+         title: "Pages",
+         icon: Icons.Alphabet,
+         items: [
+           {
+             title: "Settings",
+             url: "/pages/settings",
+           },
+         ],
+       }, */
     ],
   },
   /* {

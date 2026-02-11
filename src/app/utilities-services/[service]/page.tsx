@@ -3,9 +3,9 @@
 import { useParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import React from "react";
-import Passport from "../passport/page";
 import CnicForm from "@/components/CnicForm/CnicForm";
 import b_Form from "@/components/BForm/b-form";
+import Passport from "@/app/passport/page";
 
 export default function ServicePage() {
   const params = useParams();
@@ -15,7 +15,7 @@ export default function ServicePage() {
   if (!service) return <p className="text-red-500">Service not specified</p>;
 
   const serviceComponents: Record<string, React.ComponentType<any>> = {
-    "passport": Passport, 
+    "passport": Passport,
     "cnic": CnicForm,
     "b-form": b_Form,
     // "challan-and-payments": "../challan_and_payments/challans",
@@ -41,7 +41,7 @@ export default function ServicePage() {
 
   return (
     <div>
-      <SelectedService/>
+      <SelectedService />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-export interface User {
+export interface UserType {
   id: number;
   firstName: string;
   lastName: string;
@@ -43,7 +43,7 @@ export interface PassportFormData {
   degreePicture: FileList;
 }
 
-export interface Passport {
+export interface PassportType {
   id: string;
   userName: string;
   firstName: string;

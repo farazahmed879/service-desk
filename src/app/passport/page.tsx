@@ -4,17 +4,17 @@ import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import InputField from "@/components/InputField/InputField";
-import type { PassportFormData, Passport } from "@/app/dashboard/users/types";
 
 import { FaPlus, FaUsers } from "react-icons/fa";
 import { getAll } from "@/services/crud_services";
-import { urls } from "../api-urls";
+import { PassportFormData, PassportType } from "../users/types";
+import { urls } from "../utilities-services/api-urls";
 
 export default function Passport() {
   const router = useRouter();
-  const [passports, setPassports] = useState<Passport[]>([]);
+  const [passports, setPassports] = useState<PassportType[]>([]);
   const [showForm, setShowForm] = useState(false);
-  const [selectedPassport, setSelectedPassport] = useState<Passport | null>(
+  const [selectedPassport, setSelectedPassport] = useState<PassportType | null>(
     null,
   );
 
@@ -50,7 +50,7 @@ export default function Passport() {
 
   const fetchAllPassports = async () => {
     try {
-      const res = await getAll<Passport>(urls.passport.getAll);
+      const res = await getAll<PassportType>(urls.passport.getAll);
       if (!res) return;
 
       setPassports(res);

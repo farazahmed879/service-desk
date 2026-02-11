@@ -3,10 +3,10 @@
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import InputField from "@/components/InputField/InputField";
-import type { number_Plate } from "@/app/dashboard/users/types";
 import { useState } from "react";
 import { getAll } from "@/services/crud_services";
 import { useEffect } from "react";
+import { number_Plate } from "@/app/users/types";
 export default function NumberPlateServicePage() {
   const router = useRouter();
   const [number_plate, setNumber_plate] = useState<number_Plate[]>([]);
@@ -46,6 +46,7 @@ export default function NumberPlateServicePage() {
   useEffect(() => {
     fetchAllNumberPlate();
   }, []);
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

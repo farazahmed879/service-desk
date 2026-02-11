@@ -5,7 +5,7 @@ import CnicForm from "@/components/CnicForm/CnicForm";
 
 export default function CnicServicePage() {
   return (
-    <div className="p-6">
+    <div >
       <CnicForm />
     </div>
   );

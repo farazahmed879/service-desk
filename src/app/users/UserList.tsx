@@ -20,8 +20,8 @@ interface Client {
 
 interface UserListProps {
   clients: Client[];
-  onEdit: (client: Client) => void;
-  onDelete: (id: number) => void;
+  onEdit: (client: Client) => any;
+  onDelete: (id: number) => any;
   pagination?: PaginationProps;
   sorting?: SortingProps;
   isLoading?: boolean;

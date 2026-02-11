@@ -3,10 +3,10 @@
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import InputField from "@/components/InputField/InputField";
-import type { birth_Certificate } from "@/app/dashboard/users/types";
 import { useState } from "react";
 import { getAll } from "@/services/crud_services";
 import { useEffect } from "react";
+import { birth_Certificate } from "@/app/users/types";
 export default function BirthCertificateServicePage() {
   const router = useRouter();
   const [birth_Certificate, setbirth_Certificate] = useState<birth_Certificate[]>([])

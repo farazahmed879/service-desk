@@ -213,3 +213,27 @@ export function ArrowLeftIcon(props: PropsType) {
     </svg>
   );
 }
+
+export function ChevronDoubleLeft(props: PropsType) {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      {...props}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M10.707 4.293a1 1 0 010 1.414L6.414 10l4.293 4.293a1 1 0 01-1.414 1.414l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 0z"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M16.707 4.293a1 1 0 010 1.414L12.414 10l4.293 4.293a1 1 0 01-1.414 1.414l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 0z"
+      />
+    </svg>
+  );
+}
+

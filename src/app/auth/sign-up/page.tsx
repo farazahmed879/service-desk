@@ -2,11 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { signUpService } from "../../../backendServices/authService";
+import { signUpService } from "@/services/authServices";
 
 export default function SignUpPage() {
   const router = useRouter();
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,10 +26,18 @@ export default function SignUpPage() {
 
       alert(`account created sucess with this ${role} `);
       console.log("backend response", res);
+
+      console.log(res.message);
+
       router.push("/auth/sign-in");
     } catch (error: any) {
-      alert("signup failed");
-      console.log(error.message);
+      if (error?.response?.data) {
+        console.log(error.response.data.message);
+      
+      
+      }
+      
+      alert("signup fail");
     }
 
     // const stored = localStorage.getItem("users");

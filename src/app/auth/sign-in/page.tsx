@@ -1,13 +1,13 @@
 "use client";
 
-import { loginService } from "@/backendServices/authService";
 import Signin from "@/components/Auth/Signin";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-
+import { loginService } from "@/services/authServices";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { json } from "stream/consumers";
 
 export default function SignIn() {
   const router = useRouter();
@@ -27,12 +27,16 @@ export default function SignIn() {
       const res = await loginService(payload);
 
       alert(`login successFullyy `);
-      console.log("backend response", res);
+      console.log("backend response", res.user);
+      sessionStorage.setItem("data",JSON.stringify(res.user._doc));
+      sessionStorage.setItem("token", res.user.token);
       router.push("/auth/sign-in");
 
       router.push("/");
     } catch (error: any) {
       console.log(error.message);
+      alert(error.message)
+
       console.log(error?.response);
     }
   };
@@ -80,7 +84,24 @@ export default function SignIn() {
                       >
                         Sign Up
                       </Link>
+                      
+                    
                     </p>
+                    
+                  </div>
+                  <div className="mt-4 text-center">
+                    <p>
+                        Can’t remember password? 
+                      <Link
+                        href="/auth/forget-password"
+                        className="text-primary underline"
+                      >
+                        Reset
+                      </Link>
+                      
+                    
+                    </p>
+                    
                   </div>
                 </form>
               </Signin>

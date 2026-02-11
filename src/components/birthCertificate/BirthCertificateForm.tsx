@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import InputField from "@/components/InputFields/InputField";
 import type { birth_Certificate } from "@/app/dashboard/users/types";
 import { useState } from "react";
-import { getAll } from "@/app/services/crud_services";
+import { getAll } from "@/services/crud_services";
 import { useEffect } from "react";
 export default function BirthCertificateServicePage() {
   const router = useRouter();

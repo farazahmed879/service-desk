@@ -1,15 +1,37 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEdit, FaTrash, FaEllipsisV } from "react-icons/fa";
 import Link from "next/link";
 import type { UserList } from "@/app/dashboard/users/types";
+import { getAllUser } from "@/services/clientCrud/getUserService";
 
 import type { UserListProps } from "./types";
 
-export default function UserList({ users, onEdit, onDelete }: UserListProps) {
-  const [editingUser, setEditingUser] = useState<UserList | undefined>(
-    undefined,
-  );
+export default function UserList() {
+  // const [editingUser, setEditingUser] = useState<UserList | undefined>(
+  //   undefined,
+  // );
+
+  const [clients, setClient] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getclient = async () => {
+      try {
+        const data = await getAllUser();
+        setClient(data.data);
+        console.log(clients);
+        console.log(data);
+      } catch (error: any) {
+        console.log(error.message || error);
+      } finally { 
+        setLoading(false);
+      }
+    };
+
+    getclient();
+  }, []);
+
   const [showServiceFor, setShowServiceFor] = useState<number | null>(null);
   return (
     <div className="grid overflow-x-auto overflow-y-visible rounded-[10px] bg-white px-7.5 pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card">
@@ -20,43 +42,50 @@ export default function UserList({ users, onEdit, onDelete }: UserListProps) {
       <table className="min-w-full table-auto">
         <thead>
           <tr className="border-none uppercase text-dark dark:text-white [&>th]:text-center">
-            <th className="min-w-[120px] py-3 !text-left">First Name</th>
-            <th className="py-3">Last Name</th>
+            <th className="min-w-[120px] py-3 !text-left">Full Name</th>
+            <th className="py-3">father name</th>
             <th className="py-3">Email</th>
             <th className="py-3">CNIC</th>
             <th className="py-3">Age</th>
+            <th className="py-3">role</th>
             <th className="min-w-[120px] text-center"></th>
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
-            <tr
-              key={user.id}
-              className="border-b border-gray-200 text-center text-base font-medium text-dark hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800"
-            >
-              <td className="py-3 !text-left">{user.firstName}</td>
-              <td className="py-3">{user.lastName}</td>
-              <td className="py-3">{user.email}</td>
-              <td className="py-3">{user.cnic}</td>
-              <td className="py-3">{user.age}</td>
+          {clients?.length === 0 ? (
+            <tr>
+              <td style={{ textAlign: "center" }}>No clients found</td>
+            </tr>
+          ) : (
+               clients?.map((client: any) => (
+              <tr
+                key={client.id}
+                className="border-b border-gray-200 text-center text-base font-medium text-dark hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800"
+              >
+                <td className="py-3 !text-left">{client.name}</td>
+                <td className="py-3">{client.fatherName}</td>
+                <td className="py-3">{client.email}</td>
+                <td className="py-3">{client.cnic}</td>
+                <td className="py-3">{client.Age}</td>
+                <td className="py-3">{client.role}</td>
 
-              <td className="relative flex justify-center gap-2 overflow-visible py-3">
-                <button
-                  onClick={() => onEdit(user)}
+                <td className="relative flex justify-center gap-2 overflow-visible py-3">
+                  {/* <button
+                  onClick={() => onEdit(client)}
                   className="flex items-center justify-center rounded p-2 text-blue-600 transition hover:bg-blue-100"
                   title="Edit"
                 >
                   <FaEdit />
-                </button>
+                </button> */}
 
-                <button
+                  {/* <button
                   onClick={() => onDelete(user.id)}
                   className="flex items-center justify-center rounded p-2 text-red-600 transition hover:bg-red-100"
                   title="Delete"
                 >
                   <FaTrash size={14} />
-                </button>
-
+                </button> */}
+                  {/* 
                 <div className="relative inline-block">
                   <button
                     onClick={() =>
@@ -80,12 +109,13 @@ export default function UserList({ users, onEdit, onDelete }: UserListProps) {
                       </Link>
                     </div>
                   )}
-                </div>
-              </td>
-            </tr>
-          ))}
+                </div> */}
+                </td>
+              </tr>
+            ))
+          )}
 
-          {users.length === 0 && (
+          {/* {users.length === 0 && (
             <tr>
               <td
                 colSpan={6}
@@ -94,7 +124,7 @@ export default function UserList({ users, onEdit, onDelete }: UserListProps) {
                 No users found
               </td>
             </tr>
-          )}
+          )} */}
         </tbody>
       </table>
     </div>

@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import InputField from "@/components/InputFields/InputField";
 import type { vehicle_form } from "@/app/dashboard/users/types";
-import { getAll } from "@/app/services/crud_services";
+import { getAll } from "@/services/crud_services";
 import { useEffect } from "react";
 export default function VehicleRegistrationService() {
   const router = useRouter();

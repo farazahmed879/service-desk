@@ -9,7 +9,7 @@ import {
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LogOutIcon, SettingsIcon, UserIcon } from "./icons";
 import { useRouter } from "next/navigation";
 
@@ -21,6 +21,14 @@ export function UserInfo() {
     email: "johnson@nextadmin.com",
     img: "/images/user/user-03.png",
   };
+
+
+  useEffect(()=>{
+    
+  })
+
+ 
+
 
   return (
     <Dropdown isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -111,12 +119,15 @@ export function UserInfo() {
               setIsOpen(false);
               localStorage.removeItem("isLoggedIn");
               localStorage.removeItem("userEmail");
+                sessionStorage.removeItem("token")
+             
               router.push("/auth/sign-in");
             }}
           >
             <LogOutIcon />
 
             <span className="text-base font-medium">Log out</span>
+
           </button>
         </div>
       </DropdownContent>

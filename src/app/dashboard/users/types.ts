@@ -46,18 +46,18 @@ export interface PassportFormData {
 export interface Passport {
   id: string;
   userName: string;
-  FirstName: string;
-  MiddleName: string;
-  LastName: string;
-  FatherName: string;
-  DOB: string;
-  PlaceOfBirth: string;
-  CNIC: string;
-  Gender: string;
-  ContactNumber: string;
-  Email: string;
-  CurrentAddress: string;
-  PermanentAddress: string;
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  fatherName: string;
+  dob: string;
+  placeOfBirth: string;
+  cnic: string;
+  gender: string;
+  contactNumber: string;
+  email: string;
+  currentAddress: string;
+  permanentAddress: string;
   fatherCnicFrontUrl?: string;
   fatherCnicBackUrl?: string;
   motherCnicFrontUrl?: string;
@@ -241,15 +241,23 @@ export interface domicile_prc {
 }
 
 export interface FormValues {
-  firstName: string;
-  MiddleName: string;
-  lastName: string;
+  name: string;
+  fatherName: string;
+  motherName: string;
   email: string;
   cnic: string;
-  age: string;
-  gender: string;
-  passportIssue: string;
-  image: File | null;
+  Age: string;
+  Gender: string;
+  contact: string;
+  emergencyContactNumber: string;
+  permenentAddress: string;
+  city: string;
+  country: string;
+  postalCode: string;
+  birthDate: string;
+  role: string;
+  religion: string;
+  facePicture: File | null;
 }
 
 export interface UserList {

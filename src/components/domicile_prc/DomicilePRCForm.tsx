@@ -7,7 +7,7 @@ import type { domicile_prc } from "@/app/dashboard/users/types";
 import { useState } from "react";
 import { useEffect } from "react";
 
-import { getAll } from "@/app/services/crud_services";
+import { getAll } from "@/services/crud_services";
 export default function DomicilePRCServicePage() {
   const router = useRouter();
   const [Domicile, setDomicile] = useState<domicile_prc[]>([]);

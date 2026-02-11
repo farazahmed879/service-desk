@@ -10,7 +10,7 @@ import { FaPlus, FaUsers } from "react-icons/fa";
 import { getAll } from "@/services/crud_services";
 import { urls } from "../api-urls";
 
-export default function PassportForm() {
+export default function Passport() {
   const router = useRouter();
   const [passports, setPassports] = useState<Passport[]>([]);
   const [showForm, setShowForm] = useState(false);
@@ -46,17 +46,7 @@ export default function PassportForm() {
     reset();
   };
 
-  /* const fetchAllPassports = async () => {
-    try {
-      const res = await getAll<Passport>(urls.passport.getAll);
-      if (!res) return;
 
-      setPassports(res);
-    } catch (err) {
-      console.error("Failed to fetch passports:", err);
-      setPassports([]);
-    }
-  }; */
 
   const fetchAllPassports = async () => {
     try {
@@ -70,38 +60,12 @@ export default function PassportForm() {
     }
   };
 
-  /*   const fetchAllPassports = async () => {
-    try {
-      const res = await fetch("http://localhost:5000/passport/get-all");
-      if (!res.ok) throw new Error("Failed to fetch");
 
-      const result = await res.json();
-
-      setPassports(result.data || []);
-    } catch (err) {
-      console.error("Failed to fetch passports:", err);
-      setPassports([]);
-    }
-  }; */
 
   useEffect(() => {
     fetchAllPassports();
   }, []);
 
-  /*   const createPassport = async (passportData: Partial<Passport>) => {
-    try {
-      const newPassport = await create<Passport>(
-        "http://localhost:8080/services/PassportByCnic",
-        passportData,
-      );
-
-      setPassports((prev) => [...prev, newPassport]);
-
-      console.log("Passport created successfully:", newPassport);
-    } catch (error) {
-      console.error("Failed to create passport:", error);
-    }
-  }; */
 
   return (
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">

@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
-import type { UserFormProps } from "./types";
+import type { UserFormProps } from "../../app/dashboard/users/types";
 import type { FormValues } from "@/app/dashboard/users/types";
 import InputField from "@/components/InputField/InputField";
 
@@ -171,6 +171,22 @@ export default function UserForm({
           registerOptions={{ required: "permenent Address is required" }}
           error={errors.permenentAddress}
         />
+
+        <div className="mt-4 flex flex-row gap-4 justify-end">
+          <button
+            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+            type="submit"
+          >
+            submit
+          </button>
+          <button
+          className="bg-gray-300 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-400 transition"
+          onClick={onCancel}
+        >
+          cancel
+        </button>
+        </div>
+        
       </form>
     </div>
   );

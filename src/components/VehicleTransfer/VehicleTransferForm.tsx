@@ -3,7 +3,7 @@
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import InputField from "@/components/InputField/InputField";
-import type { vehicle_Transfer } from "@/app/dashboard/users/types";
+import type { vehicle_Transfer } from "@/app/users/types";
 
 import { useState } from "react";
 import { getAll } from "@/services/crud_services";

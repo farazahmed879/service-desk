@@ -24,10 +24,10 @@ interface UserListProps {
   onDelete: (id: number) => any;
   pagination?: PaginationProps;
   sorting?: SortingProps;
-  isLoading?: boolean;
+  isLoading?: boolean; 
 }
 
-export default function UserList({
+export default function UserList({ 
   clients,
   onEdit,
   onDelete,

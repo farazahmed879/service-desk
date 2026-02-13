@@ -4,7 +4,9 @@ import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import InputField from "@/components/InputField/InputField";
 import { FormValues, UserFormProps } from "@/app/users/types";
-
+import axios from "axios";
+import { urls } from "@/app/utilities-services/api-urls";
+import Api from "@/utils/api";
 export default function UserForm({
   existingUser,
   onSave,
@@ -14,6 +16,7 @@ export default function UserForm({
     register,
     control,
     handleSubmit,
+    setValue,
     reset,
     formState: { errors },
   } = useForm<FormValues>({
@@ -34,6 +37,7 @@ export default function UserForm({
       postalCode: "",
       birthDate: "",
       emergencyContactNumber: "",
+      // facePicture: null,
     },
   });
 
@@ -43,13 +47,47 @@ export default function UserForm({
     }
   }, [existingUser, reset]);
 
-  const onSubmit = (data: FormValues) => {
-    onSave({
-      ...data,
-    });
-    console.log("User Form Submitted:", data);
-    alert("User Form submitted successfully!");
-    reset();
+  const onSubmit = async (data: FormValues) => {
+    try {
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("role", data.role);
+      formData.append("fatherName", data.fatherName);
+      formData.append("motherName", data.motherName);
+      formData.append("religion", data.religion);
+      formData.append("Age", data.Age);
+      formData.append("email", data.email);
+      formData.append("cnic", data.cnic);
+      formData.append("Gender", data.Gender);
+      formData.append("contact", data.contact);
+      formData.append("permenentAddress", data.permenentAddress);
+      formData.append("city", data.city);
+      formData.append("country", data.country);
+      formData.append("postalCode", data.postalCode);
+      formData.append("birthDate", data.birthDate);
+      formData.append("emergencyContactNumber", data.emergencyContactNumber);
+
+      if (data.facePicture) {
+        formData.append("facePicture", data.facePicture  as File )     ;
+      }
+
+      const response = await Api.post(urls.client.create, formData);
+
+      if (response) {
+        alert("User Form submitted successfully!");
+        console.log("User Form Submitted:", response.data);
+      }
+
+      console.log(response.data);
+      return response.data;
+    } catch (error: any) {
+      console.log(error.response.data);
+      console.log(error.response.status);
+
+      return error.response;
+    }
+
+    // reset();
   };
 
   return (
@@ -155,37 +193,69 @@ export default function UserForm({
           error={errors.permenentAddress}
         />
         <InputField
-          label="permenentAddress"
-          name="permenentAddress"
-          placeholder="Enter permenent Address"
+          label="city"
+          name="city"
+          placeholder="Enter city name"
           register={register}
-          registerOptions={{ required: "permenent Address is required" }}
-          error={errors.permenentAddress}
+          registerOptions={{ required: "city name is required" }}
+          error={errors.city}
         />
         <InputField
-          label="permenentAddress"
-          name="permenentAddress"
-          placeholder="Enter permenent Address"
+          label="country"
+          name="country"
+          placeholder="Enter country"
           register={register}
-          registerOptions={{ required: "permenent Address is required" }}
-          error={errors.permenentAddress}
+          registerOptions={{ required: "country name is required" }}
+          error={errors.country}
+        />
+        <InputField
+          label="postal Code"
+          name="postalCode"
+          placeholder="postalCode"
+          register={register}
+          error={errors.postalCode}
+        />
+        <InputField
+          label="birthDate"
+          name="birthDate"
+          placeholder="birthdate"
+          register={register}
+          registerOptions={{ required: "birthdate is required" }}
+          error={errors.birthDate}
+          type="date"
+        />
+        <InputField
+          label="Emergency Contact Number"
+          name="emergencyContactNumber"
+          placeholder="Emergency Contact Number"
+          register={register}
+          registerOptions={{ required: "emergency Contact Number is required" }}
+          error={errors.emergencyContactNumber}
+        />
+        <InputField
+          label="image"
+          type="file"
+          name="facePicture"
+          placeholder="image"
+          register={register}
+          registerOptions={{ required: "image is required" }}
+          error={errors.facePicture}
         />
 
-        <div className="mt-4 flex flex-row gap-4 justify-end">
+        <div className="mt-4 flex flex-row justify-end gap-4">
           <button
-            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+            className="rounded-lg bg-blue-600 px-6 py-2 text-white transition hover:bg-blue-700"
             type="submit"
           >
             submit
           </button>
           <button
-            className="bg-gray-300 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-400 transition"
+            className="rounded-lg bg-gray-300 px-6 py-2 text-gray-800 transition hover:bg-gray-400"
             onClick={onCancel}
           >
             cancel
           </button>
         </div>
-
       </form>
     </div>
   );

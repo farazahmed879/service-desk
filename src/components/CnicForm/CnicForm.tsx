@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import InputField from "@/components/InputField/InputField";
-import type { CnicFormData } from "@/app/dashboard/users/types";
+import type { CnicFormData } from "@/app/users/types";
 import { getAll, create } from "@/services/crud_services";
 
 export default function CnicForm() {

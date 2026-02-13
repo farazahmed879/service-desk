@@ -2,7 +2,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import InputField from "@/components/InputField/InputField";
-import type { vehicle_form } from "@/app/dashboard/users/types";
+import type { vehicle_form } from "@/app/users/types";
 import { getAll } from "@/services/crud_services";
 import { useEffect } from "react";
 export default function VehicleRegistrationService() {

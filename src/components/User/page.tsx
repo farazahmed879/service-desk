@@ -37,7 +37,6 @@ export default function UserForm({
       postalCode: "",
       birthDate: "",
       emergencyContactNumber: "",
-      // facePicture: null,
     },
   });
 
@@ -67,9 +66,9 @@ export default function UserForm({
       formData.append("birthDate", data.birthDate);
       formData.append("emergencyContactNumber", data.emergencyContactNumber);
 
-    if (data.facePicture && data.facePicture[0]) {
-  formData.append("facePicture", data.facePicture[0]);
-}
+      if (data.facePicture && data.facePicture[0]) {
+        formData.append("facePicture", data.facePicture[0]);
+      }
 
       const response = await Api.post(urls.client.create, formData);
 
@@ -83,11 +82,14 @@ export default function UserForm({
     } catch (error: any) {
       console.log(error.response.data);
       console.log(error.response.status);
+      alert(
+        ` status ${error.response.status} error: ${error.response.data.message}`,
+      );
 
       return error.response;
     }
 
-    // reset();
+    reset();
   };
 
   return (
@@ -98,62 +100,62 @@ export default function UserForm({
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <InputField
-          label="name"
+          label="Name"
           name="name"
-          placeholder="Enter name"
+          placeholder="Enter Name"
           register={register}
           registerOptions={{ required: "Name is required" }}
           error={errors.name}
         />
         <InputField
-          label="role"
+          label="Role"
           name="role"
-          placeholder="Enter role"
+          placeholder="Enter Role"
           register={register}
           registerOptions={{ required: "role is required" }}
           error={errors.role}
         />
 
         <InputField
-          label="fatherName"
+          label="Father Name"
           name="fatherName"
-          placeholder="Enter fatherName"
+          placeholder="Enter your Father Name"
           register={register}
-          registerOptions={{ required: "fatherName is required" }}
+          registerOptions={{ required: "father Name is required" }}
           error={errors.fatherName}
         />
 
         <InputField
-          label="motherName"
+          label="Mother Name"
           name="motherName"
-          placeholder="Enter motherName"
+          placeholder="Enter  youur Mother Name"
           register={register}
           registerOptions={{ required: "motherName is required" }}
           error={errors.motherName}
         />
 
         <InputField
-          label="email"
+          label="Email"
           name="email"
-          placeholder="Enter email"
+          placeholder="Enter your Email"
           register={register}
           registerOptions={{ required: "email is required" }}
           error={errors.email}
         />
 
         <InputField
-          label="religion"
+          label="Religion"
           name="religion"
-          placeholder="Enter religion"
+          placeholder="Enter Religion"
           register={register}
           registerOptions={{ required: "religion is required" }}
           error={errors.religion}
         />
 
         <InputField
-          label="cnic"
+          label="Cnic"
           name="cnic"
-          placeholder="Enter cnic"
+          placeholder="Enter your cnic number"
           register={register}
           registerOptions={{ required: "cnic is required" }}
           error={errors.cnic}
@@ -177,48 +179,48 @@ export default function UserForm({
           error={errors.Gender}
         />
         <InputField
-          label="contact"
+          label="Contact"
           name="contact"
-          placeholder="Enter contact"
+          placeholder="Enter your contact number"
           register={register}
-          registerOptions={{ required: "contact is required" }}
+          registerOptions={{ required: "contact number is required" }}
           error={errors.contact}
         />
         <InputField
-          label="permenentAddress"
+          label="Permenent Address"
           name="permenentAddress"
-          placeholder="Enter permenent Address"
+          placeholder="Enter  your permenent Address"
           register={register}
           registerOptions={{ required: "permenent Address is required" }}
           error={errors.permenentAddress}
         />
         <InputField
-          label="city"
+          label="City"
           name="city"
-          placeholder="Enter city name"
+          placeholder="Enter your city name"
           register={register}
           registerOptions={{ required: "city name is required" }}
           error={errors.city}
         />
         <InputField
-          label="country"
+          label="Country"
           name="country"
-          placeholder="Enter country"
+          placeholder="Enter  your country name"
           register={register}
           registerOptions={{ required: "country name is required" }}
           error={errors.country}
         />
         <InputField
-          label="postal Code"
+          label="Postal Code"
           name="postalCode"
-          placeholder="postalCode"
+          placeholder="Postal Code"
           register={register}
           error={errors.postalCode}
         />
         <InputField
-          label="birthDate"
+          label="Birthdate"
           name="birthDate"
-          placeholder="birthdate"
+          placeholder="Enter your Birthdate"
           register={register}
           registerOptions={{ required: "birthdate is required" }}
           error={errors.birthDate}
@@ -227,7 +229,7 @@ export default function UserForm({
         <InputField
           label="Emergency Contact Number"
           name="emergencyContactNumber"
-          placeholder="Emergency Contact Number"
+          placeholder="Enter Emergency Contact Number"
           register={register}
           registerOptions={{ required: "emergency Contact Number is required" }}
           error={errors.emergencyContactNumber}

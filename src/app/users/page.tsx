@@ -6,6 +6,7 @@ import { FaPlus } from "react-icons/fa";
 import { getAllUser } from "@/services/clientCrud/getUserService";
 import { UserType } from "./types";
 import UserForm from "@/components/User/page";
+import InputField from "@/components/InputField/InputField";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -115,11 +116,9 @@ export default function UserPage() {
       <div className="mb-6 flex items-center justify-between rounded-xl bg-white p-5 shadow-md transition hover:shadow-lg">
         <div className="flex flex-col">
           <h1 className="text-2xl font-semibold tracking-tight text-gray-900 sm:text-2xl">
-            Users
+             Client
           </h1>
-          <span className="text-sm text-gray-500">
-            Manage all registered users
-          </span>
+            
         </div>
 
         {!showForm && (
@@ -128,7 +127,7 @@ export default function UserPage() {
             className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-2.5 text-sm font-medium text-white shadow transition-all hover:from-blue-700 hover:to-blue-600 active:scale-95"
           >
             <FaPlus size={14} />
-            Add User
+            Add Client
           </button>
         )}
       </div>

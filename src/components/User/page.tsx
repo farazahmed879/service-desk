@@ -95,81 +95,87 @@ export default function UserForm({
   return (
     <div className="w-full rounded-xl border bg-white p-6 shadow-md">
       <h2 className="mb-6 text-2xl font-bold">
-        {existingUser ? "edit User" : "register User"}
+        {existingUser ? "edit User" : "Register Client"}
       </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-        <InputField
-          label="Name"
-          name="name"
-          placeholder="Enter Name"
-          register={register}
-          registerOptions={{ required: "Name is required" }}
-          error={errors.name}
-        />
-        <InputField
-          label="Role"
-          name="role"
-          placeholder="Enter Role"
-          register={register}
-          registerOptions={{ required: "role is required" }}
-          error={errors.role}
-        />
+        <div className="flex gap-4">
+          <InputField
+            label="Name"
+            name="name"
+            placeholder="Enter Name"
+            register={register}
+            registerOptions={{ required: "Name is required" }}
+            error={errors.name}
+          />
+          <InputField
+            label="Role"
+            name="role"
+            placeholder="Enter Role"
+            register={register}
+            registerOptions={{ required: "role is required" }}
+            error={errors.role}
+          />
+        </div>
+        <div className="flex gap-4">
+          <InputField
+            label="Father Name"
+            name="fatherName"
+            placeholder="Enter your Father Name"
+            register={register}
+            registerOptions={{ required: "father Name is required" }}
+            error={errors.fatherName}
+          />
 
-        <InputField
-          label="Father Name"
-          name="fatherName"
-          placeholder="Enter your Father Name"
-          register={register}
-          registerOptions={{ required: "father Name is required" }}
-          error={errors.fatherName}
-        />
+          <InputField
+            label="Mother Name"
+            name="motherName"
+            placeholder="Enter  youur Mother Name"
+            register={register}
+            registerOptions={{ required: "motherName is required" }}
+            error={errors.motherName}
+          />
+        </div>
 
-        <InputField
-          label="Mother Name"
-          name="motherName"
-          placeholder="Enter  youur Mother Name"
-          register={register}
-          registerOptions={{ required: "motherName is required" }}
-          error={errors.motherName}
-        />
+        <div className="flex gap-4">
+          <InputField
+            label="Email"
+            name="email"
+            placeholder="Enter your Email"
+            register={register}
+            registerOptions={{ required: "email is required" }}
+            error={errors.email}
+          />
 
-        <InputField
-          label="Email"
-          name="email"
-          placeholder="Enter your Email"
-          register={register}
-          registerOptions={{ required: "email is required" }}
-          error={errors.email}
-        />
+          <InputField
+            label="Religion"
+            name="religion"
+            placeholder="Enter Religion"
+            register={register}
+            registerOptions={{ required: "religion is required" }}
+            error={errors.religion}
+          />
+        </div>
+        <div className="flex gap-4">
+          <InputField
+            label="Cnic"
+            name="cnic"
+            placeholder="Enter your cnic number"
+            register={register}
+            registerOptions={{ required: "cnic is required" }}
+            error={errors.cnic}
+          />
 
-        <InputField
-          label="Religion"
-          name="religion"
-          placeholder="Enter Religion"
-          register={register}
-          registerOptions={{ required: "religion is required" }}
-          error={errors.religion}
-        />
-
-        <InputField
-          label="Cnic"
-          name="cnic"
-          placeholder="Enter your cnic number"
-          register={register}
-          registerOptions={{ required: "cnic is required" }}
-          error={errors.cnic}
-        />
-
-        <InputField
-          label="Age"
-          name="Age"
-          placeholder="Enter Age"
-          register={register}
-          registerOptions={{ required: "Age is required" }}
-          error={errors.Age}
-        />
-
+          <InputField
+            label="Age"
+            name="Age"
+            placeholder="Enter Age"
+            register={register}
+            registerOptions={{ required: "Age is required" }}
+            error={errors.Age}
+          />
+        </div>
+           <div className="flex gap-4" >
         <InputField
           label="Gender"
           name="Gender"
@@ -186,6 +192,8 @@ export default function UserForm({
           registerOptions={{ required: "contact number is required" }}
           error={errors.contact}
         />
+        </div>
+        <div  className="flex gap-4">
         <InputField
           label="Permenent Address"
           name="permenentAddress"
@@ -202,6 +210,8 @@ export default function UserForm({
           registerOptions={{ required: "city name is required" }}
           error={errors.city}
         />
+        </div>
+        <div  className=" flex gap-4" >
         <InputField
           label="Country"
           name="country"
@@ -217,6 +227,8 @@ export default function UserForm({
           register={register}
           error={errors.postalCode}
         />
+        </div>
+        <div className="flex gap-4" >
         <InputField
           label="Birthdate"
           name="birthDate"
@@ -234,6 +246,7 @@ export default function UserForm({
           registerOptions={{ required: "emergency Contact Number is required" }}
           error={errors.emergencyContactNumber}
         />
+        </div>
         <InputField
           label="image"
           type="file"
@@ -249,13 +262,13 @@ export default function UserForm({
             className="rounded-lg bg-blue-600 px-6 py-2 text-white transition hover:bg-blue-700"
             type="submit"
           >
-            submit
+            Submit
           </button>
           <button
             className="rounded-lg bg-gray-300 px-6 py-2 text-gray-800 transition hover:bg-gray-400"
             onClick={onCancel}
           >
-            cancel
+            Cancel
           </button>
         </div>
       </form>

@@ -67,9 +67,9 @@ export default function UserForm({
       formData.append("birthDate", data.birthDate);
       formData.append("emergencyContactNumber", data.emergencyContactNumber);
 
-      if (data.facePicture) {
-        formData.append("facePicture", data.facePicture  as File )     ;
-      }
+    if (data.facePicture && data.facePicture[0]) {
+  formData.append("facePicture", data.facePicture[0]);
+}
 
       const response = await Api.post(urls.client.create, formData);
 

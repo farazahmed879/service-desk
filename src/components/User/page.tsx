@@ -232,7 +232,7 @@ export default function UserForm({
         <InputField
           label="Birthdate"
           name="birthDate"
-          placeholder="Enter your Birthdate"
+          placeholder="Enter your Birthdate"  
           register={register}
           registerOptions={{ required: "birthdate is required" }}
           error={errors.birthDate}

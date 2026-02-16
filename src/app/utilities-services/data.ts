@@ -1,7 +1,10 @@
+
+
 export interface Service {
   title: string;
   slug: string;
-  image?: string;
+  image?: any;
+  children?: any;
 }
 
 export interface FormData {
@@ -13,38 +16,225 @@ export interface FormData {
 }
 
 export const SERVICES: Service[] = [
+
+  /* -------passport and its Services---------- */
   {
     title: " Passport Application",
     slug: "passport",
     image: "/images/services/passport/new.png",
+    children: [
+      {
+        title: "New Passport",
+        slug: "passport",
+        image: "/images/services/passport/new-passport.png",
+      },
+      {
+        title: "Renew Passport",
+        slug: "passport",
+        image: "/images/services/passport/renew-passport.png",
+      },
+      {
+        title: "Lost Passport",
+        slug: "passport",
+        image: "/images/services/passport/lost.png",
+      },
+      
+    ],
   },
 
+  /* ------- Cnic and its Services---------- */
   {
     title: "CNIC ",
     slug: "cnic",
     image: "/images/services/passport/cnic.png",
+    children: [
+      {
+        title: "New Cnic",
+        slug: "cnic",
+        image: "/images/services/passport/new-cnic.png",
+      },
+
+      {
+        title: "Renew Cnic",
+        slug: "cnic",
+        image: "/images/services/passport/renew-cnic.png",
+      },
+
+      {
+        title: "Lost Cnic",
+        slug: "cnic",
+        image: "/images/services/passport/lost-cnic.png",
+      },
+   
+    ],
   },
+  /* -------B-Form and its Services---------- */
   {
     title: "B-Form",
     slug: "b-form",
     image: "/images/services/passport/b-form.png",
+    children: [
+      {
+        title: "New B-Form",
+        slug: "b-form",
+        image: "/images/services/passport/new-bform.png",
+      },
+
+      {
+        title: "Renew B-Form",
+        slug: "b-form",
+        image: "/images/services/passport/renew-bform.png",
+      },
+
+      {
+        title: "Lost B-Form",
+        slug: "b-form",
+        image: "/images/services/passport/b-form.png",
+      },
+      
+    ],
   },
+
+  /* -------bills ,Taxes and challans and its Services---------- */ 
   {
-    title: "Bill & Payments",
-    slug: "challan-and-payments",
+    title: "Bill and payments",
+    slug: "bill-and-payments",
     image: "/images/services/passport/challan.png",
+    children: [
+      {
+        title: "Taxes and Challans",
+        slug: "bill-and-payments",
+        image: "/images/services/passport/challan.png",
+      },
+      {
+        title: "Deposit of Income Tax",
+        slug: "bill-and-payments",
+        image: "/images/services/passport/challan.png",
+      },
+      {
+        title: "Property Tax",
+        slug: "bill-and-payments",
+        image: "/images/services/passport/challan.png",
+      },
+      {
+        title: "Vehicle Tax",
+        slug: "bill-and-payments",
+        image: "/images/services/passport/challan.png",
+      },
+      {
+        title: "NTN Registration",
+        slug: "bill-and-payments",
+        image: "/images/services/passport/challan.png",
+      },
+    ],
   },
+
+  /* -------Vehicle and its Services---------- */
   {
-    title: "Vehicle Registration",
+    title: "Vehicle ",
     slug: "vehicle-registration",
     image: "/images/services/passport/vehicle.png",
+    children: [
+      {
+        title: "Registration",
+        slug: "vehicle-registration",
+        image: "/images/services/passport/vehicle.png",
+      },
+      {
+        title: "Vehicle Transfer",
+        slug: "vehicle-registration",
+        image: "/images/services/passport/vehicle.png",
+      },
+      {
+        title: "Tax Payment",
+        slug: "vehicle-registration",
+        image: "/images/services/passport/vehicle.png",
+      },
+    ],
   },
+
+
+  /* -------Driving License and its Services---------- */
   {
     title: "Driving License",
     slug: "driving-license",
     image: "/images/services/passport/driving.png",
+    children: [
+      {
+        title: "New License",
+        slug: "driving-license",
+        image: "/images/services/passport/driving.png",
+      },
+      {
+        title: "Renew License",
+        slug: "driving-license",
+        image: "/images/services/passport/driving.png",
+      },
+      {
+        title: " Lost License",
+        slug: "driving-license",
+        image: "/images/services/passport/driving.png",
+      },
+    ],
   },
 
+  /* -------Gas Connection Service and its Services---------- */
+  {
+    title: "Gas",
+    slug: "gas",
+    image: "/images/services/passport/gas.png",
+    children: [
+      {
+        title: "Gas Connection",
+        slug: "gas-connection",
+        image: "/images/services/passport/gas.png",
+      },
+      {
+        title: "Gas Billing",
+        slug: "gas-connection",
+        image: "/images/services/passport/gas.png",
+      },
+      {
+        title: "Meter Change",
+        slug: "gas-connection",
+        image: "/images/services/passport/gas.png",
+      },
+      {
+        title: "Name Change",
+        slug: "gas-connection",
+        image: "/images/services/passport/gas.png",
+      },
+    ],
+  },
+
+  /* ------Electric Service and its Services---------- */ 
+  {
+    title: "Electric ",
+    slug: "electric",
+    image: "/images/services/passport/electric.png",
+    children: [
+      {
+        title: "Connection",
+        slug: "electric",
+        image: "/images/services/passport/electric.png",
+      },
+      {
+        title: "Billing",
+        slug: "electric",
+        image: "/images/services/passport/electric.png",
+      },
+      {
+        title: "Meter Change",
+        slug: "electric",
+        image: "/images/services/passport/electric.png",
+      },
+      {
+        title: "Name  Change",
+        slug: "electric",
+        image: "/images/services/passport/electric.png",  
+      },
+    ],
+  },
   {
     title: "Number Plate ",
     slug: "number-plate",

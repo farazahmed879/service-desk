@@ -4,9 +4,9 @@ import "@/css/satoshi.css";
 import "@/css/style.css";
 
 import { usePathname } from "next/navigation";
-import { Sidebar } from "@/components/Layouts/sidebar";
-import { Header } from "@/components/Layouts/header";
-import { SidebarProvider } from "@/components/Layouts/sidebar/sidebar-context";
+import { Sidebar } from "@/components/_custom-components/Layouts/sidebar";
+import { Header } from "@/components/_custom-components/Layouts/header";
+import { SidebarProvider } from "@/components/_custom-components/Layouts/sidebar/sidebar-context";
 import { PropsWithChildren } from "react";
 
 export default function RootLayout({ children }: PropsWithChildren) {

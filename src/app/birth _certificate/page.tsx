@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import BirthCertificateForm from "@/components/birthCertificate/BirthCertificateForm";
+import BirthCertificateForm from "@/components/BirthCertificate/BirthCertificateForm";
 
 export default function BirthCertificateServicePage() {
   return (

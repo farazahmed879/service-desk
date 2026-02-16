@@ -1,5 +1,5 @@
 "use client";
-import ServiceForm from "@/components/services/ServiceForm";
+import ServiceForm from "@/components/CreateService/ServiceForm";
 
 export default function AddServicePage() {
   return (

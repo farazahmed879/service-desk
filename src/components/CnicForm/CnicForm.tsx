@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import InputField from "@/components/InputField/InputField";
+import InputField from "@/components/_custom-components/InputField/InputField";
 import type { CnicFormData } from "@/app/users/types";
 import { getAll, create } from "@/services/crud_services";
 

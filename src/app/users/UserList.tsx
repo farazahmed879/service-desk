@@ -6,7 +6,7 @@ import DataTable, {
   type Column,
   type PaginationProps,
   type SortingProps,
-} from "@/components/DataTable/DataTable";
+} from "@/components/_custom-components/DataTable/DataTable";
 
 interface Client {
   id: number;

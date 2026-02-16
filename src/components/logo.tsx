@@ -1,8 +1,8 @@
 import darkLogo from "@/assets/logos/dark.svg";
 import logo from "@/assets/logos/Capture-removebg-preview.png";
 import Image from "next/image";
-import * as Icons from "@/components/Layouts/sidebar/icons";
-import { useSidebarContext } from "@/components/Layouts/sidebar/sidebar-context";
+import * as Icons from "@/components/_custom-components/Layouts/sidebar/icons";
+import { useSidebarContext } from "@/components/_custom-components/Layouts/sidebar/sidebar-context";
 
 export function Logo() {
   const { toggleSidebar, isOpen } = useSidebarContext();

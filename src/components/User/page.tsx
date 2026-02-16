@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
-import InputField from "@/components/InputField/InputField";
+import InputField from "@/components/_custom-components/InputField/InputField";
 import { FormValues, UserFormProps } from "@/app/users/types";
 import axios from "axios";
 import { urls } from "@/app/utilities-services/api-urls";

@@ -3,7 +3,7 @@
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import InputField from "@/components/InputField/InputField";
+import InputField from "@/components/_custom-components/InputField/InputField";
 
 import { FaPlus, FaUsers } from "react-icons/fa";
 import { getAll } from "@/services/crud_services";

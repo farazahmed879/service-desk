@@ -11,6 +11,7 @@ import Api from "@/utils/api";
 import { urls } from "../utilities-services/api-urls";
 // import { useState } from "react"
 import { FaTimes } from "react-icons/fa"
+import axios from "axios";
 const ITEMS_PER_PAGE = 10;
 
 export default function UserPage() {
@@ -112,13 +113,22 @@ export default function UserPage() {
 
   const handleEdit = (user: UserType) => {
     setEditingUser(user);
-    setShowForm(true);
+    setShowForm(true);  
   };
 
-  const handleDelete = (id: number) => {
-    const filteredUsers = users.filter((u) => u.id !== id);
-    setUsers(filteredUsers);
-    localStorage.setItem("users", JSON.stringify(filteredUsers));
+  const handleDelete = async  (id:any) => {
+    console.log({id});
+     
+    try {
+
+        const deleteResponse =  await Api.delete(`${urls.client.delete}/${id}` )
+     console.log(deleteResponse.data);
+     
+
+      } catch (error:any) {
+        console.log(error.response.data);
+        
+      }
   };
   // ________________________getCLient By email
 

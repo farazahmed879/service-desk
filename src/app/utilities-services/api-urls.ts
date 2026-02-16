@@ -2,6 +2,8 @@
 // create /post
 //getByCnic: "POST" (agar body me CNIC bhej rahe ho)
 
+import Api from "@/utils/api";
+
 //update /put to update the data
 //delete
 
@@ -12,6 +14,10 @@ delete: "DELETE",      // delete record
 get: "GET",             // single record by id
 getByCnic: "GET / POST" //  depend on situation 
 */
+  
+
+
+
 
 export const urls = {
   passport: {
@@ -57,6 +63,16 @@ export const urls = {
     get: "/services/getVehicleData",
     getDataByCnic: "/services/vehicleDataByCnic",
   },
+
+
+ client:{
+  create:  "/client/create",
+  get:"get-by-email",
+  update:"",
+  delete:"/delete-by-id/:id",
+  getAll:"/get-all"
+ },
+
   driving_license: {
     getAll: "",
     create: "",
@@ -97,4 +113,8 @@ export const urls = {
     get: "",
     getByCnic: "/services/PassportByCnic",
   },
+
+
+   
+
 };

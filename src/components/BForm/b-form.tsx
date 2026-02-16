@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 // import { getAll } from "@/app/services/crud_services";
 
-import type { b_form } from "@/app/dashboard/users/types";
+import type { b_form } from "@/app/users/types";
 
 export default function b_Form() {
   const router = useRouter();

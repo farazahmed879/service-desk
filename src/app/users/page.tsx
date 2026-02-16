@@ -6,7 +6,7 @@ import { FaPlus } from "react-icons/fa";
 import { getAllUser } from "@/services/clientCrud/getUserService";
 import { UserType } from "./types";
 import UserForm from "@/components/User/page";
-import InputField from "@/components/InputField/InputField";
+
 import Api from "@/utils/api";
 import { urls } from "../utilities-services/api-urls";
 // import { useState } from "react"

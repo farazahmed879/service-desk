@@ -16,8 +16,10 @@ export default function ServicePage() {
 
   const serviceComponents: Record<string, React.ComponentType<any>> = {
     "passport": Passport,
+
     "cnic": CnicForm,
     "b-form": b_Form,
+    
     // "challan-and-payments": "../challan_and_payments/challans",
     // "vehicle-registration": "../vehicle-Registration/registration",
     // "driving-license": "../driving-license/DrivingLicense",

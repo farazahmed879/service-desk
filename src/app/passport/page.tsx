@@ -48,7 +48,6 @@ export default function Passport() {
   };
 
 
-
   const fetchAllPassports = async () => {
     try {
       const res = await getAll<PassportType>(urls.passport.getAll);
@@ -60,7 +59,6 @@ export default function Passport() {
       setPassports([]);
     }
   };
-
 
 
   useEffect(() => {

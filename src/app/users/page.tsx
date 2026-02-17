@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import UserList from "./UserList";
+import { CustomButton } from "@/components/ui-elements/custom-button";
 import { FaPlus } from "react-icons/fa";
 import { getAllUser } from "@/services/clientCrud/getUserService";
 import { UserType } from "./types";
@@ -12,14 +13,18 @@ const ITEMS_PER_PAGE = 10;
 export default function UserPage() {
   const [users, setUsers] = useState<UserType[]>([]);
   const [showForm, setShowForm] = useState(false);
-  const [editingUser, setEditingUser] = useState<UserType | undefined>(undefined);
+  const [editingUser, setEditingUser] = useState<UserType | undefined>(
+    undefined,
+  );
 
   // ─── Pagination state ────────────────────────────────────────────
   const [currentPage, setCurrentPage] = useState(1);
 
   // ─── Sorting state ───────────────────────────────────────────────
   const [sortColumn, setSortColumn] = useState<string | null>(null);
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc" | null>(null);
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc" | null>(
+    null,
+  );
 
   useEffect(() => {
     const storedUsers = JSON.parse(localStorage.getItem("users") || "[]");
@@ -74,7 +79,10 @@ export default function UserPage() {
   }, [clients, sortColumn, sortDirection]);
 
   // ─── Pagination logic ───────────────────────────────────────────
-  const totalPages = Math.max(1, Math.ceil(sortedClients.length / ITEMS_PER_PAGE));
+  const totalPages = Math.max(
+    1,
+    Math.ceil(sortedClients.length / ITEMS_PER_PAGE),
+  );
   const paginatedClients = sortedClients.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE,
@@ -123,13 +131,13 @@ export default function UserPage() {
         </div>
 
         {!showForm && (
-          <button
+          <CustomButton
             onClick={() => setShowForm(true)}
-            className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-2.5 text-sm font-medium text-white shadow transition-all hover:from-blue-700 hover:to-blue-600 active:scale-95"
+            variant="gradient"
+            leftIcon={<FaPlus size={14} />}
           >
-            <FaPlus size={14} />
             Add User
-          </button>
+          </CustomButton>
         )}
       </div>
 
@@ -160,4 +168,3 @@ export default function UserPage() {
     </div>
   );
 }
-

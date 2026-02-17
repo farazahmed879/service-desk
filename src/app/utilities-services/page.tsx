@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { SERVICES } from "./data";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { CustomButton } from "@/components/ui-elements/custom-button";
 
 export default function ServicesPage() {
   const router = useRouter();
@@ -72,9 +73,7 @@ export default function ServicesPage() {
         />
 
         <Link href="./services/add">
-          <button className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-            Add Service
-          </button>
+          <CustomButton>Add Service</CustomButton>
         </Link>
       </div>
 
@@ -138,12 +137,9 @@ export default function ServicesPage() {
 
       <div className="mt-6 flex justify-end">
         {isChildView && (
-          <button
-            onClick={handleBack}
-            className="rounded-lg bg-blue-500 px-6 py-3 text-white transition hover:bg-blue-600"
-          >
+          <CustomButton onClick={handleBack} variant="secondary">
             Back
-          </button>
+          </CustomButton>
         )}
       </div>
     </div>

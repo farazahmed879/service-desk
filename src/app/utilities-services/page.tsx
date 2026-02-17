@@ -135,7 +135,7 @@ export default function ServicesPage() {
           ))}
       </div>
 
-      <div className="mt-6 flex justify-end">
+      <div className="mt-6 flex justify-end ">
         {isChildView && (
           <CustomButton onClick={handleBack} variant="secondary">
             Back

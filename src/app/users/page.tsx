@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import UserList from "./UserList";
+import { CustomButton } from "@/components/ui-elements/custom-button";
 import { FaPlus } from "react-icons/fa";
 import { getAllUser } from "@/services/clientCrud/getUserService";
 import { UserType } from "./types";
@@ -183,13 +184,13 @@ export default function UserPage() {
         </div>
 
         {!showForm && (
-          <button
+          <CustomButton
             onClick={() => setShowForm(true)}
-            className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-2.5 text-sm font-medium text-white shadow transition-all hover:from-blue-700 hover:to-blue-600 active:scale-95"
+            variant="gradient"
+            leftIcon={<FaPlus size={14} />}
           >
-            <FaPlus size={14} />
-            Add Client
-          </button>
+            Add User
+          </CustomButton>
         )}
 
        

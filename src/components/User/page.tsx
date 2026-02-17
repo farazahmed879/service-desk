@@ -210,8 +210,7 @@ export default function UserForm({
           registerOptions={{ required: "city name is required" }}
           error={errors.city}
         />
-        </div>
-        <div  className=" flex gap-4" >
+        
         <InputField
           label="Country"
           name="country"

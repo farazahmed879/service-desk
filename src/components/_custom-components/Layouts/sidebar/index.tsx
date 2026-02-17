@@ -55,14 +55,16 @@ export function Sidebar() {
 
       <aside
         className={cn(
-          "max-w-[290px] overflow-hidden rounded-r-3xl border-r border-gray-200 bg-gray-200 transition-[width] duration-300 ease-in-out dark:border-gray-800 dark:bg-gray-dark",
-          isMobile ? "fixed bottom-0 top-0 z-50 w-[290px]" : "sticky top-0 h-screen",
+          "max-w-[400px] overflow-hidden rounded-r-3xl border-r border-gray-200 bg-gray-200 transition-[width] duration-300 ease-in-out dark:border-gray-800 dark:bg-gray-dark",
+          isMobile
+            ? "fixed bottom-0 top-0 z-50 w-[290px]"
+            : "sticky top-0 h-screen",
           isMobile
             ? isOpen
               ? "translate-x-0"
               : "-translate-x-full"
             : isOpen
-              ? "w-[290px]"
+              ? "w-[400px]"
               : "w-[90px]",
         )}
         aria-label="Main navigation"
@@ -140,7 +142,7 @@ export function Sidebar() {
                                   className={cn(
                                     "ml-auto rotate-180 transition-transform duration-200",
                                     expandedItems.includes(item.title) &&
-                                    "rotate-0",
+                                      "rotate-0",
                                   )}
                                   aria-hidden="true"
                                 />
@@ -172,10 +174,10 @@ export function Sidebar() {
                               "url" in item
                                 ? item.url + ""
                                 : "/" +
-                                item?.title
-                                  .toLowerCase()
-                                  .split(" ")
-                                  .join("-");
+                                  item?.title
+                                    .toLowerCase()
+                                    .split(" ")
+                                    .join("-");
 
                             return (
                               <MenuItem

@@ -31,7 +31,6 @@ export default function ServicesPage() {
     }
   }, []);
   const handleServiceClick = (service: any) => {
-
     if (service.children && service.children.length > 0) {
       renderUtilities(service.children);
       return;
@@ -42,11 +41,9 @@ export default function ServicesPage() {
     }
   };
 
-
   const renderUtilities = (data: any[] = []) => {
     setAllServices(data);
     setIsChildView(data !== SERVICES);
-
   };
   const handleReset = () => {
     renderUtilities(SERVICES);
@@ -55,7 +52,6 @@ export default function ServicesPage() {
   const handleBack = () => {
     renderUtilities(SERVICES);
   };
-
 
   return (
     <div>
@@ -76,7 +72,7 @@ export default function ServicesPage() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
         {allServices
           .filter((service) =>
             selectedService
@@ -86,32 +82,60 @@ export default function ServicesPage() {
           .map((service, index) => (
             <div
               key={`${service.slug}-${index}`}
-              className="cursor-pointer rounded-lg border p-4 transition hover:bg-gray-50"
+              className="group relative cursor-pointer overflow-hidden rounded-2xl border border-gray-100 bg-white p-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-gray-800 dark:bg-gray-dark"
+              onClick={() => handleServiceClick(service)}
             >
-              <div onClick={() => handleServiceClick(service)}>
-                {service.image && (
-                  <div className="flex h-32 w-full items-center justify-center overflow-hidden rounded-t-lg bg-gray-50 sm:h-36 md:h-40">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="max-h-full max-w-full object-contain"
-                    />
+              <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 p-6 dark:from-gray-800 dark:to-gray-900">
+                {service.image ? (
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="mx-auto h-28 w-auto object-contain transition-transform duration-500 group-hover:scale-110 sm:h-32"
+                  />
+                ) : (
+                  <div className="flex h-28 items-center justify-center sm:h-32">
+                    <span className="text-4xl text-blue-500">🛠️</span>
                   </div>
                 )}
+                {/* Subtle overlay gradient on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-600/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              </div>
 
-                <h3 className="mt-2 text-lg font-semibold">{service.title}</h3>
+              <div className="p-4">
+                <h3 className="text-lg font-bold text-gray-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
+                  {service.title}
+                </h3>
+                <p className="mt-1 line-clamp-2 text-sm text-gray-500 dark:text-dark-6">
+                  Experience seamless {service.title} processing with our
+                  efficient utility tools.
+                </p>
+                <div className="mt-4 flex items-center text-xs font-semibold uppercase tracking-wider text-blue-600 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100 dark:text-blue-400">
+                  View Service
+                  <svg
+                    className="ml-1 h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </div>
               </div>
             </div>
           ))}
-
       </div>
 
       <div className="mt-6 flex justify-end">
         {isChildView && (
-          <button onClick={handleBack}
+          <button
+            onClick={handleBack}
             className="rounded-lg bg-blue-500 px-6 py-3 text-white transition hover:bg-blue-600"
           >
-
             Back
           </button>
         )}

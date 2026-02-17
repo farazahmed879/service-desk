@@ -62,6 +62,10 @@ export interface PassportType {
   fatherCnicBackUrl?: string;
   motherCnicFrontUrl?: string;
   motherCnicBackUrl?: string;
+  fullName?: string;
+  age?: number;
+  passportType?: string;
+  role?: any;
 }
 export interface UserFormState {
   id: number;
@@ -112,19 +116,21 @@ export interface PassportFormData {
   motherCnicBack: File | null;
 }
 export interface CnicFormData {
+  id: string;
+  firstName: string;
   userName: string;
-  MiddleName: string;
-  FullName: string;
-  LastName: string;
-  FatherName: string;
-  DOB: string;
-  PlaceOfBirth: string;
-  CNIC: string;
-  Gender: string;
-  ContactNumber: string;
-  Email: string;
-  CurrentAddress: string;
-  PermanentAddress: string;
+  middleName: string;
+  fullName: string;
+  lastName: string;
+  fatherName: string;
+  dob: string;
+  placeOfBirth: string;
+  cnic: string;
+  gender: string;
+  contactNumber: string;
+  email: string;
+  currentAddress: string;
+  permanentAddress: string;
   birthCertificate: File | null;
   fatherCnicFront: File | null;
   fatherCnicBack: File | null;
@@ -133,6 +139,7 @@ export interface CnicFormData {
   livePhoto: File | null;
   signatureImage: File | null;
 }
+
 
 export interface b_form {
   childName: string;

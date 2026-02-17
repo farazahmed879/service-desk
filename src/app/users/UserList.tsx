@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FaTrash } from "react-icons/fa";
+import { CustomButton } from "@/components/ui-elements/custom-button";
 import DataTable, {
   type Column,
   type PaginationProps,
@@ -24,10 +25,10 @@ interface UserListProps {
   onDelete: (id: number) => any;
   pagination?: PaginationProps;
   sorting?: SortingProps;
-  isLoading?: boolean; 
+  isLoading?: boolean;
 }
 
-export default function UserList({ 
+export default function UserList({
   clients,
   onEdit,
   onDelete,
@@ -70,13 +71,14 @@ export default function UserList({
       header: "",
       cell: (row) => (
         <div className="flex justify-center gap-2">
-          <button
+          <CustomButton
+            variant="danger"
+            size="icon"
             onClick={() => onDelete(row.id)}
-            className="flex items-center justify-center rounded p-2 text-red-600 transition hover:bg-red-100"
             title="Delete"
           >
             <FaTrash size={14} />
-          </button>
+          </CustomButton>
         </div>
       ),
       headerClassName: "min-w-[120px] text-center",

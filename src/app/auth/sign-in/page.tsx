@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { CustomButton } from "@/components/ui-elements/custom-button";
 import { json } from "stream/consumers";
 
 export default function SignIn() {
@@ -28,14 +29,14 @@ export default function SignIn() {
 
       alert(`login successFullyy `);
       console.log("backend response", res.user);
-      sessionStorage.setItem("data",JSON.stringify(res.user._doc));
+      sessionStorage.setItem("data", JSON.stringify(res.user._doc));
       sessionStorage.setItem("token", res.user.token);
       router.push("/auth/sign-in");
 
       router.push("/");
     } catch (error: any) {
       console.log(error.message);
-      alert(error.message)
+      alert(error.message);
 
       console.log(error?.response);
     }
@@ -68,12 +69,9 @@ export default function SignIn() {
                     onChange={(e) => setPassword(e.target.value)}
                   />
 
-                  <button
-                    type="submit"
-                    className="w-full rounded-lg bg-primary p-3 text-white hover:bg-opacity-90"
-                  >
+                  <CustomButton type="submit" fullWidth variant="primary">
                     Sign In
-                  </button>
+                  </CustomButton>
 
                   <div className="mt-4 text-center">
                     <p>
@@ -84,24 +82,18 @@ export default function SignIn() {
                       >
                         Sign Up
                       </Link>
-                      
-                    
                     </p>
-                    
                   </div>
                   <div className="mt-4 text-center">
                     <p>
-                        Can’t remember password? 
+                      Can’t remember password?
                       <Link
                         href="/auth/forget-password"
                         className="text-primary underline"
                       >
                         Reset
                       </Link>
-                      
-                    
                     </p>
-                    
                   </div>
                 </form>
               </Signin>

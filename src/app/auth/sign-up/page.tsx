@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { signUpService } from "@/services/authServices";
+import { CustomButton } from "@/components/ui-elements/custom-button";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -33,10 +34,8 @@ export default function SignUpPage() {
     } catch (error: any) {
       if (error?.response?.data) {
         console.log(error.response.data.message);
-      
-      
       }
-      
+
       alert("signup fail");
     }
 
@@ -125,12 +124,9 @@ export default function SignUpPage() {
             />
           </div>
 
-          <button
-            type="submit"
-            className="hover:bg-primary-dark w-full rounded-lg bg-primary p-3 font-semibold text-white transition duration-300"
-          >
+          <CustomButton type="submit" fullWidth variant="primary">
             Sign Up
-          </button>
+          </CustomButton>
         </form>
 
         <p className="mt-6 text-center text-gray-500 dark:text-gray-400">

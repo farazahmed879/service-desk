@@ -40,6 +40,12 @@ export default function ServicesPage() {
     if (service.title === "New Passport") {
       router.push("/passport");
     }
+    if (service.title === "New Cnic") {
+    router.push("/cnic");  
+  }
+    if (service.title === "New B-Form") {
+    router.push("/b-form");
+  }
   };
 
   const renderUtilities = (data: any[] = []) => {

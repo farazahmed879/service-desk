@@ -1,5 +1,3 @@
-
-
 export interface Service {
   title: string;
   slug: string;
@@ -16,7 +14,6 @@ export interface FormData {
 }
 
 export const SERVICES: Service[] = [
-
   /* -------passport and its Services---------- */
   {
     title: " Passport Application",
@@ -38,7 +35,6 @@ export const SERVICES: Service[] = [
         slug: "passport",
         image: "/images/services/passport/lost.png",
       },
-      
     ],
   },
 
@@ -65,9 +61,10 @@ export const SERVICES: Service[] = [
         slug: "cnic",
         image: "/images/services/passport/lost-cnic.png",
       },
-   
     ],
   },
+
+ 
   /* -------B-Form and its Services---------- */
   {
     title: "B-Form",
@@ -77,7 +74,7 @@ export const SERVICES: Service[] = [
       {
         title: "New B-Form",
         slug: "b-form",
-        image: "/images/services/passport/new-bform.png",
+        image: "/images/services/passport/b-form.png",
       },
 
       {
@@ -91,11 +88,35 @@ export const SERVICES: Service[] = [
         slug: "b-form",
         image: "/images/services/passport/b-form.png",
       },
-      
     ],
   },
+   {
+    title: "Nadra",
+    slug: "nadra",
+    image: "/images/services/passport/cnic.png",
+      children: [ 
+      {
+        title: "CNIC ",
+        slug: "nadra",
+        image: "/images/services/passport/cnic.png",
+      },
+      {
+        title: "birth certificate ",
+        slug: "nadra",
+        image: "/images/services/passport/cnic.png",
+      },
+      {
+        title: "Nikah name ",
+        slug: "nadra",
+        image: "/images/services/passport/cnic.png",
+      },
 
-  /* -------bills ,Taxes and challans and its Services---------- */ 
+      
+      ],
+
+  },
+
+  /* -------bills ,Taxes and challans and its Services---------- */
   {
     title: "Bill and payments",
     slug: "bill-and-payments",
@@ -150,9 +171,18 @@ export const SERVICES: Service[] = [
         slug: "vehicle-registration",
         image: "/images/services/passport/vehicle.png",
       },
+      {
+        title: "Number Plate ",
+        slug: "number-plate",
+        image: "/images/services/passport/number-plate.png",
+      },
+      {
+        title: "Vehicle Transfer",
+        slug: "vehicle-transfer",
+        image: "/images/services/passport/vehicle-transfer.png",
+      },
     ],
   },
-
 
   /* -------Driving License and its Services---------- */
   {
@@ -207,7 +237,7 @@ export const SERVICES: Service[] = [
     ],
   },
 
-  /* ------Electric Service and its Services---------- */ 
+  /* ------Electric Service and its Services---------- */
   {
     title: "Electric ",
     slug: "electric",
@@ -231,20 +261,20 @@ export const SERVICES: Service[] = [
       {
         title: "Name  Change",
         slug: "electric",
-        image: "/images/services/passport/electric.png",  
+        image: "/images/services/passport/electric.png",
       },
     ],
   },
-  {
+  /*  {
     title: "Number Plate ",
     slug: "number-plate",
     image: "/images/services/passport/number-plate.png",
-  },
-  {
+  }, */
+  /*  {
     title: "Vehicle Transfer",
     slug: "vehicle-transfer",
     image: "/images/services/passport/vehicle-transfer.png",
-  },
+  }, */
   {
     title: "Birth Certificate",
     slug: "birth-certificate",

@@ -8,10 +8,9 @@ import Link from "next/link";
 export default function ServicesPage() {
   const router = useRouter();
   const [search, setSearch] = useState("");
-  const [activeService, setActiveService] = useState<string | null>(null);
   const [selectedService, setSelectedService] = useState<string | null>(null);
+  const [isChildView, setIsChildView] = useState(false);
 
-  const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     service: "",
     name: "",
@@ -23,7 +22,6 @@ export default function ServicesPage() {
   const goToService = (service: any) => {
     router.push(`/${service.slug}`);
   };
-  const [isChildView, setIsChildView] = useState(false);
 
   const [allServices, setAllServices] = useState(SERVICES);
   useEffect(() => {
@@ -32,9 +30,23 @@ export default function ServicesPage() {
       setAllServices([...SERVICES, ...JSON.parse(stored)]);
     }
   }, []);
+  const handleServiceClick = (service: any) => {
+
+    if (service.children && service.children.length > 0) {
+      renderUtilities(service.children);
+      return;
+    }
+
+    if (service.title === "New Passport") {
+      router.push("/passport");
+    }
+  };
+
 
   const renderUtilities = (data: any[] = []) => {
     setAllServices(data);
+    setIsChildView(data !== SERVICES);
+
   };
   const handleReset = () => {
     renderUtilities(SERVICES);
@@ -43,6 +55,7 @@ export default function ServicesPage() {
   const handleBack = () => {
     renderUtilities(SERVICES);
   };
+
 
   return (
     <div>
@@ -75,7 +88,7 @@ export default function ServicesPage() {
               key={`${service.slug}-${index}`}
               className="cursor-pointer rounded-lg border p-4 transition hover:bg-gray-50"
             >
-              <div onClick={() => renderUtilities(service.children)}>
+              <div onClick={() => handleServiceClick(service)}>
                 {service.image && (
                   <div className="flex h-32 w-full items-center justify-center overflow-hidden rounded-t-lg bg-gray-50 sm:h-36 md:h-40">
                     <img
@@ -90,15 +103,18 @@ export default function ServicesPage() {
               </div>
             </div>
           ))}
+
       </div>
 
       <div className="mt-6 flex justify-end">
-        <button
-          onClick={handleBack}
-          className="rounded-lg bg-blue-500 px-6 py-3 text-white transition hover:bg-blue-600"
-        >
-          Back
-        </button>
+        {isChildView && (
+          <button onClick={handleBack}
+            className="rounded-lg bg-blue-500 px-6 py-3 text-white transition hover:bg-blue-600"
+          >
+
+            Back
+          </button>
+        )}
       </div>
     </div>
   );

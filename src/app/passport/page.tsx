@@ -14,7 +14,7 @@ export default function Passport() {
   const router = useRouter();
   const [passports, setPassports] = useState<PassportType[]>([]);
   const [showForm, setShowForm] = useState(false);
-  
+
   const [selectedPassport, setSelectedPassport] = useState<PassportType | null>(
     null,
   );
@@ -72,7 +72,7 @@ export default function Passport() {
         <div className="flex items-end justify-between gap-4">
           <div className="flex flex-col">
             <h1 className="mb-6 text-2xl font-bold text-gray-700">
-              Passport Service
+              New Passport
             </h1>
             <label className="mb-1 font-medium text-gray-700">User :</label>
             <input

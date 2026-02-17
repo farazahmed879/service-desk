@@ -180,7 +180,7 @@ export const SERVICES: Service[] = [
 
   /* -------Gas Connection Service and its Services---------- */
   {
-    title: "Gas",
+    title: "Sui Gas",
     slug: "gas",
     image: "/images/services/passport/gas.png",
     children: [

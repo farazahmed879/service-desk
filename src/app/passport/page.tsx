@@ -67,6 +67,7 @@ export default function Passport() {
 
 
   return (
+
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
       {!showForm && (
         <div className="flex items-end justify-between gap-4">
@@ -96,32 +97,7 @@ export default function Passport() {
         </div>
       )}
 
-      <div className="mt-6 rounded-md bg-white shadow">
-        {passports.length === 0 ? (
-          <p className="p-4 text-gray-500">No passports found</p>
-        ) : (
-          passports.map((passport, index) => (
-            <div
-              key={passport.cnic + "-" + index}
-              className="flex justify-between border-b p-4 hover:bg-gray-50"
-            >
-              <div>
-                <p className="font-semibold">
-                  {passport.firstName} {passport.lastName}
-                </p>
-                <p className="text-sm text-gray-600">CNIC: {passport.cnic}</p>
-              </div>
-
-              <button
-                onClick={() => setSelectedPassport(passport)}
-                className="text-sm text-blue-600"
-              >
-                View
-              </button>
-            </div>
-          ))
-        )}
-      </div>
+    
 
       {selectedPassport && (
         <div className="mt-4 rounded-md border bg-gray-50 p-4">

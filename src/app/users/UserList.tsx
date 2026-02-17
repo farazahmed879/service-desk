@@ -69,7 +69,7 @@ export default function UserList({
     },
     {
       header: "",
-      cell: (row) => (
+      cell: (row:Client , rowIdx: number) => (
         <div className="flex justify-center gap-2">
           <CustomButton
             variant="danger"
@@ -84,6 +84,7 @@ export default function UserList({
       headerClassName: "min-w-[120px] text-center",
     },
   ];
+
 
   return (
     <div className="grid overflow-x-auto overflow-y-visible rounded-[10px] bg-white px-7.5 pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card">

@@ -81,7 +81,7 @@ export interface UserFormState {
   passportExpiry: string;
   passportCountry: string;
   passportType: string;
-  image: File | null;
+  image: FileList ;
 }
 export interface FormData {
   service: string;
@@ -264,7 +264,7 @@ export interface FormValues {
   birthDate: string;
   role: string;
   religion: string;
-  facePicture: File | null;
+  facePicture: FileList;
 }
 
 export interface UserList {

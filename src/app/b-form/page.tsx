@@ -3,10 +3,14 @@
 import React from "react";
 import BForm from "@/components/BForm/b-form";
 
-export default function BFormServicePage() {
+interface BFormServicePageProps {
+  serviceType?: string;
+}
+
+export default function BFormServicePage({ serviceType }: BFormServicePageProps) {
   return (
     <div >
-      <BForm />
+      <BForm serviceType={serviceType} />
     </div>
   );
 }

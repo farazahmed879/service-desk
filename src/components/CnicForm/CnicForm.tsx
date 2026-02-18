@@ -11,10 +11,25 @@ import CNICList from "./cniclist";
 import { getAll, create } from "@/services/crud_services";
 import { FaPlus, FaUsers } from "react-icons/fa";
 
-export default function CnicForm() {
+interface CnicFormProps {
+  serviceType?: string;
+}
+
+export default function CnicForm({ serviceType = "new-Cnic" }: CnicFormProps) {
   const router = useRouter();
 
-  const [showForm, setShowForm] = useState(false);
+  const getTitle = () => {
+    switch (serviceType) {
+      case "renew-Cnic":
+        return "Renew Cnic";
+      case "lost-Cnic":
+        return "Lost Cnic";
+      default:
+        return "New Cnic";
+    }
+  };
+    const [showForm, setShowForm] = useState(false);
+
   const { register, handleSubmit, control, reset } = useForm<CnicFormData>({
     defaultValues: {
       userName: "",
@@ -104,7 +119,7 @@ export default function CnicForm() {
         <div className="flex items-end justify-between gap-4">
           <div className="flex flex-col">
             <h1 className="mb-6 text-2xl font-bold text-gray-700">
-              New Cnic
+              {getTitle()}
             </h1>
 
           </div>

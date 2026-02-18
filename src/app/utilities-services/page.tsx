@@ -8,6 +8,7 @@ import { CustomButton } from "@/components/ui-elements/custom-button";
 
 export default function ServicesPage() {
   const router = useRouter();
+  
   const [search, setSearch] = useState("");
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [isChildView, setIsChildView] = useState(false);
@@ -31,21 +32,22 @@ export default function ServicesPage() {
       setAllServices([...SERVICES, ...JSON.parse(stored)]);
     }
   }, []);
+  
   const handleServiceClick = (service: any) => {
-    if (service.children && service.children.length > 0) {
-      renderUtilities(service.children);
-      return;
-    }
+  if (service.children && service.children.length > 0) {
+    renderUtilities(service.children);
+    return;
+  }
 
-    if (service.title === "New Passport") {
-      router.push("/passport");
+  router.push(service.route);
+
+
+   /*  if (service.title === "New Cnic") {
+      router.push("/cnic");
     }
-    if (service.title === "New Cnic") {
-    router.push("/cnic");  
-  }
     if (service.title === "New B-Form") {
-    router.push("/b-form");
-  }
+      router.push("/b-form");
+    } */
   };
 
   const renderUtilities = (data: any[] = []) => {
@@ -102,7 +104,6 @@ export default function ServicesPage() {
                     <span className="text-4xl text-blue-500">🛠️</span>
                   </div>
                 )}
-                {/* Subtle overlay gradient on hover */}
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-600/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </div>
 
@@ -135,7 +136,7 @@ export default function ServicesPage() {
           ))}
       </div>
 
-      <div className="mt-6 flex justify-end ">
+      <div className="mt-6 flex justify-end">
         {isChildView && (
           <CustomButton onClick={handleBack} variant="secondary">
             Back

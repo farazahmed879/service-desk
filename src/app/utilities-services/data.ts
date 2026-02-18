@@ -3,6 +3,7 @@ export interface Service {
   slug: string;
   image?: any;
   children?: any;
+  route?:any;
 }
 
 export interface FormData {
@@ -21,19 +22,22 @@ export const SERVICES: Service[] = [
     image: "/images/services/passport/new.png",
     children: [
       {
-        title: "New Passport",
-        slug: "passport",
+        title: "NewPassport",
+        slug: "new passport",
         image: "/images/services/passport/new-passport.png",
+        route: "/passport/new-passport",
       },
       {
-        title: "Renew Passport",
-        slug: "passport",
+        title: "RenewPassport",
+        slug: "renew passport",
         image: "/images/services/passport/renew-passport.png",
+        route: "/passport/renew-passport",
       },
       {
-        title: "Lost Passport",
-        slug: "passport",
+        title: "LostPassport",
+        slug: "lostpassport",
         image: "/images/services/passport/lost.png",
+        route: "/passport/lost-passport",
       },
     ],
   },
@@ -45,26 +49,28 @@ export const SERVICES: Service[] = [
     image: "/images/services/passport/cnic.png",
     children: [
       {
-        title: "New Cnic",
+        title: "NewCnic",
         slug: "cnic",
         image: "/images/services/passport/new-cnic.png",
+        route: "/cnic/new-Cnic",
       },
 
       {
-        title: "Renew Cnic",
+        title: "RenewCnic",
         slug: "cnic",
         image: "/images/services/passport/renew-cnic.png",
+        route: "/cnic/renew-Cnic",
       },
 
       {
-        title: "Lost Cnic",
+        title: "LostCnic",
         slug: "cnic",
         image: "/images/services/passport/lost-cnic.png",
+        route: "/cnic/lost-Cnic",
       },
     ],
   },
 
- 
   /* -------B-Form and its Services---------- */
   {
     title: "B-Form",
@@ -75,26 +81,29 @@ export const SERVICES: Service[] = [
         title: "New B-Form",
         slug: "b-form",
         image: "/images/services/passport/b-form.png",
+        route: "/B-Form/newB-Form",
       },
 
       {
         title: "Renew B-Form",
         slug: "b-form",
         image: "/images/services/passport/renew-bform.png",
+        route: "/B-Form/renewBForm",
       },
 
       {
         title: "Lost B-Form",
         slug: "b-form",
         image: "/images/services/passport/b-form.png",
+        route: "/B-Form/lost-BForm",
       },
     ],
   },
-   {
+  {
     title: "Nadra",
     slug: "nadra",
     image: "/images/services/passport/cnic.png",
-      children: [ 
+    children: [
       {
         title: "CNIC ",
         slug: "nadra",
@@ -103,17 +112,14 @@ export const SERVICES: Service[] = [
       {
         title: "birth certificate ",
         slug: "nadra",
-    image: "/images/services/passport/b-certificate.png",
+        image: "/images/services/passport/b-certificate.png",
       },
       {
         title: "Nikah name ",
         slug: "nadra",
         image: "/images/services/passport/cnic.png",
       },
-
-      
-      ],
-
+    ],
   },
 
   /* -------bills ,Taxes and challans and its Services---------- */
@@ -275,7 +281,7 @@ export const SERVICES: Service[] = [
     slug: "vehicle-transfer",
     image: "/images/services/passport/vehicle-transfer.png",
   }, */
- /*  {
+  /*  {
     title: "Birth Certificate",
     slug: "birth-certificate",
     image: "/images/services/passport/b-certificate.png",

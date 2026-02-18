@@ -15,7 +15,6 @@ export default function CnicForm() {
   const router = useRouter();
 
   const [showForm, setShowForm] = useState(false);
-  const [cnic, setCnic] = useState<CnicFormData[]>([]);
   const { register, handleSubmit, control, reset } = useForm<CnicFormData>({
     defaultValues: {
       userName: "",
@@ -38,6 +37,19 @@ export default function CnicForm() {
       birthCertificate: null,
     },
   });
+
+  const [cnic, setCnic] = useState<CnicFormData[]>(() => {
+      if (typeof window !== "undefined") {
+        const saved = localStorage.getItem("passports");
+        return saved ? JSON.parse(saved) : [];
+      }
+      return [];
+    });
+    useEffect(() => {
+      localStorage.setItem("New Cnic", JSON.stringify(cnic));
+    }, [cnic]);
+
+   
   const handleDelete = (id: string) => {
     setCnic(cnic.filter((p) => p.id !== id));
   };

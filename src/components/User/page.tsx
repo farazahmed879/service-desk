@@ -73,12 +73,12 @@ export default function UserForm({
       const response = await Api.post(urls.client.create, formData);
 
       if (response) {
-        alert("User Form submitted successfully!");
-        console.log("User Form Submitted:", response.data);
+        // alert("User Form submitted successfully!");
+        console.log("User Form Submitted:", response.data.data);
       }
 
-      console.log(response.data);
-      return response.data;
+      // console.log(response.data.data);
+      // return response.data.data;
     } catch (error: any) {
       console.log(error.response.data);
       console.log(error.response.status);

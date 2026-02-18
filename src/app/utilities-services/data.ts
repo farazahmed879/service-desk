@@ -3,7 +3,7 @@ export interface Service {
   slug: string;
   image?: any;
   children?: any;
-  route?:any;
+  route?: any;
 }
 
 export interface FormData {
@@ -81,21 +81,21 @@ export const SERVICES: Service[] = [
         title: "New B-Form",
         slug: "b-form",
         image: "/images/services/passport/b-form.png",
-        route: "/B-Form/newB-Form",
+        route: "/b-form/newB-Form",
       },
 
       {
         title: "Renew B-Form",
         slug: "b-form",
         image: "/images/services/passport/renew-bform.png",
-        route: "/B-Form/renewBForm",
+        route: "/b-form/renewBForm",
       },
 
       {
         title: "Lost B-Form",
         slug: "b-form",
         image: "/images/services/passport/b-form.png",
-        route: "/B-Form/lost-BForm",
+        route: "/b-form/lost-BForm",
       },
     ],
   },

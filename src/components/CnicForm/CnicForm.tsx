@@ -11,8 +11,23 @@ import CNICList from "./cniclist";
 import { getAll, create } from "@/services/crud_services";
 import { FaPlus, FaUsers } from "react-icons/fa";
 
-export default function CnicForm() {
+interface CnicFormProps {
+  serviceType?: string;
+}
+
+export default function CnicForm({ serviceType = "new-Cnic" }: CnicFormProps) {
   const router = useRouter();
+
+  const getTitle = () => {
+    switch (serviceType) {
+      case "renew-Cnic":
+        return "Renew Cnic";
+      case "lost-Cnic":
+        return "Lost Cnic";
+      default:
+        return "New Cnic";
+    }
+  };
 
   const [showForm, setShowForm] = useState(false);
   const { register, handleSubmit, control, reset } = useForm<CnicFormData>({
@@ -39,32 +54,32 @@ export default function CnicForm() {
   });
 
   const [cnic, setCnic] = useState<CnicFormData[]>(() => {
-      if (typeof window !== "undefined") {
-        const saved = localStorage.getItem("passports");
-        return saved ? JSON.parse(saved) : [];
-      }
-      return [];
-    });
-    useEffect(() => {
-      localStorage.setItem("New Cnic", JSON.stringify(cnic));
-    }, [cnic]);
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("passports");
+      return saved ? JSON.parse(saved) : [];
+    }
+    return [];
+  });
+  useEffect(() => {
+    localStorage.setItem(serviceType, JSON.stringify(cnic));
+  }, [cnic, serviceType]);
 
-   
+
   const handleDelete = (id: string) => {
     setCnic(cnic.filter((p) => p.id !== id));
   };
- const onSubmit = (data: CnicFormData) => {
+  const onSubmit = (data: CnicFormData) => {
     const newCnic: CnicFormData = {
-      ...data, 
+      ...data,
       id: (cnic.length + 1).toString(),
       fullName: `${data.firstName || ""} ${data.middleName || ""} ${data.lastName || ""}`.trim(),
     };
 
 
     setCnic((prev) => [...prev, newCnic]);
-  console.log("CNIC State after submit:", [...cnic, newCnic]);
+    console.log("CNIC State after submit:", [...cnic, newCnic]);
 
-    alert("CNIC Form submitted successfully!");
+    alert(`${getTitle()} Form submitted successfully!`);
     reset();
     setShowForm(false);
   };
@@ -92,9 +107,9 @@ export default function CnicForm() {
 
       setCnic((prev) => [...prev, newCnic]);
 
-      console.log("Passport created successfully:", newCnic);
+      console.log(`${getTitle()} created successfully:`, newCnic);
     } catch (error) {
-      console.error("Failed to create passport:", error);
+      console.error(`Failed to create ${getTitle()}:`, error);
     }
   };
 
@@ -104,7 +119,7 @@ export default function CnicForm() {
         <div className="flex items-end justify-between gap-4">
           <div className="flex flex-col">
             <h1 className="mb-6 text-2xl font-bold text-gray-700">
-              New Cnic
+              {getTitle()}
             </h1>
 
           </div>
@@ -137,7 +152,7 @@ export default function CnicForm() {
         {showForm && (
           <>
             <h1 className="mb-6 text-2xl font-bold text-gray-700">
-              New CNIC Form
+              {getTitle()} Form
             </h1>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
               <InputField
@@ -305,10 +320,10 @@ export default function CnicForm() {
           </>
         )}
       </form>
-<CNICList
-  cnics={cnic}          // ✅ matches prop name
-  onDelete={handleDelete}
-/>
+      <CNICList
+        cnics={cnic}          // ✅ matches prop name
+        onDelete={handleDelete}
+      />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 "use client";
-import { BrowserRouter } from "react-router-dom";
+
 
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -13,7 +13,11 @@ import { getAll } from "@/services/crud_services";
 import { PassportFormData, PassportType } from "../users/types";
 import { urls } from "../utilities-services/api-urls";
 
-export default function Passport() {
+interface PassportProps {
+  serviceType?: string;
+}
+
+export default function Passport({ serviceType = "new-passport" }: PassportProps) {
   const searchParams = useSearchParams();
 
   const router = useRouter();
@@ -22,7 +26,17 @@ export default function Passport() {
   const [selectedPassport, setSelectedPassport] = useState<PassportType | null>(
     null,
   );
-  const root = document.getElementById("root");
+
+  const getTitle = () => {
+    switch (serviceType) {
+      case "renew-passport":
+        return "Renew Passport";
+      case "lost-passport":
+        return "Lost Passport";
+      default:
+        return "New Passport";
+    }
+  };
 
   const { register, handleSubmit, control, reset } = useForm<PassportFormData>({
     defaultValues: {
@@ -77,12 +91,12 @@ export default function Passport() {
       email: data.Email,
       currentAddress: data.CurrentAddress,
       permanentAddress: data.PermanentAddress,
-      passportType: "Regular",
+      passportType: getTitle(),
     };
 
     setPassports((prev) => [...prev, newPassport]);
 
-    alert("Passport Form submitted successfully!");
+    alert(`${getTitle()} submitted successfully!`);
     reset();
     setShowForm(false);
   };
@@ -110,7 +124,7 @@ export default function Passport() {
         <div className="flex items-end justify-between gap-4">
           <div className="flex flex-col">
             <h1 className="mb-6 text-2xl font-bold text-gray-700">
-              New Passport
+              {getTitle()}
             </h1>
 
             <label className="mb-1 font-medium text-gray-700">User :</label>
@@ -152,7 +166,7 @@ export default function Passport() {
         {showForm && (
           <>
             <h1 className="mb-6 text-2xl font-bold text-gray-700">
-              New Passport Application
+              {getTitle()} Application
             </h1>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
               <InputField
@@ -287,3 +301,4 @@ export default function Passport() {
     </div>
   );
 }
+

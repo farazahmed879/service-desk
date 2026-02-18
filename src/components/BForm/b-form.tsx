@@ -11,11 +11,25 @@ import { FaPlus, FaUsers } from "react-icons/fa";
 
 import type { b_form } from "@/app/users/types";
 
-export default function b_Form() {
-  const router = useRouter();
-  const [showForm, setShowForm] = useState(false);
+interface BFormProps {
+  serviceType?: string;
+}
 
-  const [b_form, setB_Form] = useState<b_form[]>([])
+export default function b_Form({ serviceType = "newB-Form" }: BFormProps) {
+  const router = useRouter();
+
+  const getTitle = () => {
+    switch (serviceType) {
+      case "renewBForm":
+        return "Renew B-Form";
+      case "lost-BForm":
+        return "Lost B-Form";
+      default:
+        return "New B-Form";
+    }
+  };
+
+  const [showForm, setShowForm] = useState(false);
   const { register, handleSubmit, control, reset } = useForm<b_form>({
     defaultValues: {
       userName: "",
@@ -31,10 +45,10 @@ export default function b_Form() {
     },
   });
 
-  
+
   const onSubmit = (data: b_form) => {
     console.log("B_Form  Submitted:", data);
-    alert("B_Form  submitted successfully!");
+    alert(`${getTitle()} submitted successfully!`);
     reset();
   };
   const fetchAllCnic = async () => {
@@ -56,7 +70,7 @@ export default function b_Form() {
         <div className="flex items-end justify-between gap-4">
           <div className="flex flex-col">
             <h1 className="mb-6 text-2xl font-bold text-gray-700">
-              New B-Form
+              {getTitle()}
             </h1>
 
           </div>
@@ -89,7 +103,7 @@ export default function b_Form() {
         {showForm && (
           <>
             <h2 className="mb-6 text-2xl font-bold text-gray-700">
-              New B-Form Application
+              {getTitle()} Application
             </h2>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
               <InputField
@@ -158,8 +172,8 @@ export default function b_Form() {
               >
                 Cancel
               </button> */}
-              
-               <button
+
+              <button
                 type="button"
                 onClick={() => setShowForm(false)}
                 className="w-40 rounded-lg bg-gray-500 py-2.5 font-semibold text-white hover:bg-gray-600"

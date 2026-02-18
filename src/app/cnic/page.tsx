@@ -3,10 +3,14 @@
 import React from "react";
 import CnicForm from "@/components/CnicForm/CnicForm";
 
-export default function CnicServicePage() {
+interface CnicServicePageProps {
+  serviceType?: string;
+}
+
+export default function CnicServicePage({ serviceType }: CnicServicePageProps) {
   return (
     <div >
-      <CnicForm />
+      <CnicForm serviceType={serviceType} />
     </div>
   );
 }

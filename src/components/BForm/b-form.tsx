@@ -28,6 +28,7 @@ export default function b_Form({ serviceType = "newB-Form" }: BFormProps) {
         return "New B-Form";
     }
   };
+  
     const [showForm, setShowForm] = useState(false);
 
   const { register, handleSubmit, control, reset } = useForm<b_form>({

@@ -28,7 +28,7 @@ export default function CnicForm({ serviceType = "new-Cnic" }: CnicFormProps) {
         return "New Cnic";
     }
   };
-    const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   const { register, handleSubmit, control, reset } = useForm<CnicFormData>({
     defaultValues: {
@@ -54,37 +54,34 @@ export default function CnicForm({ serviceType = "new-Cnic" }: CnicFormProps) {
   });
 
   const [cnic, setCnic] = useState<CnicFormData[]>(() => {
-      if (typeof window !== "undefined") {
-        const saved = localStorage.getItem("passports");
-        return saved ? JSON.parse(saved) : [];
-      }
-      return [];
-    });
-    useEffect(() => {
-      localStorage.setItem("New Cnic", JSON.stringify(cnic));
-    }, [cnic]);
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("passports");
+      return saved ? JSON.parse(saved) : [];
+    }
+    return [];
+  });
+  useEffect(() => {
+    localStorage.setItem("New Cnic", JSON.stringify(cnic));
+  }, [cnic]);
 
-   
   const handleDelete = (id: string) => {
     setCnic(cnic.filter((p) => p.id !== id));
   };
- const onSubmit = (data: CnicFormData) => {
+  const onSubmit = (data: CnicFormData) => {
     const newCnic: CnicFormData = {
-      ...data, 
+      ...data,
       id: (cnic.length + 1).toString(),
-      fullName: `${data.firstName || ""} ${data.middleName || ""} ${data.lastName || ""}`.trim(),
+      fullName:
+        `${data.firstName || ""} ${data.middleName || ""} ${data.lastName || ""}`.trim(),
     };
 
-
     setCnic((prev) => [...prev, newCnic]);
-  console.log("CNIC State after submit:", [...cnic, newCnic]);
+    console.log("CNIC State after submit:", [...cnic, newCnic]);
 
     alert("CNIC Form submitted successfully!");
     reset();
     setShowForm(false);
   };
-
-
 
   const fetchAllCnic = async () => {
     try {
@@ -121,7 +118,6 @@ export default function CnicForm({ serviceType = "new-Cnic" }: CnicFormProps) {
             <h1 className="mb-6 text-2xl font-bold text-gray-700">
               {getTitle()}
             </h1>
-
           </div>
 
           <div className="flex gap-2">
@@ -145,8 +141,6 @@ export default function CnicForm({ serviceType = "new-Cnic" }: CnicFormProps) {
           className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
-
-
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {showForm && (
@@ -319,11 +313,14 @@ export default function CnicForm({ serviceType = "new-Cnic" }: CnicFormProps) {
             </div>
           </>
         )}
+        {!showForm && (
+        <CNICList
+        cnics={cnic} 
+        onDelete={handleDelete}
+      />
+      )}
       </form>
-<CNICList
-  cnics={cnic}          // ✅ matches prop name
-  onDelete={handleDelete}
-/>
+      
     </div>
   );
 }

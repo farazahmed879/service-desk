@@ -16,7 +16,9 @@ interface PassportProps {
   serviceType?: string;
 }
 
-export default function Passport({ serviceType = "new-passport" }: PassportProps) {
+export default function Passport({
+  serviceType = "new-passport",
+}: PassportProps) {
   const searchParams = useSearchParams();
 
   const router = useRouter();
@@ -36,7 +38,7 @@ export default function Passport({ serviceType = "new-passport" }: PassportProps
         return "New Passport";
     }
   };
-  
+
   const { register, handleSubmit, control, reset } = useForm<PassportFormData>({
     defaultValues: {
       userName: "",
@@ -122,10 +124,9 @@ export default function Passport({ serviceType = "new-passport" }: PassportProps
       {!showForm && (
         <div className="flex items-end justify-between gap-4">
           <div className="flex flex-col">
-           <h1 className="mb-6 text-2xl font-bold text-gray-700">
+            <h1 className="mb-6 text-2xl font-bold text-gray-700">
               {getTitle()}
             </h1>
-
 
             <label className="mb-1 font-medium text-gray-700">User :</label>
             <input
@@ -294,10 +295,10 @@ export default function Passport({ serviceType = "new-passport" }: PassportProps
             </div>
           </>
         )}
+        {!showForm && (
+          <PassportList passports={passports} onDelete={handleDelete} />
+        )}
       </form>
-      <hr className="my-6 border-gray-300" />
-
-      <PassportList passports={passports} onDelete={handleDelete} />
     </div>
   );
 }

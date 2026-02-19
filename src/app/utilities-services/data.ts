@@ -3,7 +3,7 @@ export interface Service {
   slug: string;
   image?: any;
   children?: any;
-  route?:any;
+  route?: any;
 }
 
 export interface FormData {
@@ -72,7 +72,7 @@ export const SERVICES: Service[] = [
   },
 
   /* -------B-Form and its Services---------- */
-   {
+  {
     title: "B-Form",
     slug: "b-form",
     image: "/images/services/passport/b-form.png",
@@ -99,29 +99,33 @@ export const SERVICES: Service[] = [
       },
     ],
   },
-  
-  {
-    title: "Nadra",
-    slug: "nadra",
-    image: "/images/services/passport/cnic.png",
-    children: [
-      {
-        title: "CNIC",
-        slug: "cnic",
-        image: "/images/services/passport/cnic.png",
-      },
-      {
-        title: "Birth certificate ",
-        slug: "birthcertificate",
-        image: "/images/services/passport/b-certificate.png",
-      },
-      {
-        title: "Nikah Name ",
-        slug: "nikahname",
-        image: "/images/services/passport/cnic.png",
-      },
-    ],
-  },
+
+ {
+  title: "Nadra",
+  slug: "nadra",
+  image: "/images/services/passport/cnic.png",
+  children: [
+    {
+      title: "CNIC",
+      slug: "cnic",
+      image: "/images/services/passport/cnic.png",
+      route: "/nadra/cnic",
+    },
+    {
+      title: "Birth certificate",
+      slug: "birthcertificate",
+      image: "/images/services/passport/b-certificate.png",
+      route: "/nadra/birthcertificate", 
+    },
+    {
+      title: "Nikah Name",
+      slug: "nikahname",
+      image: "/images/services/passport/cnic.png",
+      route: "/nadra/nikahname", 
+    },
+  ],
+},
+
 
   /* -------bills ,Taxes and challans and its Services---------- */
   {

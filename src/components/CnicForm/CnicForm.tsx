@@ -17,7 +17,7 @@ interface CnicFormProps {
 
 export default function CnicForm({ serviceType = "new-Cnic" }: CnicFormProps) {
   const router = useRouter();
-
+  const [showForm, setShowForm] = useState(false);
   const getTitle = () => {
     switch (serviceType) {
       case "renew-Cnic":
@@ -28,7 +28,6 @@ export default function CnicForm({ serviceType = "new-Cnic" }: CnicFormProps) {
         return "New Cnic";
     }
   };
-  const [showForm, setShowForm] = useState(false);
 
   const { register, handleSubmit, control, reset } = useForm<CnicFormData>({
     defaultValues: {
@@ -60,9 +59,6 @@ export default function CnicForm({ serviceType = "new-Cnic" }: CnicFormProps) {
     }
     return [];
   });
-  useEffect(() => {
-    localStorage.setItem("New Cnic", JSON.stringify(cnic));
-  }, [cnic]);
 
   const handleDelete = (id: string) => {
     setCnic(cnic.filter((p) => p.id !== id));
@@ -109,7 +105,9 @@ export default function CnicForm({ serviceType = "new-Cnic" }: CnicFormProps) {
       console.error("Failed to create passport:", error);
     }
   };
-
+  useEffect(() => {
+    localStorage.setItem("New Cnic", JSON.stringify(cnic));
+  }, [cnic]);
   return (
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
       {!showForm && (
@@ -200,12 +198,12 @@ export default function CnicForm({ serviceType = "new-Cnic" }: CnicFormProps) {
                 placeholder="Enter address"
               />
             </div>
-
+            {/*
             <h2 className="mt-6 text-xl font-semibold text-gray-700">
               Required Documents
             </h2>
 
-            {/* <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
                 <label className="mb-2 block text-gray-700">
                   Birth Certificate / Form-B
@@ -313,14 +311,8 @@ export default function CnicForm({ serviceType = "new-Cnic" }: CnicFormProps) {
             </div>
           </>
         )}
-        {!showForm && (
-        <CNICList
-        cnics={cnic} 
-        onDelete={handleDelete}
-      />
-      )}
+        {!showForm && <CNICList cnics={cnic} onDelete={handleDelete} />}
       </form>
-      
     </div>
   );
 }

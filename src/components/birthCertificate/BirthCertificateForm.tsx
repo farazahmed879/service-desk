@@ -1,4 +1,4 @@
-"use client";
+/* "use client";
 
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -153,3 +153,4 @@ export default function BirthCertificateServicePage() {
     </form>
   );
 }
+ */

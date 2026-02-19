@@ -20,11 +20,14 @@ export default function ServicesPage() {
     type: "",
     description: "",
   });
-  const [allServices, setAllServices] = useState(SERVICES);
+    const [allServices, setAllServices] = useState(SERVICES);
+
 
   const goToService = (service: any) => {
     router.push(`/${service.slug}`);
   };
+
+
 
   const handleServiceClick = (service: any) => {
     if (service.children && service.children.length > 0) {

@@ -1,10 +1,15 @@
 "use client";
-
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import InputField from "@/components/_custom-components/InputField/InputField";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { FaPlus, FaUsers } from "react-icons/fa";
+
+
 
 interface CnicFormData {
+  id?: string;
   fullName: string;
   fatherName: string;
   dob: string;
@@ -14,62 +19,50 @@ interface CnicFormData {
   address: string;
 }
 
-interface CnicFormProps {
-  serviceType?: string;
+interface ServiceFormProps {
+  serviceType: string; 
 }
 
-export default function CnicForm({ serviceType }: CnicFormProps) {
-  const { register, handleSubmit, reset } = useForm<CnicFormData>();
+export default function ServiceForm({ serviceType }: ServiceFormProps) {
+  const [showForm, setShowForm] = useState(false);
+  const { reset } = useForm<CnicFormData>();
+
+  const storageKey = `nadra_${serviceType}`;
+
   const [records, setRecords] = useState<CnicFormData[]>(() => {
     if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("nadraCnic");
+      const saved = localStorage.getItem(storageKey);
       return saved ? JSON.parse(saved) : [];
     }
     return [];
   });
 
   useEffect(() => {
-    localStorage.setItem("nadraCnic", JSON.stringify(records));
-  }, [records]);
-
-  const onSubmit = (data: CnicFormData) => {
-    const newRecord = { ...data, id: Date.now().toString() };
-    setRecords((prev) => [...prev, newRecord]);
-    reset();
-    alert("CNIC Form Submitted");
-  };
-
-  const handleDelete = (id: string) => {
-    setRecords(records.filter((r: any) => r.id !== id));
-  };
+    localStorage.setItem(storageKey, JSON.stringify(records));
+  }, [records, storageKey]);
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <InputField label="Full Name" name="fullName" register={register} />
-        <InputField label="Father Name" name="fatherName" register={register} />
-        <InputField label="Date of Birth" name="dob" register={register} type="date" />
-        <InputField label="CNIC Number" name="cnicNumber" register={register} />
-        <InputField label="Gender" name="gender" register={register} options={["Male","Female","Other"]} />
-        <InputField label="Mobile" name="mobile" register={register} />
-        <InputField label="Address" name="address" register={register} textarea rows={3} />
+    <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
+      {!showForm && (
+        <div className="flex items-end justify-between gap-4">
+          <div className="flex flex-col">
+            <h1 className="mb-6 text-2xl font-bold text-gray-700 capitalize">
+              {serviceType}
+            </h1>
+          </div>
 
-        <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
-          Submit
-        </button>
-      </form>
-
-      <div className="mt-6">
-        <h3 className="font-semibold mb-2">Submitted Records</h3>
-        {records.map((r: any) => (
-          <div key={r.id} className="p-2 border mb-2 flex justify-between">
-            <span>{r.fullName}</span>
-            <button onClick={() => handleDelete(r.id)} className="text-red-500">
-              Delete
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => setShowForm(true)}
+              className="flex items-center gap-1 rounded-md bg-blue-600 px-3 py-2 text-xs font-medium text-white hover:bg-blue-700 active:scale-95"
+            >
+              <FaPlus size={12} />
+              Create
             </button>
           </div>
-        ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

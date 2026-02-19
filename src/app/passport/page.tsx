@@ -4,16 +4,18 @@ import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import InputField from "@/components/_custom-components/InputField/InputField";
+import PassportList from "./passportlist";
 
 import { FaPlus, FaUsers } from "react-icons/fa";
 import { getAll } from "@/services/crud_services";
 import { PassportFormData, PassportType } from "../users/types";
 import { urls } from "../utilities-services/api-urls";
 
+
 export default function Passport() {
   const router = useRouter();
-  const [passports, setPassports] = useState<PassportType[]>([]);
   const [showForm, setShowForm] = useState(false);
+  const [passports, setPassports] = useState<PassportType[]>([]);
 
   const [selectedPassport, setSelectedPassport] = useState<PassportType | null>(
     null,
@@ -41,29 +43,55 @@ export default function Passport() {
     },
   });
 
+  const handleDelete = (id: string) => {
+    setPassports(passports.filter((p) => p.id !== id));
+  };
+
   const onSubmit = (data: PassportFormData) => {
-    console.log("Passport Form Submitted:", data);
+    const newPassport: PassportType = {
+      id: (passports.length + 1).toString(),
+      userName: data.userName,
+      firstName: data.FirstName,
+      middleName: data.MiddleName,
+      lastName: data.LastName,
+      fullName: `${data.FirstName} ${data.MiddleName || ""} ${data.LastName}`,
+      fatherName: data.FatherName,
+      dob: data.DOB,
+      placeOfBirth: data.PlaceOfBirth,
+      cnic: data.CNIC,
+      gender: data.Gender,
+      contactNumber: data.ContactNumber,
+      email: data.Email,
+      currentAddress: data.CurrentAddress,
+      permanentAddress: data.PermanentAddress,
+      passportType: "Regular",
+    };
+
+
+    // Add to passports list
+    setPassports((prev) => [...prev, newPassport]);
+
     alert("Passport Form submitted successfully!");
     reset();
+    setShowForm(false); // hide form after submit
   };
 
-
-  const fetchAllPassports = async () => {
-    try {
-      const res = await getAll<PassportType>(urls.passport.getAll);
-      if (!res) return;
-
-      setPassports(res);
-    } catch (err) {
-      console.error("Failed to fetch passports:", err);
-      setPassports([]);
-    }
-  };
-
-
-  useEffect(() => {
-    fetchAllPassports();
-  }, []);
+  /*   const fetchAllPassports = async () => {
+      try {
+        const res = await getAll<PassportType>(urls.passport.getAll);
+        if (!res) return;
+  
+        setPassports(res);
+      } catch (err) {
+        console.error("Failed to fetch passports:", err);
+        setPassports([]);
+      }
+    };
+  
+  
+    useEffect(() => {
+      fetchAllPassports();
+    }, []); */
 
 
   return (
@@ -97,7 +125,7 @@ export default function Passport() {
         </div>
       )}
 
-    
+
 
       {selectedPassport && (
         <div className="mt-4 rounded-md border bg-gray-50 p-4">
@@ -196,27 +224,7 @@ export default function Passport() {
               />
             </div>
 
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-              <InputField
-                label="Father/Husband Name"
-                name="FatherName"
-                register={register}
-                placeholder="Father/Husband Name"
-              />
-              <InputField
-                label="Date of Birth"
-                name="DOB"
-                type="date"
-                register={register}
-                placeholder="Date of Birth"
-              />
-              <InputField
-                label="Place of Birth"
-                name="PlaceOfBirth"
-                register={register}
-                placeholder="Place of Birth"
-              />
-            </div>
+
 
             <h2 className="mt-6 text-xl font-semibold text-gray-700">
               Required Documents
@@ -267,6 +275,10 @@ export default function Passport() {
           </>
         )}
       </form>
+      <hr className="my-6 border-gray-300" />
+
+      <PassportList passports={passports} onDelete={handleDelete} />
+
     </div>
   );
 }

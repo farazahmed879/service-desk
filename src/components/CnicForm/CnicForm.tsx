@@ -1,34 +1,36 @@
 "use client";
 
-import  { useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import InputField from "@/components/_custom-components/InputField/InputField";
 import type { CnicFormData } from "@/app/users/types";
+import CNICList from "./cniclist";
+
 import { getAll, create } from "@/services/crud_services";
 import { FaPlus, FaUsers } from "react-icons/fa";
 
 export default function CnicForm() {
   const router = useRouter();
-  const [showForm, setShowForm] = useState(false);
 
+  const [showForm, setShowForm] = useState(false);
   const [cnic, setCnic] = useState<CnicFormData[]>([]);
   const { register, handleSubmit, control, reset } = useForm<CnicFormData>({
     defaultValues: {
       userName: "",
-      FullName: "",
-      MiddleName: "",
-      LastName: "",
-      FatherName: "",
-      DOB: "",
-      PlaceOfBirth: "",
-      CNIC: "",
-      Gender: "",
-      ContactNumber: "",
-      Email: "",
-      CurrentAddress: "",
-      PermanentAddress: "",
+      fullName: "",
+      middleName: "",
+      lastName: "",
+      fatherName: "",
+      dob: "",
+      placeOfBirth: "",
+      cnic: "",
+      gender: "",
+      contactNumber: "",
+      email: "",
+      currentAddress: "",
+      permanentAddress: "",
       fatherCnicFront: null,
       fatherCnicBack: null,
       motherCnicFront: null,
@@ -36,12 +38,26 @@ export default function CnicForm() {
       birthCertificate: null,
     },
   });
-
-  const onSubmit = (data: CnicFormData) => {
-    console.log("Cnic Form Submitted:", data);
-    alert("Cnic Form submitted successfully!");
-    reset();
+  const handleDelete = (id: string) => {
+    setCnic(cnic.filter((p) => p.id !== id));
   };
+ const onSubmit = (data: CnicFormData) => {
+    const newCnic: CnicFormData = {
+      ...data, 
+      id: (cnic.length + 1).toString(),
+      fullName: `${data.firstName || ""} ${data.middleName || ""} ${data.lastName || ""}`.trim(),
+    };
+
+
+    setCnic((prev) => [...prev, newCnic]);
+  console.log("CNIC State after submit:", [...cnic, newCnic]);
+
+    alert("CNIC Form submitted successfully!");
+    reset();
+    setShowForm(false);
+  };
+
+
 
   const fetchAllCnic = async () => {
     try {
@@ -168,7 +184,7 @@ export default function CnicForm() {
               Required Documents
             </h2>
 
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {/* <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
                 <label className="mb-2 block text-gray-700">
                   Birth Certificate / Form-B
@@ -256,10 +272,10 @@ export default function CnicForm() {
                   className="w-full rounded-md border px-3 py-2"
                 />
               </div>
-            </div>
+            </div> */}
 
             <div className="mt-6 flex w-full justify-end gap-4">
-               <button
+              <button
                 type="button"
                 onClick={() => setShowForm(false)}
                 className="w-40 rounded-lg bg-gray-500 py-2.5 font-semibold text-white hover:bg-gray-600"
@@ -277,6 +293,10 @@ export default function CnicForm() {
           </>
         )}
       </form>
+<CNICList
+  cnics={cnic}          // ✅ matches prop name
+  onDelete={handleDelete}
+/>
     </div>
   );
 }

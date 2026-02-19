@@ -103,7 +103,7 @@ export const SERVICES: Service[] = [
       {
         title: "birth certificate ",
         slug: "nadra",
-        image: "/images/services/passport/cnic.png",
+    image: "/images/services/passport/b-certificate.png",
       },
       {
         title: "Nikah name ",
@@ -275,11 +275,11 @@ export const SERVICES: Service[] = [
     slug: "vehicle-transfer",
     image: "/images/services/passport/vehicle-transfer.png",
   }, */
-  {
+ /*  {
     title: "Birth Certificate",
     slug: "birth-certificate",
     image: "/images/services/passport/b-certificate.png",
-  },
+  }, */
   {
     title: "Domicle and Prc",
     slug: "domicile-prc",

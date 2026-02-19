@@ -68,9 +68,7 @@ export default function Passport({
     }
     return [];
   });
-  useEffect(() => {
-    localStorage.setItem("passports", JSON.stringify(passports));
-  }, [passports]);
+
   const handleDelete = (id: string) => {
     setPassports(passports.filter((p) => p.id !== id));
   };
@@ -118,6 +116,10 @@ export default function Passport({
     useEffect(() => {
       fetchAllPassports();
     }, []); */
+
+  useEffect(() => {
+    localStorage.setItem("passports", JSON.stringify(passports));
+  }, [passports]);
 
   return (
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">

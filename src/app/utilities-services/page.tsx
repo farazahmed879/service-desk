@@ -8,7 +8,7 @@ import { CustomButton } from "@/components/ui-elements/custom-button";
 
 export default function ServicesPage() {
   const router = useRouter();
-  
+
   const [search, setSearch] = useState("");
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [isChildView, setIsChildView] = useState(false);
@@ -20,35 +20,18 @@ export default function ServicesPage() {
     type: "",
     description: "",
   });
+  const [allServices, setAllServices] = useState(SERVICES);
 
   const goToService = (service: any) => {
     router.push(`/${service.slug}`);
   };
 
-  const [allServices, setAllServices] = useState(SERVICES);
-  useEffect(() => {
-    const stored = localStorage.getItem("services");
-    if (stored) {
-      setAllServices([...SERVICES, ...JSON.parse(stored)]);
-    }
-  }, []);
-  
   const handleServiceClick = (service: any) => {
-  if (service.children && service.children.length > 0) {
-    renderUtilities(service.children);
-    return;
-    
-  }
-
- 
-
-
-   /*  if (service.title === "New Cnic") {
-      router.push("/cnic");
+    if (service.children && service.children.length > 0) {
+      renderUtilities(service.children);
+      return;
     }
-    if (service.title === "New B-Form") {
-      router.push("/b-form");
-    } */
+    router.push(service.route);
   };
 
   const renderUtilities = (data: any[] = []) => {
@@ -62,6 +45,13 @@ export default function ServicesPage() {
   const handleBack = () => {
     renderUtilities(SERVICES);
   };
+
+  useEffect(() => {
+    const stored = localStorage.getItem("services");
+    if (stored) {
+      setAllServices([...SERVICES, ...JSON.parse(stored)]);
+    }
+  }, []);
 
   return (
     <div>
@@ -81,7 +71,6 @@ export default function ServicesPage() {
       </div>
 
       <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
-        
         {allServices
           .filter((service) =>
             selectedService

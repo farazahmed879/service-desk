@@ -135,28 +135,33 @@ export const SERVICES: Service[] = [
     children: [
       {
         title: "Taxes and Challans",
-        slug: "bill-and-payments",
+        slug: "taxes-and-challans",
         image: "/images/services/passport/challan.png",
+        route: "/bill-and-payments/taxes-and-challans",
       },
       {
         title: "Deposit of Income Tax",
-        slug: "bill-and-payments",
+        slug: "income-tax",
         image: "/images/services/passport/challan.png",
+        route: "/bill-and-payments/income-tax",
       },
       {
         title: "Property Tax",
-        slug: "bill-and-payments",
+        slug: "property-tax",
         image: "/images/services/passport/challan.png",
+        route: "/bill-and-payments/property-tax",
       },
       {
         title: "Vehicle Tax",
-        slug: "bill-and-payments",
+        slug: "vehicle-tax",
         image: "/images/services/passport/challan.png",
+        route: "/bill-and-payments/vehicle-tax",
       },
       {
         title: "NTN Registration",
-        slug: "bill-and-payments",
+        slug: "ntn-registration",
         image: "/images/services/passport/challan.png",
+        route: "/bill-and-payments/ntn-registration",
       },
     ],
   },

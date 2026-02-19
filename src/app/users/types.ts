@@ -358,7 +358,16 @@ export interface UserListProps {
   onEdit: (user: UserList) => void;
   onDelete: (id: number) => void;
 }
-
+export interface BillAndPayment {
+  id?: string;
+  userName: string;
+  paymentType: string;
+  InvoiceNumber: string;
+  paymentDate: string;
+  amount: string;
+  paidBy: string;
+  remarks: string;
+}
 export interface Service {
   id: string;
   title: string;

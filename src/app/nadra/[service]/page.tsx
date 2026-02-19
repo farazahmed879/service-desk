@@ -4,7 +4,7 @@ import NadraForm from "@/components/NadraForm/NadraForm";
 
 export default function NadraServicePage() {
   const params = useParams();
-  const serviceType = params.serviceType as string;
+  const service = params.service as string;
 
-  return <NadraForm serviceType={serviceType} />;
+  return <NadraForm serviceType={service?.toLowerCase()} />;
 }

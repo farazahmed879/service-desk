@@ -164,7 +164,54 @@ export interface NadraFormData {
   livePhoto: File | null;
   signatureImage: File | null;
 }
+export interface NikahData {
+  id: string;
+  husbandName: string;
+  wifeName: string;
+  marriageDate: string;
+  place: string;
+}
+export interface NadraFormData {
+  id: string;
+  firstName: string;
+  userName: string;
+  middleName: string;
+  fullName: string;
+  lastName: string;
+  fatherName: string;
+  dob: string;
+  placeOfBirth: string;
+  cnic: string;
+  gender: string;
+  contactNumber: string;
+  email: string;
+  currentAddress: string;
+  permanentAddress: string;
+  birthCertificate: File | null;
+  fatherCnicFront: File | null;
+  fatherCnicBack: File | null;
+  motherCnicFront: File | null;
+  motherCnicBack: File | null;
+  livePhoto: File | null;
+  signatureImage: File | null;
+}
 
+export interface BirthCertificateData {
+  id: string;
+  childName: string;
+  fatherName: string;
+  dob: string;
+  placeOfBirth: string;
+  address: string;
+}
+
+export interface NikahData {
+  id: string;
+  husbandName: string;
+  wifeName: string;
+  marriageDate: string;
+  place: string;
+}
 export interface b_form {
   childName: string;
   userName: string;

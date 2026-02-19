@@ -1,11 +1,10 @@
 "use client";
-
 import { useParams } from "next/navigation";
-import BFormServicePage from "@/app/b-form/page";
+import NadraForm from "@/components/NadraForm/NadraForm";
 
-export default function BFormDynamicPage() {
-    const params = useParams();
-    const service = params.service as string;
+export default function NadraServicePage() {
+  const params = useParams();
+  const serviceType = params.service as string;
 
-    return <BFormServicePage serviceType={service} />;
+  return <NadraForm serviceType={serviceType} />;
 }

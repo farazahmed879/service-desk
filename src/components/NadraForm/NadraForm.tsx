@@ -3,10 +3,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import CnicForm from "./CnicForm";
-import BirthCertificateForm from "./BirthCertificateForm";
-import NikahNameForm from "./NikahNameForm";
-  
+import CnicForm from "./CNIC/CnicForm";
+import BirthCertificateForm from "./BirthCertificate/BirthCertificateForm";
+import NikahNameForm from "./NikahName/NikahNameForm";
+
 
 interface NadraFormProps {
   serviceType?: string;
@@ -27,8 +27,7 @@ export default function NadraForm({ serviceType }: { serviceType?: string }) {
   };
 
   return (
-    <div>
-      <h2>Nadra - {serviceType}</h2>
+    <div className="min-h-screen bg-gray-50/50 p-4 md:p-6 lg:p-8">
       {renderForm()}
     </div>
   );

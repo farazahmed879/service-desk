@@ -1,16 +1,16 @@
 "use client";
 
 import React from "react";
-import BForm from "@/components/BForm/b-form";
+import NadraForm from "@/components/NadraForm/NadraForm";
 
-interface BFormServicePageProps {
+interface NadraServicePageProps {
   serviceType?: string;
 }
 
-export default function BFormServicePage({ serviceType }: BFormServicePageProps) {
+export default function NadraServicePage({ serviceType }: NadraServicePageProps) {
   return (
-    <div >
-      <BForm serviceType={serviceType} />
+    <div>
+      <NadraForm serviceType={serviceType} />
     </div>
   );
 }

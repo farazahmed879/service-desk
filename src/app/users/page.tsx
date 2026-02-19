@@ -24,7 +24,7 @@ export default function UserPage() {
 
   // ─── Pagination state ────────────────────────────────────────────
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [run  , setrun] = useState(false) 
   // ─── Sorting state ───────────────────────────────────────────────
   const [sortColumn, setSortColumn] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc" | null>(
@@ -48,11 +48,12 @@ export default function UserPage() {
         console.log(error.message || error);
       } finally {
         setLoading(false);
+        setrun(false)
       }
     };
 
     getclient();
-  }, []);
+  }, [run]);
 
   // ─── Sorting logic ──────────────────────────────────────────────
   const handleSort = (column: string) => {
@@ -124,10 +125,15 @@ export default function UserPage() {
 
         const deleteResponse =  await Api.delete(`${urls.client.delete}/${id}` )
      console.log(deleteResponse.data);
-     
+        if(deleteResponse){
+          alert(`${deleteResponse.data.data.name}  record is deleted `)
+          setrun(true)
+
+        }
 
       } catch (error:any) {
         console.log(error.response.data);
+        alert(error.response.data)
         
       }
   };

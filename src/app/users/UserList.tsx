@@ -10,7 +10,7 @@ import DataTable, {
 } from "@/components/_custom-components/DataTable/DataTable";
 
 interface Client {
-  id: number;
+  _id: number;
   name: string;
   fatherName: string;
   email: string;
@@ -74,7 +74,7 @@ export default function UserList({
           <CustomButton
             variant="danger"
             size="icon"
-            onClick={() => onDelete(row.id)}
+            onClick={() => onDelete(row._id)}
             title="Delete"
           >
             <FaTrash size={14} />
@@ -99,7 +99,7 @@ export default function UserList({
         sorting={sorting}
         isLoading={isLoading}
         emptyMessage="No clients found"
-        rowKey={(row) => row.id}
+        rowKey={(row) => row._id}
       />
     </div>
   );

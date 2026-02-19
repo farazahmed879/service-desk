@@ -22,19 +22,19 @@ export const SERVICES: Service[] = [
     image: "/images/services/passport/new.png",
     children: [
       {
-        title: "NewPassport",
+        title: "New Passport",
         slug: "new passport",
         image: "/images/services/passport/new-passport.png",
         route: "/passport/new-passport",
       },
       {
-        title: "RenewPassport",
+        title: "Renew Passport",
         slug: "renew passport",
         image: "/images/services/passport/renew-passport.png",
         route: "/passport/renew-passport",
       },
       {
-        title: "LostPassport",
+        title: "Lost Passport",
         slug: "lostpassport",
         image: "/images/services/passport/lost.png",
         route: "/passport/lost-passport",
@@ -49,21 +49,21 @@ export const SERVICES: Service[] = [
     image: "/images/services/passport/cnic.png",
     children: [
       {
-        title: "NewCnic",
+        title: "New Cnic",
         slug: "cnic",
         image: "/images/services/passport/new-cnic.png",
         route: "/cnic/new-Cnic",
       },
 
       {
-        title: "RenewCnic",
+        title: "Renew Cnic",
         slug: "cnic",
         image: "/images/services/passport/renew-cnic.png",
         route: "/cnic/renew-Cnic",
       },
 
       {
-        title: "LostCnic",
+        title: "Lost Cnic",
         slug: "cnic",
         image: "/images/services/passport/lost-cnic.png",
         route: "/cnic/lost-Cnic",
@@ -78,14 +78,14 @@ export const SERVICES: Service[] = [
     image: "/images/services/passport/b-form.png",
     children: [
       {
-        title: "NewB-Form",
+        title: "New B-Form",
         slug: "b-form",
         image: "/images/services/passport/b-form.png",
         route: "/b-form/newB-Form",
       },
 
       {
-        title: "RenewB-Form",
+        title: "Renew B-Form",
         slug: "b-form",
         image: "/images/services/passport/renew-bform.png",
         route: "/b-form/renewBForm",
@@ -99,24 +99,25 @@ export const SERVICES: Service[] = [
       },
     ],
   },
+  
   {
     title: "Nadra",
     slug: "nadra",
     image: "/images/services/passport/cnic.png",
     children: [
       {
-        title: "CNIC ",
-        slug: "nadra",
+        title: "CNIC",
+        slug: "cnic",
         image: "/images/services/passport/cnic.png",
       },
       {
-        title: "birth certificate ",
-        slug: "nadra",
+        title: "Birth certificate ",
+        slug: "birthcertificate",
         image: "/images/services/passport/b-certificate.png",
       },
       {
-        title: "Nikah name ",
-        slug: "nadra",
+        title: "Nikah Name ",
+        slug: "nikahname",
         image: "/images/services/passport/cnic.png",
       },
     ],

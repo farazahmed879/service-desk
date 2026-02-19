@@ -140,6 +140,30 @@ export interface CnicFormData {
   signatureImage: File | null;
 }
 
+export interface NadraFormData {
+  id: string;
+  firstName: string;
+  userName: string;
+  middleName: string;
+  fullName: string;
+  lastName: string;
+  fatherName: string;
+  dob: string;
+  placeOfBirth: string;
+  cnic: string;
+  gender: string;
+  contactNumber: string;
+  email: string;
+  currentAddress: string;
+  permanentAddress: string;
+  birthCertificate: File | null;
+  fatherCnicFront: File | null;
+  fatherCnicBack: File | null;
+  motherCnicFront: File | null;
+  motherCnicBack: File | null;
+  livePhoto: File | null;
+  signatureImage: File | null;
+}
 
 export interface b_form {
   childName: string;

@@ -37,9 +37,10 @@ export default function ServicesPage() {
   if (service.children && service.children.length > 0) {
     renderUtilities(service.children);
     return;
+    
   }
 
-  router.push(service.route);
+ 
 
 
    /*  if (service.title === "New Cnic") {
@@ -80,6 +81,7 @@ export default function ServicesPage() {
       </div>
 
       <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+        
         {allServices
           .filter((service) =>
             selectedService

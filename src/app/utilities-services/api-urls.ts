@@ -69,7 +69,7 @@ export const urls = {
   create:  "/client/create",
   get:"/client/get-by-email",
   update:"",
-  delete:"client/delete-by-id/:id",
+  delete:"client/delete-by-id",
   getAll:"/get-all"
  },
 

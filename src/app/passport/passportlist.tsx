@@ -40,11 +40,7 @@ export default function PassportList({
             accessorKey: "fatherName",
             sortable: true,
         },
-        {
-            header: "Email",
-            accessorKey: "email",
-            sortable: true,
-        },
+       
         {
             header: "CNIC",
             accessorKey: "cnic",
@@ -58,8 +54,6 @@ export default function PassportList({
             header: "Role",
             accessorKey: "role",
         },
-
-
         {
             header: "",
             cell: (row) => (

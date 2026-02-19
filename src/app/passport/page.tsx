@@ -5,21 +5,39 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import InputField from "@/components/_custom-components/InputField/InputField";
 import PassportList from "./passportlist";
+import { useSearchParams } from "next/navigation";
 
 import { FaPlus, FaUsers } from "react-icons/fa";
 import { getAll } from "@/services/crud_services";
 import { PassportFormData, PassportType } from "../users/types";
 import { urls } from "../utilities-services/api-urls";
 
+interface PassportProps {
+  serviceType?: string;
+}
 
-export default function Passport() {
+export default function Passport({
+  serviceType = "new-passport",
+}: PassportProps) {
+  const searchParams = useSearchParams();
+
   const router = useRouter();
   const [showForm, setShowForm] = useState(false);
-  const [passports, setPassports] = useState<PassportType[]>([]);
 
   const [selectedPassport, setSelectedPassport] = useState<PassportType | null>(
     null,
   );
+
+  const getTitle = () => {
+    switch (serviceType) {
+      case "renew-passport":
+        return "Renew Passport";
+      case "lost-passport":
+        return "Lost Passport";
+      default:
+        return "New Passport";
+    }
+  };
 
   const { register, handleSubmit, control, reset } = useForm<PassportFormData>({
     defaultValues: {
@@ -43,6 +61,16 @@ export default function Passport() {
     },
   });
 
+  const [passports, setPassports] = useState<PassportType[]>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("passports");
+      return saved ? JSON.parse(saved) : [];
+    }
+    return [];
+  });
+  useEffect(() => {
+    localStorage.setItem("passports", JSON.stringify(passports));
+  }, [passports]);
   const handleDelete = (id: string) => {
     setPassports(passports.filter((p) => p.id !== id));
   };
@@ -67,13 +95,11 @@ export default function Passport() {
       passportType: "Regular",
     };
 
-
-    // Add to passports list
     setPassports((prev) => [...prev, newPassport]);
 
     alert("Passport Form submitted successfully!");
     reset();
-    setShowForm(false); // hide form after submit
+    setShowForm(false);
   };
 
   /*   const fetchAllPassports = async () => {
@@ -93,16 +119,15 @@ export default function Passport() {
       fetchAllPassports();
     }, []); */
 
-
   return (
-
     <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
       {!showForm && (
         <div className="flex items-end justify-between gap-4">
           <div className="flex flex-col">
             <h1 className="mb-6 text-2xl font-bold text-gray-700">
-              New Passport
+              {getTitle()}
             </h1>
+
             <label className="mb-1 font-medium text-gray-700">User :</label>
             <input
               type="text"
@@ -125,8 +150,6 @@ export default function Passport() {
         </div>
       )}
 
-
-
       {selectedPassport && (
         <div className="mt-4 rounded-md border bg-gray-50 p-4">
           <h2 className="mb-2 font-semibold">Passport Details</h2>
@@ -144,7 +167,7 @@ export default function Passport() {
         {showForm && (
           <>
             <h1 className="mb-6 text-2xl font-bold text-gray-700">
-              Passport Application Form
+              New Passport Application
             </h1>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
               <InputField
@@ -224,8 +247,6 @@ export default function Passport() {
               />
             </div>
 
-
-
             <h2 className="mt-6 text-xl font-semibold text-gray-700">
               Required Documents
             </h2>
@@ -274,11 +295,10 @@ export default function Passport() {
             </div>
           </>
         )}
+        {!showForm && (
+          <PassportList passports={passports} onDelete={handleDelete} />
+        )}
       </form>
-      <hr className="my-6 border-gray-300" />
-
-      <PassportList passports={passports} onDelete={handleDelete} />
-
     </div>
   );
 }

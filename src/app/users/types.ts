@@ -300,3 +300,10 @@ export interface DogImage {
   message: string;
   status: string;
 }
+
+export interface PassportListProps {
+  passports?: PassportType[];
+  onEdit?: (passport: PassportType) => void;
+  onDelete?: (id: string) => void;
+  service?: any;
+}

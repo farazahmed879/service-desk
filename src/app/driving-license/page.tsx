@@ -1,20 +1,17 @@
 "use client";
-
-import dynamic from "next/dynamic";
 import React from "react";
+import DrivingLicenseForm from "@/components/DrivingLicense/DrivingLicenseForm";
 
-export default function DrivingLicenseService() {
-  const DrivingLicenseForm = dynamic(
-    () =>
-      import("@/components/DrivingLicenseForm/DrivingLicenseForm").then(
-        (mod) => mod.default
-      ),
-    { ssr: false }
-  );
+interface DrivingLicensePageProps {
+  params?: {
+    service?: string;
+  };
+}
 
+export default function DrivingLicensePage({ params }: DrivingLicensePageProps) {
   return (
-    <div >
-      <DrivingLicenseForm />
+    <div>
+      <DrivingLicenseForm serviceType={params?.service} />
     </div>
   );
 }

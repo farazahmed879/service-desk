@@ -208,18 +208,21 @@ export const SERVICES: Service[] = [
     children: [
       {
         title: "New License",
-        slug: "driving-license",
+        slug: "new-license",
         image: "/images/services/passport/driving.png",
+        route: "/driving-license/new-license",
       },
       {
         title: "Renew License",
-        slug: "driving-license",
+        slug: "renew-license",
         image: "/images/services/passport/driving.png",
+        route: "/driving-license/renew-license",
       },
       {
         title: " Lost License",
-        slug: "driving-license",
+        slug: "lost-license",
         image: "/images/services/passport/driving.png",
+        route: "/driving-license/lost-license",
       },
     ],
   },

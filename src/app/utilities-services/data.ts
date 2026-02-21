@@ -168,34 +168,34 @@ export const SERVICES: Service[] = [
 
   /* -------Vehicle and its Services---------- */
   {
-    title: "Vehicle ",
-    slug: "vehicle-registration",
+    title: "Vehicle",
+    slug: "vehicle",
     image: "/images/services/passport/vehicle.png",
     children: [
       {
         title: "Registration",
-        slug: "vehicle-registration",
+        slug: "registration",
         image: "/images/services/passport/vehicle.png",
+        route: "/vehicle/registration",
       },
-      {
-        title: "Vehicle Transfer",
-        slug: "vehicle-registration",
-        image: "/images/services/passport/vehicle.png",
-      },
+
       {
         title: "Tax Payment",
-        slug: "vehicle-registration",
+        slug: "tax-payment",
         image: "/images/services/passport/vehicle.png",
+        route: "/vehicle/tax-payment",
       },
       {
         title: "Number Plate ",
         slug: "number-plate",
         image: "/images/services/passport/number-plate.png",
+        route: "/vehicle/number-plate",
       },
       {
         title: "Vehicle Transfer",
         slug: "vehicle-transfer",
         image: "/images/services/passport/vehicle-transfer.png",
+        route: "/vehicle/vehicle-transfer",
       },
     ],
   },

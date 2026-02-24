@@ -81,7 +81,7 @@ export interface UserFormState {
   passportExpiry: string;
   passportCountry: string;
   passportType: string;
-  image: FileList ;
+  image: FileList;
 }
 export interface FormData {
   service: string;
@@ -170,6 +170,7 @@ export interface NikahData {
   wifeName: string;
   marriageDate: string;
   place: string;
+  userName?: string
 }
 export interface NadraFormData {
   id: string;
@@ -198,6 +199,7 @@ export interface NadraFormData {
 
 export interface BirthCertificateData {
   id: string;
+  userName?: string;
   childName: string;
   fatherName: string;
   dob: string;

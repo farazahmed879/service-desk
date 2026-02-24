@@ -53,8 +53,8 @@ export default function CnicList({ records, onDelete, isLoading }: CnicListProps
     ];
 
     return (
-        <div className="mt-8 rounded-xl border border-gray-200 bg-white p-6 shadow-md">
-            <h2 className="mb-4 text-xl font-bold text-gray-700">CNIC Applications</h2>
+    <div className="grid overflow-x-auto overflow-y-visible rounded-[10px] bg-white px-7.5 pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card">
+            <h2 className="mb-4 text-xl font-bold text-gray-700">CNIC List</h2>
             <DataTable<CnicFormData>
                 data={records}
                 columns={columns}

@@ -50,7 +50,7 @@ export default function BirthCertificateList({ records, onDelete, isLoading }: B
 
     return (
         <div className="mt-8 rounded-xl border border-gray-200 bg-white p-6 shadow-md">
-            <h2 className="mb-4 text-xl font-bold text-gray-700">Birth Certificate Applications</h2>
+            <h2 className="mb-4 text-xl font-bold text-gray-700">Birth Certificate List</h2>
             <DataTable<BirthCertificateData>
                 data={records}
                 columns={columns}

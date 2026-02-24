@@ -56,6 +56,7 @@ export default function NtnRegistrationList({ records, onDelete }: ListProps) {
 
     return (
         <div className="w-full overflow-hidden">
+            <h2 className="mb-4 text-xl font-bold text-gray-700">NTN Registration List</h2>
             <DataTable
                 data={records}
                 columns={columns}

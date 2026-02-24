@@ -1,58 +1,74 @@
 "use client";
-import React from "react";
-import type { number_Plate } from "@/app/users/types";
+
 import { FaTrash, FaEye } from "react-icons/fa";
+import { CustomButton } from "@/components/ui-elements/custom-button";
+import DataTable, {
+  type Column,
+} from "@/components/_custom-components/DataTable/DataTable";
+import type { number_Plate } from "@/app/users/types";
 
 interface NumberPlateListProps {
-    records: (number_Plate & { id: string })[];
-    onDelete: (id: string) => void;
+  records: (number_Plate & { id: string })[];
+  onDelete: (id: string) => void;
+  isLoading?: boolean;
 }
 
-export default function NumberPlateList({ records, onDelete }: NumberPlateListProps) {
-    if (records.length === 0) {
-        return (
-            <div className="text-center py-10 border-2 border-dashed border-gray-200 rounded-lg">
-                <p className="text-gray-500">No number plate records found.</p>
-            </div>
-        );
-    }
-
-    return (
-        <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-                <thead>
-                    <tr className="bg-gray-50 text-left">
-                        <th className="p-3 border-b font-semibold text-gray-600">Owner Name</th>
-                        <th className="p-3 border-b font-semibold text-gray-600">Vehicle</th>
-                        <th className="p-3 border-b font-semibold text-gray-600">Province</th>
-                        <th className="p-3 border-b font-semibold text-gray-600">City</th>
-                        <th className="p-3 border-b font-semibold text-gray-600 text-right">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {records.map((record) => (
-                        <tr key={record.id} className="hover:bg-gray-50 transition-colors">
-                            <td className="p-3 border-b text-gray-700">{record.OwnerName}</td>
-                            <td className="p-3 border-b text-gray-700">{`${record.Make} (${record.Year})`}</td>
-                            <td className="p-3 border-b text-gray-700">{record.Province}</td>
-                            <td className="p-3 border-b text-gray-700">{record.City}</td>
-                            <td className="p-3 border-b text-right">
-                                <div className="flex justify-end gap-2">
-                                    <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-full transition-colors">
-                                        <FaEye size={16} />
-                                    </button>
-                                    <button
-                                        onClick={() => onDelete(record.id)}
-                                        className="p-2 text-red-600 hover:bg-red-50 rounded-full transition-colors"
-                                    >
-                                        <FaTrash size={16} />
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+export default function NumberPlateList({
+  records,
+  onDelete,
+  isLoading,
+}: NumberPlateListProps) {
+  const columns: Column<number_Plate & { id: string }>[] = [
+    {
+      header: "Owner Name",
+      accessorKey: "OwnerName",
+      sortable: true,
+    },
+    {
+      header: "Vehicle",
+      cell: (row) => `${row.Make} (${row.Year})`,
+    },
+    {
+      header: "Province",
+      accessorKey: "Province",
+    },
+    {
+      header: "City",
+      accessorKey: "City",
+    },
+    {
+      header: "Actions",
+      cell: (row) => (
+        <div className="flex justify-center gap-2">
+          <button className="rounded-full p-2 text-blue-600 transition-colors hover:bg-blue-50">
+            <FaEye size={16} />
+          </button>
+          <CustomButton
+            variant="danger"
+            size="icon"
+            onClick={() => onDelete(row.id)}
+            title="Delete"
+          >
+            <FaTrash size={14} />
+          </CustomButton>
         </div>
-    );
+      ),
+      headerClassName: "text-center",
+    },
+  ];
+
+  return (
+    <div className="mt-8 rounded-xl border border-gray-200 bg-white p-6 shadow-md">
+      <h2 className="mb-4 text-xl font-bold text-gray-700">
+        Number Plate List
+      </h2>
+      <DataTable<number_Plate & { id: string }>
+        data={records}
+        columns={columns}
+        isLoading={isLoading}
+        emptyMessage="No number plate records found"
+        rowKey={(row) => row.id}
+      />
+    </div>
+  );
 }

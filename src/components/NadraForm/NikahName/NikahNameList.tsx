@@ -51,7 +51,7 @@ export default function NikahNameList({ records, onDelete, isLoading }: NikahNam
 
     return (
         <div className="mt-8 rounded-xl border border-gray-200 bg-white p-6 shadow-md">
-            <h2 className="mb-4 text-xl font-bold text-gray-700">Nikah Nama Applications</h2>
+            <h2 className="mb-4 text-xl font-bold text-gray-700">Nikah Name List</h2>
             <DataTable<NikahData>
                 data={records}
                 columns={columns}

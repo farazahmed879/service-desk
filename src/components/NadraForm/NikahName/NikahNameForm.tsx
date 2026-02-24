@@ -8,7 +8,11 @@ import { NikahData } from "@/app/users/types";
 
 import InputField from "@/components/_custom-components/InputField/InputField";
 
-export default function NikahNameForm({ serviceType = "nikah-name" }: { serviceType?: string }) {
+export default function NikahNameForm({
+  serviceType = "nikah-name",
+}: {
+  serviceType?: string;
+}) {
   const [showForm, setShowForm] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const { register, handleSubmit, reset } = useForm<NikahData>();
@@ -48,9 +52,17 @@ export default function NikahNameForm({ serviceType = "nikah-name" }: { serviceT
         <>
           <div className="flex items-end justify-between gap-4">
             <div className="flex flex-col">
-              <h1 className="mb-6 text-2xl font-bold text-gray-700 capitalize">
-                Nikah Nama
+              <h1 className="mb-6 text-2xl font-bold text-gray-700">
+                Nikah Name Application
               </h1>
+
+              <label className="mb-1 font-medium text-gray-700">User :</label>
+              <input
+                type="text"
+                placeholder="User"
+                {...register("userName")}
+                className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
             </div>
 
             <div className="flex gap-2">
@@ -69,8 +81,10 @@ export default function NikahNameForm({ serviceType = "nikah-name" }: { serviceT
         </>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <div className="flex items-center justify-between mb-4 border-b pb-4">
-            <h2 className="text-2xl font-bold text-gray-700">New Nikah Nama Application</h2>
+          <div className="mb-4 flex items-center justify-between border-b pb-4">
+            <h2 className="text-2xl font-bold text-gray-700">
+              New Nikah Nama Application
+            </h2>
             <button
               type="button"
               onClick={() => setShowForm(false)}
@@ -81,23 +95,43 @@ export default function NikahNameForm({ serviceType = "nikah-name" }: { serviceT
           </div>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            <InputField label="Husband Name" name="husbandName" register={register} placeholder="Enter Husband's name" />
-            <InputField label="Wife Name" name="wifeName" register={register} placeholder="Enter Wife's name" />
-            <InputField label="Marriage Date" name="marriageDate" register={register} type="date" />
-            <InputField label="Place of Marriage" name="place" register={register} placeholder="City/Town" />
+            <InputField
+              label="Husband Name"
+              name="husbandName"
+              register={register}
+              placeholder="Enter Husband's name"
+            />
+            <InputField
+              label="Wife Name"
+              name="wifeName"
+              register={register}
+              placeholder="Enter Wife's name"
+            />
+            <InputField
+              label="Marriage Date"
+              name="marriageDate"
+              register={register}
+              type="date"
+            />
+            <InputField
+              label="Place of Marriage"
+              name="place"
+              register={register}
+              placeholder="City/Town"
+            />
           </div>
 
-          <div className="flex justify-end gap-3 mt-8">
+          <div className="mt-8 flex justify-end gap-3">
             <button
               type="button"
               onClick={() => setShowForm(false)}
-              className="px-6 py-2 rounded-lg bg-gray-100 text-gray-700 font-medium hover:bg-gray-200"
+              className="rounded-lg bg-gray-100 px-6 py-2 font-medium text-gray-700 hover:bg-gray-200"
             >
               Back
             </button>
             <button
               type="submit"
-              className="px-6 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 shadow-md"
+              className="rounded-lg bg-blue-600 px-6 py-2 font-medium text-white shadow-md hover:bg-blue-700"
             >
               Submit Application
             </button>

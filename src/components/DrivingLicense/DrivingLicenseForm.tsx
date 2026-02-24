@@ -7,7 +7,7 @@ import LostLicenseForm from "@/components/DrivingLicense/LostLicense/LostLicense
 interface DrivingLicenseFormProps {
     serviceType?: string;
 }
-
+//remianing list ui  
 export default function DrivingLicenseForm({ serviceType }: DrivingLicenseFormProps) {
     const renderForm = () => {
         switch (serviceType) {

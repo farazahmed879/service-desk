@@ -13,44 +13,43 @@ interface CnicListProps {
   isLoading?: boolean;
 }
 
-export default function CNICList({  //Idhr Masla he form ke bad information show nhi ho rhi 
+export default function CNICList({
   cnics,
   onDelete,
   pagination,
   sorting,
   isLoading,
-}:CnicListProps) {
+}: CnicListProps) {
   const columns: Column<CnicFormData>[] = [
     {
       header: "Full Name",
       accessorKey: "fullName",
       sortable: true,
-      cell: (info) => info.fullName, 
+      headerClassName: "text-left",
+      className: "text-left",
     },
     {
       header: "Father Name",
       accessorKey: "fatherName",
       sortable: true,
-      cell: (info) => info.fatherName,
+      headerClassName: "text-left",
+      className: "text-left",
     },
-    {
-      header: "Email",
-      accessorKey: "email",
-      sortable: true,
-      cell: (info) => info.email,
-    },
+  
     {
       header: "CNIC",
       accessorKey: "cnic",
-      cell: (info) => info.cnic,
+      headerClassName: "text-left",
+      className: "text-left",
     },
     {
       header: "Contact",
       accessorKey: "contactNumber",
-      cell: (info) => info.contactNumber,
+      headerClassName: "text-left",
+      className: "text-left",
     },
     {
-      header: "",
+      header: "Actions",
       cell: (info) => (
         <div className="flex justify-center gap-2">
           <CustomButton
@@ -64,6 +63,7 @@ export default function CNICList({  //Idhr Masla he form ke bad information show
         </div>
       ),
       headerClassName: "min-w-[120px] text-center",
+      className: "text-center",
     },
   ];
 
@@ -74,13 +74,13 @@ export default function CNICList({  //Idhr Masla he form ke bad information show
       </h2>
 
       <DataTable<CnicFormData>
-        data={cnics}                    
+        data={cnics}
         columns={columns}
         pagination={pagination}
         sorting={sorting}
         isLoading={isLoading}
         emptyMessage="No CNIC records found"
-        rowKey={(row) => row.id}         
+        rowKey={(row) => row.id}
       />
     </div>
   );

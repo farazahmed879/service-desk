@@ -1,58 +1,74 @@
 "use client";
-import React from "react";
-import type { vehicle_Transfer } from "@/app/users/types";
+
 import { FaTrash, FaEye } from "react-icons/fa";
+import { CustomButton } from "@/components/ui-elements/custom-button";
+import DataTable, {
+  type Column,
+} from "@/components/_custom-components/DataTable/DataTable";
+import type { vehicle_Transfer } from "@/app/users/types";
 
 interface VehicleTransferListProps {
-    records: (vehicle_Transfer & { id: string })[];
-    onDelete: (id: string) => void;
+  records: (vehicle_Transfer & { id: string })[];
+  onDelete: (id: string) => void;
+  isLoading?: boolean;
 }
 
-export default function VehicleTransferList({ records, onDelete }: VehicleTransferListProps) {
-    if (records.length === 0) {
-        return (
-            <div className="text-center py-10 border-2 border-dashed border-gray-200 rounded-lg">
-                <p className="text-gray-500">No transfer records found.</p>
-            </div>
-        );
-    }
-
-    return (
-        <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-                <thead>
-                    <tr className="bg-gray-50 text-left">
-                        <th className="p-3 border-b font-semibold text-gray-600">Reg #</th>
-                        <th className="p-3 border-b font-semibold text-gray-600">Current Owner</th>
-                        <th className="p-3 border-b font-semibold text-gray-600">New Owner</th>
-                        <th className="p-3 border-b font-semibold text-gray-600">Vehicle</th>
-                        <th className="p-3 border-b font-semibold text-gray-600 text-right">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {records.map((record) => (
-                        <tr key={record.id} className="hover:bg-gray-50 transition-colors">
-                            <td className="p-3 border-b text-gray-700">{record.RegistrationNumber}</td>
-                            <td className="p-3 border-b text-gray-700">{record.currentOwnerName}</td>
-                            <td className="p-3 border-b text-gray-700">{record.NewOwnerName}</td>
-                            <td className="p-3 border-b text-gray-700">{`${record.Make} ${record.Model}`}</td>
-                            <td className="p-3 border-b text-right">
-                                <div className="flex justify-end gap-2">
-                                    <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-full transition-colors">
-                                        <FaEye size={16} />
-                                    </button>
-                                    <button
-                                        onClick={() => onDelete(record.id)}
-                                        className="p-2 text-red-600 hover:bg-red-50 rounded-full transition-colors"
-                                    >
-                                        <FaTrash size={16} />
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+export default function VehicleTransferList({
+  records,
+  onDelete,
+  isLoading,
+}: VehicleTransferListProps) {
+  const columns: Column<vehicle_Transfer & { id: string }>[] = [
+    {
+      header: "Reg #",
+      accessorKey: "RegistrationNumber",
+      sortable: true,
+    },
+    {
+      header: "Current Owner",
+      accessorKey: "currentOwnerName",
+    },
+    {
+      header: "New Owner",
+      accessorKey: "NewOwnerName",
+    },
+    {
+      header: "Vehicle",
+      cell: (row) => `${row.Make} ${row.Model}`,
+    },
+    {
+      header: "Actions",
+      cell: (row) => (
+        <div className="flex justify-center gap-2">
+          <button className="rounded-full p-2 text-blue-600 transition-colors hover:bg-blue-50">
+            <FaEye size={16} />
+          </button>
+          <CustomButton
+            variant="danger"
+            size="icon"
+            onClick={() => onDelete(row.id)}
+            title="Delete"
+          >
+            <FaTrash size={14} />
+          </CustomButton>
         </div>
-    );
+      ),
+      headerClassName: "text-center",
+    },
+  ];
+
+  return (
+    <div className="mt-8 rounded-xl border border-gray-200 bg-white p-6 shadow-md">
+      <h2 className="mb-4 text-xl font-bold text-gray-700">
+        Vehicle Transfer List
+      </h2>
+      <DataTable<vehicle_Transfer & { id: string }>
+        data={records}
+        columns={columns}
+        isLoading={isLoading}
+        emptyMessage="No transfer records found"
+        rowKey={(row) => row.id}
+      />
+    </div>
+  );
 }

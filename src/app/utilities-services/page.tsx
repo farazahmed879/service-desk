@@ -20,7 +20,7 @@ export default function ServicesPage() {
     type: "",
     description: "",
   });
-    const [allServices, setAllServices] = useState(SERVICES);
+  const [allServices, setAllServices] = useState(SERVICES);
 
 
   const goToService = (service: any) => {
@@ -83,19 +83,18 @@ export default function ServicesPage() {
           .map((service, index) => (
             <div
               key={`${service.slug}-${index}`}
-              className="group relative cursor-pointer overflow-hidden rounded-2xl border border-gray-100 bg-white p-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-gray-800 dark:bg-gray-dark"
+              className="group relative cursor-pointer flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-gray-800 dark:bg-gray-dark"
               onClick={() => handleServiceClick(service)}
             >
-              <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 p-6 dark:from-gray-800 dark:to-gray-900">
+              <div className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 p-6 dark:from-gray-800 dark:to-gray-900">
                 {service.image ? (
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="mx-auto h-28 w-auto object-contain transition-transform duration-500 group-hover:scale-110 sm:h-32"
+                    className="mx-auto h-28 w-28 object-contain transition-transform duration-500 group-hover:scale-110 sm:h-32 sm:w-32"
                   />
                 ) : (
-                  <div className="flex h-28 items-center justify-center sm:h-32">
-                    <span className="text-4xl text-blue-500">🛠️</span>
+                  <div className="mx-auto flex h-28 w-28 items-center justify-center sm:h-32 sm:w-32">
                   </div>
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-600/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />

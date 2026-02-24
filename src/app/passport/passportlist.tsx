@@ -31,30 +31,38 @@ export default function PassportList({
       header: "Full Name",
       accessorKey: "fullName",
       sortable: true,
-      headerClassName: "!text-left",
-      className: "!text-left",
+      headerClassName: "text-left",
+      className: "text-left",
     },
     {
       header: "Father Name",
       accessorKey: "fatherName",
       sortable: true,
+      headerClassName: "text-left",
+      className: "text-left",
     },
 
     {
       header: "CNIC",
       accessorKey: "cnic",
+      headerClassName: "text-left",
+      className: "text-left",
     },
-    {
+    /* {
       header: "Age",
       accessorKey: "age",
       sortable: true,
+      headerClassName: "text-left",
+      className: "text-left",
     },
     {
       header: "Role",
       accessorKey: "role",
-    },
+      headerClassName: "text-left",
+      className: "text-left",
+    }, */
     {
-      header: "",
+      header: "Actions",
       cell: (row) => (
         <div className="flex justify-center gap-2">
           <CustomButton
@@ -68,6 +76,7 @@ export default function PassportList({
         </div>
       ),
       headerClassName: "min-w-[120px] text-center",
+      className: "text-center",
     },
   ];
 

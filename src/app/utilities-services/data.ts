@@ -19,7 +19,7 @@ export const SERVICES: Service[] = [
   {
     title: " Passport Application",
     slug: "passport",
-    image: "/images/services/passport/new.png",
+    image: "/images/services/passport/new1.png",
     children: [
       {
         title: "New Passport",
@@ -46,7 +46,7 @@ export const SERVICES: Service[] = [
   {
     title: "CNIC ",
     slug: "cnic",
-    image: "/images/services/passport/cnic.png",
+    image: "/images/services/passport/cnic1.png",
     children: [
       {
         title: "New Cnic",
@@ -72,7 +72,8 @@ export const SERVICES: Service[] = [
   },
 
   /* -------B-Form and its Services---------- */
-  {
+
+  /* {
     title: "B-Form",
     slug: "b-form",
     image: "/images/services/passport/b-form.png",
@@ -98,12 +99,12 @@ export const SERVICES: Service[] = [
         route: "/b-form/lost-BForm",
       },
     ],
-  },
+  }, */
 
   {
     title: "Nadra",
     slug: "nadra",
-    image: "/images/services/passport/cnic.png",
+    image: "/images/services/passport/nadra.png",
     children: [
       {
         title: "CNIC",
@@ -131,7 +132,7 @@ export const SERVICES: Service[] = [
   {
     title: "Bill and payments",
     slug: "bill-and-payments",
-    image: "/images/services/passport/challan.png",
+    image: "/images/services/passport/challan1.png",
     children: [
       {
         title: "Taxes and Challans",
@@ -170,7 +171,7 @@ export const SERVICES: Service[] = [
   {
     title: "Vehicle",
     slug: "vehicle",
-    image: "/images/services/passport/vehicle.png",
+    image: "/images/services/passport/vehicle1.png",
     children: [
       {
         title: "Registration",
@@ -204,10 +205,10 @@ export const SERVICES: Service[] = [
   {
     title: "Driving License",
     slug: "driving-license",
-    image: "/images/services/passport/driving.png",
+    image: "/images/services/passport/driving1.png",
     children: [
       {
-        title: "New License",
+        title: "Learning License",
         slug: "new-license",
         image: "/images/services/passport/driving.png",
         route: "/driving-license/new-license",
@@ -219,7 +220,7 @@ export const SERVICES: Service[] = [
         route: "/driving-license/renew-license",
       },
       {
-        title: " Lost License",
+        title: " Permenant License",
         slug: "lost-license",
         image: "/images/services/passport/driving.png",
         route: "/driving-license/lost-license",
@@ -231,7 +232,7 @@ export const SERVICES: Service[] = [
   {
     title: "Sui Gas",
     slug: "gas",
-    image: "/images/services/passport/gas.png",
+    image: "/images/services/passport/gas1.png",
     children: [
       {
         title: "Gas Connection",
@@ -264,7 +265,7 @@ export const SERVICES: Service[] = [
   {
     title: "Electric",
     slug: "electric",
-    image: "/images/services/passport/electric.png",
+    image: "/images/services/passport/electric1.png",
     children: [
       {
         title: "Connection",
@@ -292,27 +293,29 @@ export const SERVICES: Service[] = [
       },
     ],
   },
-  /*  {
-    title: "Number Plate ",
-    slug: "number-plate",
-    image: "/images/services/passport/number-plate.png",
-  }, */
-  /*  {
-    title: "Vehicle Transfer",
-    slug: "vehicle-transfer",
-    image: "/images/services/passport/vehicle-transfer.png",
-  }, */
-  /*  {
-    title: "Birth Certificate",
-    slug: "birth-certificate",
-    image: "/images/services/passport/b-certificate.png",
-  }, */
-  {
-    title: "Domicle and Prc",
-    slug: "domicile-prc",
-    image: "/images/services/passport/domicile.png",
-  },
+
 ];
+
+/*  {
+  title: "Number Plate ",
+  slug: "number-plate",
+  image: "/images/services/passport/number-plate.png",
+}, */
+/*  {
+  title: "Vehicle Transfer",
+  slug: "vehicle-transfer",
+  image: "/images/services/passport/vehicle-transfer.png",
+}, */
+/*  {
+  title: "Birth Certificate",
+  slug: "birth-certificate",
+  image: "/images/services/passport/b-certificate.png",
+}, */
+/*  {
+   title: "Domicle and Prc",
+   slug: "domicile-prc",
+   image: "/images/services/passport/domicile.png",
+ }, */
 
 /* export interface ServiceField {
   name: string;

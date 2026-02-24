@@ -46,11 +46,19 @@ export default function BirthCertificateForm({ serviceType = "birth-certificate"
       {!showForm ? (
         <>
           <div className="flex items-end justify-between gap-4">
-            <div className="flex flex-col">
-              <h1 className="mb-6 text-2xl font-bold text-gray-700 capitalize">
-                Birth Certificate
-              </h1>
-            </div>
+             <div className="flex flex-col">
+            <h1 className="mb-6 text-2xl font-bold text-gray-700">
+              Birth Certificate 
+            </h1>
+
+            <label className="mb-1 font-medium text-gray-700">User :</label>
+            <input
+              type="text"
+              placeholder="User"
+              {...register("userName")}
+              className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
             <div className="flex gap-2">
               <button

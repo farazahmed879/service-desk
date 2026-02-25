@@ -53,9 +53,8 @@ export default function NikahNameForm({
           <div className="flex items-end justify-between gap-4">
             <div className="flex flex-col">
               <h1 className="mb-6 text-2xl font-bold text-gray-700">
-                Nikah Name Application
+                Nikah Name
               </h1>
-
               <label className="mb-1 font-medium text-gray-700">User :</label>
               <input
                 type="text"
@@ -81,17 +80,18 @@ export default function NikahNameForm({
         </>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+           <label className="mb-1 font-medium text-gray-700">User : </label>
+            <input
+              type="text"
+              placeholder="User"
+              {...register("userName")}
+              className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
           <div className="mb-4 flex items-center justify-between border-b pb-4">
             <h2 className="text-2xl font-bold text-gray-700">
               New Nikah Nama Application
             </h2>
-            <button
-              type="button"
-              onClick={() => setShowForm(false)}
-              className="text-gray-500 hover:text-gray-700"
-            >
-              Cancel
-            </button>
+            
           </div>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">

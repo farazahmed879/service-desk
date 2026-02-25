@@ -1,8 +1,8 @@
 "use client";
 
+import { DropDown } from "@/app/users/types";
 import React from "react";
 import { FieldError, UseFormRegister } from "react-hook-form";
-
 
 interface InputFieldProps {
   label: string;
@@ -11,7 +11,7 @@ interface InputFieldProps {
   placeholder?: string;
   register: UseFormRegister<any>;
   error?: FieldError;
-  options?: string[];
+  options?: DropDown[];
   textarea?: boolean;
   rows?: number;
   registerOptions?: any;
@@ -29,9 +29,9 @@ const InputField: React.FC<InputFieldProps> = ({
   textarea = false,
   rows = 3,
   registerOptions = {},
-  inputProps
+
+  inputProps,
 }) => {
-  
   return (
     <div className="flex w-full flex-col">
       <label className="mb-1 font-semibold text-gray-700">{label}</label>
@@ -43,31 +43,28 @@ const InputField: React.FC<InputFieldProps> = ({
           rows={rows}
           className="w-full rounded-lg border border-gray-300 bg-gray-50 p-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
         />
-
       ) : options ? (
         <select
           {...register(name, registerOptions)}
           className="w-full rounded-lg border border-gray-300 bg-gray-50 p-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
         >
           <option value="">Select {label}</option>
-          {options.map((opt) => (
-            <option key={opt} value={opt}>
-              {opt}
+          {options.map((opt: DropDown) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
             </option>
           ))}
         </select>
-        
       ) : (
         <input
           {...register(name, registerOptions)}
           type={type}
           placeholder={placeholder}
-           {...inputProps}
+          {...inputProps}
           className="w-full rounded-lg border border-gray-300 bg-gray-50 p-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
           required
         />
       )}
-
 
       {error && (
         <p className="mt-1 text-sm text-red-500">{String(error.message)}</p>
@@ -77,7 +74,6 @@ const InputField: React.FC<InputFieldProps> = ({
 };
 
 export default InputField;
-
 
 /* "use client";
 

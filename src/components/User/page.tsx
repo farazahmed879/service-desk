@@ -7,6 +7,7 @@ import { FormValues, UserFormProps } from "@/app/users/types";
 import axios from "axios";
 import { urls } from "@/app/utilities-services/api-urls";
 import Api from "@/utils/api";
+import { USER_ROLE } from "@/utils/constant";
 export default function UserForm({
   existingUser,
   onSave,
@@ -111,10 +112,11 @@ export default function UserForm({
           <InputField
             label="Role"
             name="role"
-            placeholder="Enter Role"
+            type="select"
             register={register}
-            registerOptions={{ required: "role is required" }}
+            registerOptions={{ required: "Role is required" }}
             error={errors.role}
+            options={USER_ROLE}
           />
         </div>
         <div className="flex gap-4">
@@ -175,76 +177,78 @@ export default function UserForm({
             error={errors.Age}
           />
         </div>
-           <div className="flex gap-4" >
-        <InputField
-          label="Gender"
-          name="Gender"
-          placeholder="Enter Gender"
-          register={register}
-          registerOptions={{ required: "Gender is required" }}
-          error={errors.Gender}
-        />
-        <InputField
-          label="Contact"
-          name="contact"
-          placeholder="Enter your contact number"
-          register={register}
-          registerOptions={{ required: "contact number is required" }}
-          error={errors.contact}
-        />
+        <div className="flex gap-4">
+          <InputField
+            label="Gender"
+            name="Gender"
+            placeholder="Enter Gender"
+            register={register}
+            registerOptions={{ required: "Gender is required" }}
+            error={errors.Gender}
+          />
+          <InputField
+            label="Contact"
+            name="contact"
+            placeholder="Enter your contact number"
+            register={register}
+            registerOptions={{ required: "contact number is required" }}
+            error={errors.contact}
+          />
         </div>
-        <div  className="flex gap-4">
-        <InputField
-          label="Permenent Address"
-          name="permenentAddress"
-          placeholder="Enter  your permenent Address"
-          register={register}
-          registerOptions={{ required: "permenent Address is required" }}
-          error={errors.permenentAddress}
-        />
-        <InputField
-          label="City"
-          name="city"
-          placeholder="Enter your city name"
-          register={register}
-          registerOptions={{ required: "city name is required" }}
-          error={errors.city}
-        />
-        
-        <InputField
-          label="Country"
-          name="country"
-          placeholder="Enter  your country name"
-          register={register}
-          registerOptions={{ required: "country name is required" }}
-          error={errors.country}
-        />
-        <InputField
-          label="Postal Code"
-          name="postalCode"
-          placeholder="Postal Code"
-          register={register}
-          error={errors.postalCode}
-        />
+        <div className="flex gap-4">
+          <InputField
+            label="Permenent Address"
+            name="permenentAddress"
+            placeholder="Enter  your permenent Address"
+            register={register}
+            registerOptions={{ required: "permenent Address is required" }}
+            error={errors.permenentAddress}
+          />
+          <InputField
+            label="City"
+            name="city"
+            placeholder="Enter your city name"
+            register={register}
+            registerOptions={{ required: "city name is required" }}
+            error={errors.city}
+          />
+
+          <InputField
+            label="Country"
+            name="country"
+            placeholder="Enter  your country name"
+            register={register}
+            registerOptions={{ required: "country name is required" }}
+            error={errors.country}
+          />
+          <InputField
+            label="Postal Code"
+            name="postalCode"
+            placeholder="Postal Code"
+            register={register}
+            error={errors.postalCode}
+          />
         </div>
-        <div className="flex gap-4" >
-        <InputField
-          label="Birthdate"
-          name="birthDate"
-          placeholder="Enter your Birthdate"  
-          register={register}
-          registerOptions={{ required: "birthdate is required" }}
-          error={errors.birthDate}
-          type="date"
-        />
-        <InputField
-          label="Emergency Contact Number"
-          name="emergencyContactNumber"
-          placeholder="Enter Emergency Contact Number"
-          register={register}
-          registerOptions={{ required: "emergency Contact Number is required" }}
-          error={errors.emergencyContactNumber}
-        />
+        <div className="flex gap-4">
+          <InputField
+            label="Birthdate"
+            name="birthDate"
+            placeholder="Enter your Birthdate"
+            register={register}
+            registerOptions={{ required: "birthdate is required" }}
+            error={errors.birthDate}
+            type="date"
+          />
+          <InputField
+            label="Emergency Contact Number"
+            name="emergencyContactNumber"
+            placeholder="Enter Emergency Contact Number"
+            register={register}
+            registerOptions={{
+              required: "emergency Contact Number is required",
+            }}
+            error={errors.emergencyContactNumber}
+          />
         </div>
         <InputField
           label="image"

@@ -170,7 +170,7 @@ export interface NikahData {
   wifeName: string;
   marriageDate: string;
   place: string;
-  userName?: string
+  userName?: string;
 }
 export interface NadraFormData {
   id: string;
@@ -369,6 +369,7 @@ export interface BillAndPayment {
   amount: string;
   paidBy: string;
   remarks: string;
+  status: string;
 }
 export interface Service {
   id: string;
@@ -381,6 +382,11 @@ export interface Service {
 export interface DogImage {
   message: string;
   status: string;
+}
+
+export interface DropDown {
+  value: string | number;
+  label: string;
 }
 
 export interface PassportListProps {

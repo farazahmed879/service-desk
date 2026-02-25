@@ -62,7 +62,7 @@ export default function PropertyTaxForm({ serviceType }: ServiceFormProps) {
         <>
           <div className="mb-6 flex items-end justify-between gap-4">
             <div className="flex flex-col">
-              <h1 className="mb-6 text-2xl font-bold text-gray-700">
+               <h1 className="mb-6 text-2xl font-bold text-gray-700">
                 Property Tax
               </h1>
 

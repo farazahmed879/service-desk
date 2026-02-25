@@ -92,16 +92,15 @@ export default function ServiceForm({ serviceType }: ServiceFormProps) {
         </>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <div className="flex items-center justify-between mb-4 border-b pb-4">
+          <label className="mb-1 font-medium text-gray-700">User : </label>
+            <input
+              type="text"
+              placeholder="User"
+              {...register("userName")}
+              className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
             <h2 className="text-2xl font-bold text-gray-700 capitalize">Create {serviceType}</h2>
-            <button
-              type="button"
-              onClick={() => setShowForm(false)}
-              className="text-gray-500 hover:text-gray-700"
-            >
-              Cancel
-            </button>
-          </div>
+          
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <InputField label="Full Name" name="fullName" register={register} placeholder="Enter Full Name" />

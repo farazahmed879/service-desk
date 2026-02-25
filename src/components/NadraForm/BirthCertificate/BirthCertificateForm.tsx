@@ -7,7 +7,11 @@ import { FaPlus } from "react-icons/fa";
 import BirthCertificateList from "./BirthCertificateList";
 import { BirthCertificateData } from "@/app/users/types";
 
-export default function BirthCertificateForm({ serviceType = "birth-certificate" }: { serviceType?: string }) {
+export default function BirthCertificateForm({
+  serviceType = "birth-certificate",
+}: {
+  serviceType?: string;
+}) {
   const [showForm, setShowForm] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const { register, handleSubmit, reset } = useForm<BirthCertificateData>();
@@ -46,19 +50,18 @@ export default function BirthCertificateForm({ serviceType = "birth-certificate"
       {!showForm ? (
         <>
           <div className="flex items-end justify-between gap-4">
-             <div className="flex flex-col">
-            <h1 className="mb-6 text-2xl font-bold text-gray-700">
-              Birth Certificate 
-            </h1>
-
-            <label className="mb-1 font-medium text-gray-700">User :</label>
-            <input
-              type="text"
-              placeholder="User"
-              {...register("userName")}
-              className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
+            <div className="flex flex-col">
+              <h1 className="mb-6 text-2xl font-bold text-gray-700">
+                Birth Certificate
+              </h1>
+              <label className="mb-1 font-medium text-gray-700">User :</label>
+              <input
+                type="text"
+                placeholder="User"
+                {...register("userName")}
+                className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
 
             <div className="flex gap-2">
               <button
@@ -76,37 +79,66 @@ export default function BirthCertificateForm({ serviceType = "birth-certificate"
         </>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <div className="flex items-center justify-between mb-4 border-b pb-4">
-            <h2 className="text-2xl font-bold text-gray-700">New Birth Certificate</h2>
-            <button
-              type="button"
-              onClick={() => setShowForm(false)}
-              className="text-gray-500 hover:text-gray-700"
-            >
-              Cancel
-            </button>
+          <label className="mb-1 font-medium text-gray-700">User : </label>
+          <input
+            type="text"
+            placeholder="User"
+            {...register("userName")}
+            className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <div className="mb-4 flex items-center justify-between border-b pb-4">
+            <h2 className="text-2xl font-bold text-gray-700">
+              New Birth Certificate
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            <InputField label="Child Name" name="childName" register={register} placeholder="Enter Child's Name" />
-            <InputField label="Father Name" name="fatherName" register={register} placeholder="Enter Father's Name" />
-            <InputField label="Date of Birth" name="dob" register={register} type="date" />
-            <InputField label="Place of Birth" name="placeOfBirth" register={register} placeholder="City/Town" />
+            <InputField
+              label="Child Name"
+              name="childName"
+              register={register}
+              placeholder="Enter Child's Name"
+            />
+            <InputField
+              label="Father Name"
+              name="fatherName"
+              register={register}
+              placeholder="Enter Father's Name"
+            />
+            <InputField
+              label="Date of Birth"
+              name="dob"
+              register={register}
+              type="date"
+            />
+            <InputField
+              label="Place of Birth"
+              name="placeOfBirth"
+              register={register}
+              placeholder="City/Town"
+            />
           </div>
 
-          <InputField label="Address" name="address" register={register} placeholder="Enter Full Address" textarea rows={3} />
+          <InputField
+            label="Address"
+            name="address"
+            register={register}
+            placeholder="Enter Full Address"
+            textarea
+            rows={3}
+          />
 
-          <div className="flex justify-end gap-3 mt-8">
+          <div className="mt-8 flex justify-end gap-3">
             <button
               type="button"
               onClick={() => setShowForm(false)}
-              className="px-6 py-2 rounded-lg bg-gray-100 text-gray-700 font-medium hover:bg-gray-200"
+              className="rounded-lg bg-gray-100 px-6 py-2 font-medium text-gray-700 hover:bg-gray-200"
             >
               Back
             </button>
             <button
               type="submit"
-              className="px-6 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 shadow-md"
+              className="rounded-lg bg-blue-600 px-6 py-2 font-medium text-white shadow-md hover:bg-blue-700"
             >
               Submit Application
             </button>

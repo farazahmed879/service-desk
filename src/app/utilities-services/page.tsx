@@ -22,12 +22,9 @@ export default function ServicesPage() {
   });
   const [allServices, setAllServices] = useState(SERVICES);
 
-
   const goToService = (service: any) => {
     router.push(`/${service.slug}`);
   };
-
-
 
   const handleServiceClick = (service: any) => {
     if (service.children && service.children.length > 0) {
@@ -83,7 +80,7 @@ export default function ServicesPage() {
           .map((service, index) => (
             <div
               key={`${service.slug}-${index}`}
-              className="group relative cursor-pointer flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-gray-800 dark:bg-gray-dark"
+              className="group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-gray-800 dark:bg-gray-dark"
               onClick={() => handleServiceClick(service)}
             >
               <div className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 p-6 dark:from-gray-800 dark:to-gray-900">
@@ -94,8 +91,7 @@ export default function ServicesPage() {
                     className="mx-auto h-28 w-28 object-contain transition-transform duration-500 group-hover:scale-110 sm:h-32 sm:w-32"
                   />
                 ) : (
-                  <div className="mx-auto flex h-28 w-28 items-center justify-center sm:h-32 sm:w-32">
-                  </div>
+                  <div className="mx-auto flex h-28 w-28 items-center justify-center sm:h-32 sm:w-32"></div>
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-600/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </div>

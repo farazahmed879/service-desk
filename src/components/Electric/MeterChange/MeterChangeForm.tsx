@@ -6,120 +6,162 @@ import InputField from "@/components/_custom-components/InputField/InputField";
 import { FaPlus } from "react-icons/fa";
 
 interface ElectricMeterChangeFormData {
-    userName: string;
-    consumerId: string;
-    meterNumber: string;
-    reason: string;
-    requestDate: string;
+  userName: string;
+  consumerId: string;
+  meterNumber: string;
+  reason: string;
+  requestDate: string;
 }
 
 interface ServiceFormProps {
-    serviceType: string;
+  serviceType: string;
 }
 
 export default function MeterChangeForm({ serviceType }: ServiceFormProps) {
-    const [showForm, setShowForm] = useState(false);
-    const [isMounted, setIsMounted] = useState(false);
-    const { register, handleSubmit, reset } = useForm<ElectricMeterChangeFormData>({
-        defaultValues: {
-            userName: "",
-            consumerId: "",
-            meterNumber: "",
-            reason: "Faulty Meter",
-            requestDate: new Date().toISOString().split('T')[0],
-        },
+  const [showForm, setShowForm] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  const { register, handleSubmit, reset } =
+    useForm<ElectricMeterChangeFormData>({
+      defaultValues: {
+        userName: "",
+        consumerId: "",
+        meterNumber: "",
+        reason: "Faulty Meter",
+        requestDate: new Date().toISOString().split("T")[0],
+      },
     });
 
-    const storageKey = `electric_${serviceType}`;
-    const [records, setRecords] = useState<any[]>([]);
+  const storageKey = `electric_${serviceType}`;
+  const [records, setRecords] = useState<any[]>([]);
 
-    useEffect(() => {
-        setIsMounted(true);
-        const saved = localStorage.getItem(storageKey);
-        if (saved) {
-            setRecords(JSON.parse(saved));
-        }
-    }, [storageKey]);
+  useEffect(() => {
+    setIsMounted(true);
+    const saved = localStorage.getItem(storageKey);
+    if (saved) {
+      setRecords(JSON.parse(saved));
+    }
+  }, [storageKey]);
 
-    useEffect(() => {
-        if (isMounted) {
-            localStorage.setItem(storageKey, JSON.stringify(records));
-        }
-    }, [records, storageKey, isMounted]);
+  useEffect(() => {
+    if (isMounted) {
+      localStorage.setItem(storageKey, JSON.stringify(records));
+    }
+  }, [records, storageKey, isMounted]);
 
-    if (!isMounted) return null;
+  if (!isMounted) return null;
 
-    const onSubmit = (data: ElectricMeterChangeFormData) => {
-        const newRecord = { ...data, id: Date.now().toString(), status: "Submitted" };
-        setRecords((prev) => [...prev, newRecord]);
-        reset();
-        setShowForm(false);
-        alert(`${serviceType.replace(/-/g, " ")} Request Submitted Successfully`);
+  const onSubmit = (data: ElectricMeterChangeFormData) => {
+    const newRecord = {
+      ...data,
+      id: Date.now().toString(),
+      status: "Submitted",
     };
+    setRecords((prev) => [...prev, newRecord]);
+    reset();
+    setShowForm(false);
+    alert(`${serviceType.replace(/-/g, " ")} Request Submitted Successfully`);
+  };
 
-    const handleDelete = (id: string) => {
-        setRecords(records.filter((r) => r.id !== id));
-    };
+  const handleDelete = (id: string) => {
+    setRecords(records.filter((r) => r.id !== id));
+  };
 
-    return (
-        <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
-            {!showForm ? (
-                <>
-                    <div className="flex items-end justify-between gap-4 mb-6">
-                        <div className="flex flex-col">
-                            <h1 className="text-2xl font-bold text-gray-700 capitalize">
-                                {serviceType.replace(/-/g, " ")}
-                            </h1>
-                        </div>
-                        <div className="flex gap-2">
-                            <button
-                                type="button"
-                                onClick={() => setShowForm(true)}
-                                className="flex items-center gap-1 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 active:scale-95 transition-all"
-                            >
-                                <FaPlus size={14} />
-                                New Request
-                            </button>
-                        </div>
-                    </div>
-                    <MeterChangeList records={records} onDelete={handleDelete} />
-                </>
-            ) : (
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    <div className="flex items-center justify-between mb-4 border-b pb-4">
-                        <h2 className="text-2xl font-bold text-gray-700 capitalize">Meter Change Request</h2>
-                        <button
-                            type="button"
-                            onClick={() => setShowForm(false)}
-                            className="text-gray-500 hover:text-gray-700"
-                        >
-                            Cancel
-                        </button>
-                    </div>
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                        <InputField label="User Name" name="userName" register={register} placeholder="Enter User Name" />
-                        <InputField label="Consumer ID" name="consumerId" register={register} placeholder="Enter Consumer ID" />
-                        <InputField label="Current Meter #" name="meterNumber" register={register} placeholder="Enter Current Meter Number" />
-                        <InputField label="Reason for Change" name="reason" register={register} placeholder="e.g. Faulty, Damage, Upgrade" />
-                        <InputField label="Request Date" name="requestDate" register={register} type="date" />
-                    </div>
-                    <div className="flex justify-end gap-3 mt-8">
-                        <button
-                            type="button"
-                            onClick={() => setShowForm(false)}
-                            className="px-6 py-2 rounded-lg bg-gray-100 text-gray-700 font-medium hover:bg-gray-200"
-                        >
-                            Back
-                        </button>
-                        <button
-                            type="submit"
-                            className="px-6 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 shadow-md transition-all active:scale-95"
-                        >
-                            Submit Request
-                        </button>
-                    </div>
-                </form>
-            )}
-        </div>
-    );
+  return (
+    <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-md">
+      {!showForm ? (
+        <>
+          <div className="flex items-end justify-between gap-4">
+            <div className="flex flex-col">
+              <h1 className="mb-6 text-2xl font-bold text-gray-700">
+                Meter Change 
+              </h1>
+
+              <label className="mb-1 font-medium text-gray-700">User :</label>
+              <input
+                type="text"
+                placeholder="User"
+                {...register("userName")}
+                className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => setShowForm(true)}
+                className="flex items-center gap-1 rounded-md bg-blue-600 px-3 py-2 text-xs font-medium text-white hover:bg-blue-700 active:scale-95"
+              >
+                <FaPlus size={12} />
+                Create
+              </button>
+            </div>
+          </div>
+          <MeterChangeList records={records} onDelete={handleDelete} />
+        </>
+      ) : (
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+             <label className="mb-1 font-medium text-gray-700">User : </label>
+              <input
+                type="text"
+                placeholder="User"
+                {...register("userName")}
+                className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+          <div className="mb-4 flex items-center justify-between border-b pb-4">
+            <h2 className="text-2xl font-bold capitalize text-gray-700">
+              Meter Change Form
+            </h2>
+            
+          </div>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <InputField
+              label="User Name"
+              name="userName"
+              register={register}
+              placeholder="Enter User Name"
+            />
+            <InputField
+              label="Consumer ID"
+              name="consumerId"
+              register={register}
+              placeholder="Enter Consumer ID"
+            />
+            <InputField
+              label="Current Meter #"
+              name="meterNumber"
+              register={register}
+              placeholder="Enter Current Meter Number"
+            />
+            <InputField
+              label="Reason for Change"
+              name="reason"
+              register={register}
+              placeholder="e.g. Faulty, Damage, Upgrade"
+            />
+            <InputField
+              label="Request Date"
+              name="requestDate"
+              register={register}
+              type="date"
+            />
+          </div>
+          <div className="mt-8 flex justify-end gap-3">
+            <button
+              type="button"
+              onClick={() => setShowForm(false)}
+              className="rounded-lg bg-gray-100 px-6 py-2 font-medium text-gray-700 hover:bg-gray-200"
+            >
+              Back
+            </button>
+            <button
+              type="submit"
+              className="rounded-lg bg-blue-600 px-6 py-2 font-medium text-white shadow-md transition-all hover:bg-blue-700 active:scale-95"
+            >
+              Submit Request
+            </button>
+          </div>
+        </form>
+      )}
+    </div>
+  );
 }

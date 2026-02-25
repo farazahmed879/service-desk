@@ -143,6 +143,13 @@ export default function CnicForm({ serviceType = "new-Cnic" }: CnicFormProps) {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {showForm && (
           <>
+          <label className="mb-1 font-medium text-gray-700">User : </label>
+            <input
+              type="text"
+              placeholder="User"
+              {...register("userName")}
+              className="w-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
             <h1 className="mb-6 text-2xl font-bold text-gray-700">
               New CNIC Form
             </h1>

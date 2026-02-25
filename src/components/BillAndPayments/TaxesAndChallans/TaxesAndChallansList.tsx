@@ -29,10 +29,17 @@ export default function TaxesAndChallansList({ records, onDelete }: ListProps) {
             accessorKey: "amount",
             cell: (row) => <span className="text-green-600 font-bold">${row.amount}</span>,
         },
-        {
-            header: "Paid By",
-            accessorKey: "paidBy",
+         {
+            header: "Status",
+            accessorKey: "status",
+            cell: (row) => (
+                <span className="px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                    {row.status}
+                </span>
+            ),
         },
+
+        
         {
             header: "Actions",
             cell: (row: any) => (

@@ -41,7 +41,7 @@ export default function GasBillingList({ records, onDelete }: ListProps) {
             header: "Status",
             accessorKey: "status",
             cell: (row) => (
-                <span className={`px-2 py-1 rounded-full text-xs font-medium ${row.status === "Paid" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+                <span className={`px-2 py-1 rounded-full text-xs font-medium ${row.status === "UnPaid" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
                     }`}>
                     {row.status}
                 </span>

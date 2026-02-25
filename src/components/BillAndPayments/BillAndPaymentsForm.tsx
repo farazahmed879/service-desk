@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
-import TaxesAndChallansForm from "@/components/BillAndPayments/TaxesAndChallans/TaxesAndChallansForm";
-import IncomeTaxForm from "@/components/BillAndPayments/IncomeTax/IncomeTaxForm";
-import PropertyTaxForm from "@/components/BillAndPayments/PropertyTax/PropertyTaxForm";
-import VehicleTaxForm from "@/components/BillAndPayments/VehicleTax/VehicleTaxForm";
-import NtnRegistrationForm from "@/components/BillAndPayments/NtnRegistration/NtnRegistrationForm";
+import TaxesAndChallansForm from "./TaxesAndChallans/TaxesAndChallansForm";
+import IncomeTaxForm from "./IncomeTax/IncomeTaxForm";
+import PropertyTaxForm from "./PropertyTax/PropertyTaxForm";
+import VehicleTaxForm from "./VehicleTax/VehicleTaxForm";
+import NtnRegistrationForm from "./NtnRegistration/NtnRegistrationForm";
 
 interface BillAndPaymentsFormProps {
     serviceType?: string;

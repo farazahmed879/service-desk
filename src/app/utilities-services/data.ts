@@ -115,7 +115,7 @@ export const SERVICES: Service[] = [
         image: "/images/services/passport/b-certificate.png",
       },
       {
-        title: "Nikahname ",
+        title: "Nikahnama ",
         slug: "nadra",
         image: "/images/services/passport/cnic.png",
       },
